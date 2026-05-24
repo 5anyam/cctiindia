@@ -12,8 +12,8 @@ import Loading from './loading'; // Import the new loading component
 import { AuthProvider } from '../../lib/auth-context';
 
 export const metadata = {
-  title: 'Amraj - Rooted in Tradition, Backed by Science',
-  description: 'An innovative fusion of modern nutraceuticals and ancient herbal wisdom—for results you can feel.',
+  title: 'Sachdeva Medline — Authorised Longfian Oxygen Concentrator Dealer',
+  description: 'India\'s trusted medical equipment provider since 1981. Authorised dealer for Longfian oxygen concentrators and patient beds. Pan-India delivery, genuine products, expert after-sale service.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

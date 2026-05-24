@@ -1,20 +1,24 @@
 'use client';
 import Link from 'next/link';
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import Image from 'next/image';
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+
+const GREEN = '#3DAA35';
+const DARK = '#0F1117';
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#0f1117', borderTop: '4px solid #0D9488' }}>
+    <footer style={{ background: DARK, borderTop: `4px solid ${GREEN}` }}>
 
-      {/* ── Manifesto belt ── */}
-      <div style={{ overflow: 'hidden', borderBottom: '3px solid rgba(255,255,255,0.08)', padding: '14px 0' }}>
-        <div style={{ display: 'inline-flex', whiteSpace: 'nowrap', animation: 'mq-fwd 22s linear infinite' }}>
+      {/* ── Marquee belt ── */}
+      <div style={{ overflow: 'hidden', borderBottom: '2px solid rgba(255,255,255,0.06)', padding: '12px 0' }}>
+        <div style={{ display: 'inline-flex', whiteSpace: 'nowrap', animation: 'mq-fwd 24s linear infinite' }}>
           {[...Array(2)].map((_, r) => (
             <span key={r} style={{ display: 'inline-flex' }}>
-              {['ROOTED IN TRADITION', 'BACKED BY SCIENCE', 'FEEL THE DIFFERENCE', 'PURE. POTENT. PROVEN.'].map((t) => (
-                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: '0 24px', fontSize: 11, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
+              {['AUTHORISED LONGFIAN DEALER', 'TRUSTED SINCE 1981', 'PAN-INDIA DELIVERY', 'GENUINE PRODUCTS ONLY', 'EXPERT AFTER-SALE SERVICE'].map((t) => (
+                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: '0 24px', fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>
                   {t}
-                  <span style={{ color: '#0D9488', fontSize: 6 }}>◆</span>
+                  <span style={{ color: GREEN, fontSize: 6 }}>◆</span>
                 </span>
               ))}
             </span>
@@ -24,41 +28,29 @@ export default function Footer() {
 
       {/* ── Main content ── */}
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '56px 32px 40px' }}>
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '40px 32px' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1fr', gap: '40px 32px' }}>
 
           {/* Brand */}
           <div>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 44, lineHeight: 1, letterSpacing: '0.04em', color: '#fff', marginBottom: 4 }}>
-                AMRAJ <span style={{ color: '#0D9488' }}>·</span>
+            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 20 }}>
+              <div style={{ background: '#fff', borderRadius: 8, padding: '10px 16px', display: 'inline-block' }}>
+                <Image src="/sachdeva-logo.jpeg" alt="Sachdeva Medline" width={180} height={56} style={{ height: 46, width: 'auto', objectFit: 'contain', display: 'block' }} />
               </div>
             </Link>
-            <p style={{ fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>
-              WELLNESS
-            </p>
-            <p style={{ fontSize: 13, fontWeight: 300, color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, marginBottom: 24 }}>
-              An innovative fusion of modern nutraceuticals and ancient herbal wisdom — for results you can feel.
+            <p style={{ fontSize: 13, fontWeight: 300, color: 'rgba(255,255,255,0.45)', lineHeight: 1.85, marginBottom: 24, maxWidth: 260 }}>
+              Authorised dealer for Longfian oxygen concentrators and medical equipment. Serving India since 1981 with genuine products and expert service.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               {[
-                { href: 'https://www.facebook.com/share/171nqqCNnk/?mibextid=wwXIfr', icon: <FaFacebookF size={13} /> },
-                { href: '#', icon: <FaTwitter size={13} /> },
-                { href: 'https://www.instagram.com/amraj_wellness?igsh=NXhjNHVvNDVlMHJr&utm_source=qr', icon: <FaInstagram size={13} /> },
-                { href: 'https://www.youtube.com/@amraj-wellness', icon: <FaYoutube size={13} /> },
+                { href: '#', icon: <FaFacebookF size={13} /> },
+                { href: '#', icon: <FaInstagram size={13} /> },
+                { href: '#', icon: <FaYoutube size={13} /> },
+                { href: 'https://wa.me/919999999999', icon: <FaWhatsapp size={13} /> },
               ].map(({ href, icon }, i) => (
-                <Link
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    width: 34, height: 34, border: '2px solid rgba(255,255,255,0.2)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: 'rgba(255,255,255,0.45)', textDecoration: 'none',
-                    transition: 'border-color 0.2s, color 0.2s, background 0.2s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#0D9488'; e.currentTarget.style.color = '#0D9488'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}
+                <Link key={i} href={href} target="_blank" rel="noopener noreferrer"
+                  style={{ width: 34, height: 34, border: '1.5px solid rgba(255,255,255,0.15)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s, background 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = GREEN; e.currentTarget.style.color = GREEN; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; }}
                 >
                   {icon}
                 </Link>
@@ -66,19 +58,20 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Shop Links */}
+          {/* Products */}
           <div>
-            <h4 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 16, letterSpacing: '0.12em', color: '#0D9488', marginBottom: 20 }}>SHOP</h4>
+            <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: GREEN, marginBottom: 20, fontWeight: 700 }}>PRODUCTS</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                { name: 'Prostate Care', to: '/product/advanced-prostate-care' },
-                { name: 'Liver Detox', to: '/product/advanced-liver-detox' },
-                { name: 'Weight Management', to: '/product/weight-management-pro' },
+                { name: 'Longfian JAY-5 (5 LPM)', to: '/product/longfian-jay-5' },
+                { name: 'Longfian JAY-10 (10 LPM)', to: '/product/longfian-jay-10' },
+                { name: 'Longfian JAY-5W (Wheels)', to: '/product/longfian-jay-5w' },
+                { name: 'Electric Recliner Bed', to: '/product/electric-recliner-bed' },
                 { name: 'All Products', to: '/shop' },
               ].map(({ name, to }) => (
                 <li key={name}>
-                  <Link href={to} style={{ fontSize: 12, fontWeight: 400, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', letterSpacing: '0.04em', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#0D9488')}
+                  <Link href={to} style={{ fontSize: 13, fontWeight: 400, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = GREEN)}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
                   >
                     {name}
@@ -90,17 +83,18 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 16, letterSpacing: '0.12em', color: '#0D9488', marginBottom: 20 }}>LEGAL</h4>
+            <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: GREEN, marginBottom: 20, fontWeight: 700 }}>LEGAL</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
                 { name: 'Privacy Policy', to: '/privacy-policy' },
                 { name: 'Terms & Conditions', to: '/terms-and-conditions' },
                 { name: 'Returns & Refunds', to: '/returns-and-refunds-policy' },
                 { name: 'Disclaimer', to: '/disclaimer' },
+                { name: 'About Us', to: '/about' },
               ].map(({ name, to }) => (
                 <li key={name}>
-                  <Link href={to} style={{ fontSize: 12, fontWeight: 400, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', letterSpacing: '0.04em', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#0D9488')}
+                  <Link href={to} style={{ fontSize: 13, fontWeight: 400, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = GREEN)}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
                   >
                     {name}
@@ -112,15 +106,17 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 16, letterSpacing: '0.12em', color: '#0D9488', marginBottom: 20 }}>CONTACT</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: GREEN, marginBottom: 20, fontWeight: 700 }}>CONTACT</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
-                'care@amraj.in',
-                '+91 92116 19009',
-                'D5/204, Chintpurni House, Central Market, Prashant Vihar, New Delhi – 110085',
-              ].map((t, i) => (
-                <li key={i} style={{ fontSize: 12, fontWeight: 300, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, letterSpacing: '0.03em' }}>
-                  {t}
+                { label: 'Email', val: 'info@sachdevamedline.com' },
+                { label: 'Phone', val: '+91 XXXXX XXXXX' },
+                { label: 'WhatsApp', val: '+91 XXXXX XXXXX' },
+                { label: 'Address', val: 'New Delhi, India' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <span style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(61,170,53,0.55)', display: 'block', marginBottom: 2 }}>{item.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 300, color: 'rgba(255,255,255,0.45)', lineHeight: 1.6 }}>{item.val}</span>
                 </li>
               ))}
             </ul>
@@ -129,13 +125,25 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div style={{ borderTop: '2px solid rgba(255,255,255,0.08)', padding: '20px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-        <p style={{ fontSize: 10, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.18)' }}>
-          © {new Date().getFullYear()} Amraj Wellness LLP. All rights reserved.
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', padding: '18px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+        <p style={{ fontSize: 11, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.2)' }}>
+          © {new Date().getFullYear()} Sachdeva Medline. All rights reserved.
         </p>
-        <img src="/badges.png" alt="Payment badges" style={{ height: 36, opacity: 0.6 }} />
-        <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(13,148,136,0.4)' }}>
-          SCIENCE-BACKED. INDIA-MADE. ◆
+        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.22)', letterSpacing: '0.04em' }}>
+          Developed by{' '}
+          <Link
+            href="https://proshala.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'rgba(61,170,53,0.7)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }}
+            onMouseEnter={e => (e.currentTarget.style.color = GREEN)}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(61,170,53,0.7)')}
+          >
+            Proshala
+          </Link>
+        </p>
+        <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: `rgba(61,170,53,0.35)` }}>
+          AUTHORISED DEALER · SINCE 1981 ◆
         </p>
       </div>
 
