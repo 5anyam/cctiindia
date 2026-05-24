@@ -2,59 +2,65 @@
 
 import React from 'react';
 
-export default function TermsAndConditions() {
+const GREEN = '#3DAA35';
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-gray-50 py-10 px-4 sm:px-8 md:px-20 lg:px-40">
-      <div className="max-w-5xl mx-auto bg-white p-8 shadow-xl rounded-2xl">
-        <h1 className="text-3xl md:text-4xl font-bold text-teal-600 mb-6 text-center">
-          Terms & Conditions
-        </h1>
+    <div style={{ marginBottom: 32 }}>
+      <h2 style={{ fontSize: 18, fontWeight: 800, color: '#1A1A1A', borderLeft: `4px solid ${GREEN}`, paddingLeft: 14, marginBottom: 14 }}>{title}</h2>
+      <div style={{ fontSize: 14, color: '#444', lineHeight: 1.85 }}>{children}</div>
+    </div>
+  );
+}
 
-        <section className="space-y-6 text-base leading-7 text-gray-800">
-          <p>
-            This website is an online service owned and managed by <strong>Amraj Wellness LLC</strong> (we, us, or AMRAJ). By accessing or using our website (<strong>www.amraj.in</strong>), you agree to be legally bound by the terms and conditions described in this User Agreement. These terms apply indefinitely and may be revised at any time without prior notice.
-          </p>
-          <p>
-            By using this site, you confirm that you are of legal age and that you understand and agree to comply with these Terms. If you do not agree to any of the terms, we kindly ask that you discontinue use of the site.
-          </p>
+export default function TermsAndConditionsPage() {
+  return (
+    <div style={{ background: '#F5FAF4', minHeight: '100vh', padding: '48px 16px' }}>
+      <div style={{ maxWidth: 820, margin: '0 auto', background: '#fff', borderRadius: 16, padding: '48px 52px', boxShadow: '0 4px 24px rgba(61,170,53,0.08)', border: '1.5px solid #e8f0e8' }}>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">Order Verification (Calls/SMS)</h2>
-          <p>
-            We may make verification calls or send SMS for Cash on Delivery (COD) orders through a trusted third-party platform to confirm your intent and details before processing.
-          </p>
+        <h1 style={{ fontSize: 36, fontWeight: 900, color: GREEN, marginBottom: 8, letterSpacing: '-0.02em' }}>Terms & Conditions</h1>
+        <p style={{ fontSize: 13, color: '#888', marginBottom: 40 }}>Last Updated: 1st January 2024 · sachdevamedline.com</p>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">Amendments to Terms</h2>
-          <p>
-            AMRAJ reserves the right to modify, update, or change these terms at its sole discretion without any obligation to notify users. Please review this page periodically to stay updated.
-          </p>
+        <Section title="1. Agreement to Terms">
+          <p>This website is owned and managed by <strong>Sachdeva Medline</strong>. By accessing or using <strong>www.sachdevamedline.com</strong>, you agree to be legally bound by these Terms &amp; Conditions. These terms may be updated at any time without prior notice. Continued use of the site constitutes acceptance of the updated terms.</p>
+        </Section>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">Contact Us</h2>
-          <p>
-            For any questions, feedback, or complaints related to these Terms, please contact us at <strong>support@amrajwellness.com</strong>.
-          </p>
+        <Section title="2. Products & Pricing">
+          <p>All prices listed on our website are in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. We reserve the right to modify product prices at any time. Product descriptions, images, and specifications are provided in good faith and may vary slightly from the physical product.</p>
+        </Section>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">DND Compliance</h2>
-          <p>
-            By providing your phone number on our website, you authorize AMRAJ to override the Do-Not-Disturb (DND) registry. Even if your number is registered under the National Consumer Preference Register (NCPR/NDNC), you voluntarily consent to receive messages, calls, and notifications from us regarding your orders and wellness-related updates.
-          </p>
+        <Section title="3. Order Placement & Confirmation">
+          <p>Placing an order does not constitute a confirmed sale until we send you an order confirmation. We reserve the right to cancel any order in case of pricing errors, out-of-stock situations, or suspected fraudulent activity. For Cash on Delivery (COD) orders, we may make verification calls before dispatch.</p>
+        </Section>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">Customer Commitment</h2>
-          <p>
-            If you do not observe any noticeable results after using Apple Cider Vinegar (ACV) continuously for 3 months, we’ll send you a surprise gift as a goodwill gesture.
-          </p>
+        <Section title="4. Delivery">
+          <p>We endeavour to dispatch all orders within 24 hours of confirmation. Delivery timelines of 3–5 business days apply to most locations across India and are estimates only. Sachdeva Medline is not liable for delays caused by logistics partners, natural disasters, or circumstances beyond our control.</p>
+        </Section>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">Jurisdiction & Governing Law</h2>
-          <p>
-            These Terms and any separate agreements through which AMRAJ provides services shall be governed by and interpreted in accordance with the laws of India. Any disputes shall be subject to the jurisdiction of the competent courts in India.
-          </p>
+        <Section title="5. Warranty">
+          <p>All Longfian oxygen concentrators come with the manufacturer&apos;s warranty. Warranty terms are subject to the manufacturer&apos;s conditions and cover manufacturing defects only. Physical damage, misuse, or tampering voids the warranty. Contact us for warranty claims — we assist from day one.</p>
+        </Section>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-6">Legal Disclaimer</h2>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>We are not liable for any health concerns that arise after the product has been received and consumed.</li>
-            <li>Our products are not intended to diagnose, treat, cure, or prevent any disease.</li>
-            <li>All users are advised to consult with a healthcare professional before starting any new supplement or wellness product.</li>
+        <Section title="6. Limitation of Liability">
+          <p>Sachdeva Medline shall not be liable for any indirect, incidental, or consequential damages arising from the use of our products or website. Our liability is limited to the purchase value of the product in question. All medical equipment sold is intended for use under the guidance of a qualified healthcare professional.</p>
+        </Section>
+
+        <Section title="7. Intellectual Property">
+          <p>All content on www.sachdevamedline.com — including text, images, logos, and design — is the intellectual property of Sachdeva Medline and may not be reproduced without written permission.</p>
+        </Section>
+
+        <Section title="8. Governing Law">
+          <p>These Terms &amp; Conditions are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Delhi.</p>
+        </Section>
+
+        <Section title="9. Contact">
+          <ul style={{ paddingLeft: 20, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <li><strong>Email:</strong> info@sachdevamedline.com</li>
+            <li><strong>Phone:</strong> +91 98915 21090</li>
+            <li><strong>Address:</strong> House No. 9B/4, Friends Enclave, Sultanpuri, Delhi – 110041</li>
           </ul>
-        </section>
+        </Section>
+
       </div>
     </div>
   );

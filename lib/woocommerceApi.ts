@@ -1,4 +1,4 @@
-const API_BASE = "https://cms.amraj.in/wp-json/wc/v3";
+const API_BASE = "https://cms.sachdevamedline.com/wp-json/wc/v3";
 const CONSUMER_KEY = process.env.CONSUMER_KEY || "ck_7610f309972822bfa8e87304ea6c47e9e93b8ff6";
 const CONSUMER_SECRET = process.env.CONSUMER_SECRET || "cs_0f117bc7ec4611ca378adde03010f619c0af59b2";
 
@@ -315,7 +315,7 @@ export async function createOrder(payload: OrderPayload): Promise<unknown> {
       { key: "shiprocket_address", value: payload.shipping_address.address_1 },
     ],
     
-    customer_note: payload.notes ?? `Order placed via Amraj Wellness frontend`,
+    customer_note: payload.notes ?? `Order placed via Sachdeva Medline website`,
     customer: {
       email: payload.customer.email,
     },

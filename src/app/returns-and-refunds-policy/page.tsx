@@ -2,84 +2,83 @@
 
 import React from 'react';
 
-export default function ReturnsRefundPolicy() {
+const GREEN = '#3DAA35';
+const PINK = '#E8175D';
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-gray-50 py-10 px-4 sm:px-8 md:px-20 lg:px-40">
-      <div className="max-w-5xl mx-auto bg-white p-8 shadow-xl rounded-2xl">
-        <h1 className="text-3xl md:text-4xl font-bold text-teal-600 mb-6 text-center">
-          Returns & Refunds Policy
-        </h1>
-        <p className="text-sm text-gray-500 mb-8 text-center">Please Read Carefully</p>
+    <div style={{ marginBottom: 32 }}>
+      <h2 style={{ fontSize: 18, fontWeight: 800, color: '#1A1A1A', borderLeft: `4px solid ${GREEN}`, paddingLeft: 14, marginBottom: 14 }}>{title}</h2>
+      <div style={{ fontSize: 14, color: '#444', lineHeight: 1.85 }}>{children}</div>
+    </div>
+  );
+}
 
-        <section className="space-y-6 text-base leading-7 text-gray-800">
-          <h2 className="text-xl font-semibold text-orange-500">Returns</h2>
-          <p>
-            All our shipments are carefully inspected before dispatch. If you receive a product in any of the following states, kindly notify us within <strong>30 days</strong>.
-          </p>
+export default function ReturnsRefundPolicyPage() {
+  return (
+    <div style={{ background: '#F5FAF4', minHeight: '100vh', padding: '48px 16px' }}>
+      <div style={{ maxWidth: 820, margin: '0 auto', background: '#fff', borderRadius: 16, padding: '48px 52px', boxShadow: '0 4px 24px rgba(61,170,53,0.08)', border: '1.5px solid #e8f0e8' }}>
 
-          <h3 className="font-semibold mt-6">30 DAY RETURN POLICY: ACCEPTABLE REASONS FOR RETURNS</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Damaged, Leaking, Tampered, or Broken Product or Package</li>
-            <li>Wrong Product Delivered</li>
-            <li>Product Post Expiration Date</li>
-            <li>Incomplete Order / Missing Products</li>
+        <h1 style={{ fontSize: 36, fontWeight: 900, color: GREEN, marginBottom: 8, letterSpacing: '-0.02em' }}>Returns & Refunds Policy</h1>
+        <p style={{ fontSize: 13, color: '#888', marginBottom: 40 }}>Please read carefully · sachdevamedline.com</p>
+
+        <div style={{ background: `rgba(61,170,53,0.06)`, border: `1.5px solid rgba(61,170,53,0.2)`, borderRadius: 10, padding: '16px 20px', marginBottom: 36 }}>
+          <p style={{ fontSize: 14, color: '#2e7a28', fontWeight: 600 }}>All shipments are carefully inspected before dispatch. If you receive a defective or incorrect product, please contact us within 7 days of delivery.</p>
+        </div>
+
+        <Section title="1. Acceptable Reasons for Returns">
+          <p style={{ marginBottom: 10 }}>We accept returns only under the following circumstances:</p>
+          <ul style={{ paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <li><strong>Damaged / Broken Product:</strong> Visibly damaged unit or packaging upon delivery</li>
+            <li><strong>Wrong Product Delivered:</strong> You received a different model than what was ordered</li>
+            <li><strong>Manufacturing Defect:</strong> Device fails to function as described on first use</li>
+            <li><strong>Incomplete Order:</strong> Missing accessories or components as listed in the box contents</li>
           </ul>
+        </Section>
 
-          <h3 className="font-semibold mt-6">UNACCEPTABLE REASONS FOR RETURN</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Opened / Used / Altered products</li>
-            <li>Missing original packaging (cartons, labels, etc.)</li>
-            <li>Return/Replacement request raised after 4 days of delivery</li>
-            <li>Damaged/Missing products reported after 4 days</li>
-            <li>Returns for reasons other than a manufacturing defect</li>
-            <li>Personal issues like stomach upset, headache, taste preferences, etc.</li>
+        <Section title="2. Non-Returnable Conditions">
+          <div style={{ background: `rgba(232,23,93,0.04)`, border: `1.5px solid rgba(232,23,93,0.15)`, borderRadius: 8, padding: '14px 18px', marginBottom: 12 }}>
+            <p style={{ fontSize: 13, color: PINK, fontWeight: 600, marginBottom: 8 }}>The following situations are NOT eligible for return or refund:</p>
+            <ul style={{ paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <li>Products that have been used, modified, or tampered with</li>
+              <li>Damage caused by improper use, voltage fluctuations, or accidents</li>
+              <li>Returns requested after 7 days of delivery</li>
+              <li>Change of mind after delivery</li>
+              <li>Products without original packaging, accessories, and documentation</li>
+            </ul>
+          </div>
+        </Section>
+
+        <Section title="3. How to Initiate a Return">
+          <ol style={{ paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <li>Contact us within <strong>7 days</strong> of delivery at <strong>info@sachdevamedline.com</strong> or call <strong>+91 98915 21090</strong></li>
+            <li>Share your order number, a description of the issue, and clear photographs of the product and packaging</li>
+            <li>Our team will review and respond within 48 hours</li>
+            <li>If approved, we will arrange a pickup or guide you on returning the item</li>
+          </ol>
+        </Section>
+
+        <Section title="4. Refund Process">
+          <p>Once the returned product is received and inspected:</p>
+          <ul style={{ paddingLeft: 20, marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <li>Approved refunds are processed within <strong>7–10 business days</strong></li>
+            <li>Refunds are credited to the original payment method (bank account, UPI, or card)</li>
+            <li>Shipping charges are non-refundable unless the return is due to our error</li>
           </ul>
+        </Section>
 
-          <h3 className="font-semibold mt-6">IN CASE OF AN ACCEPTABLE RETURN</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Email us with images as proof at <strong>support@amraj.in</strong> within 30 days</li>
-            <li>We will review your request within 24 working hours</li>
-            <li>If confirmed damaged, you may be asked to discard the product</li>
-            <li>Replacement will be initiated as per availability</li>
-            <li>If pickup is unavailable at your location, you may need to self-ship — courier cost will be reimbursed</li>
+        <Section title="5. Warranty Claims">
+          <p>Manufacturing defects within the warranty period are handled directly through the manufacturer&apos;s warranty process. We assist you with the paperwork and coordination at no additional cost. Please retain the warranty card included with your product.</p>
+        </Section>
+
+        <Section title="6. Contact for Returns">
+          <ul style={{ paddingLeft: 20, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <li><strong>Email:</strong> info@sachdevamedline.com</li>
+            <li><strong>Phone:</strong> +91 98915 21090</li>
+            <li><strong>Address:</strong> House No. 9B/4, Friends Enclave, Sultanpuri, Delhi – 110041</li>
           </ul>
+        </Section>
 
-          <h2 className="text-xl font-semibold text-orange-500 mt-10">Refunds</h2>
-
-          <h3 className="font-semibold mt-4">REFUNDS WILL NOT BE ISSUED IF</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>The product is tampered with or misused</li>
-            <li>Incorrect shipping address was provided</li>
-            <li>You consumed part of the product and then raised a return</li>
-            <li>You do not comply with our return policy</li>
-          </ul>
-
-          <h3 className="font-semibold mt-4">REFUNDS MAY BE ISSUED UNDER THE FOLLOWING CIRCUMSTANCES</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Product is out of stock</li>
-            <li>Shipping address is unserviceable</li>
-            <li>Return policy conditions are met</li>
-            <li>Product is received in untampered condition</li>
-            <li>Double payment made from the same email</li>
-          </ul>
-
-          <h2 className="text-xl font-semibold text-orange-500 mt-10">Cancellation & Refunds</h2>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>You can cancel your order before dispatch by emailing <strong>support@amraj.in</strong></li>
-            <li>Post-dispatch, cancellations are not allowed</li>
-            <li>Refund for cancellations will be processed within 5–7 days to the original payment method</li>
-          </ul>
-
-          <h2 className="text-xl font-semibold text-orange-500 mt-10">Additional Refund Information</h2>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>No processing fee for returns or replacements</li>
-            <li>If you replace with a higher-priced product, you will need to pay the difference</li>
-            <li>Refunds for prepaid orders go to the same source account</li>
-            <li>For COD orders, bank details are required for refund</li>
-            <li>Refunds are processed in 3–5 working days post verification</li>
-            <li>Replacement products are shipped in 3–5 working days after approval</li>
-          </ul>
-        </section>
       </div>
     </div>
   );

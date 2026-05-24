@@ -45,7 +45,7 @@ export default function Footer() {
                 { href: '#', icon: <FaFacebookF size={13} /> },
                 { href: '#', icon: <FaInstagram size={13} /> },
                 { href: '#', icon: <FaYoutube size={13} /> },
-                { href: 'https://wa.me/919999999999', icon: <FaWhatsapp size={13} /> },
+                { href: 'https://wa.me/919891521090', icon: <FaWhatsapp size={13} /> },
               ].map(({ href, icon }, i) => (
                 <Link key={i} href={href} target="_blank" rel="noopener noreferrer"
                   style={{ width: 34, height: 34, border: '1.5px solid rgba(255,255,255,0.15)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s, background 0.2s' }}
@@ -110,9 +110,9 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
                 { label: 'Email', val: 'info@sachdevamedline.com' },
-                { label: 'Phone', val: '+91 XXXXX XXXXX' },
-                { label: 'WhatsApp', val: '+91 XXXXX XXXXX' },
-                { label: 'Address', val: 'New Delhi, India' },
+                { label: 'Phone', val: '+91 98915 21090' },
+                { label: 'WhatsApp', val: '+91 98915 21090' },
+                { label: 'Address', val: 'Sultanpuri, Delhi – 110041' },
               ].map((item) => (
                 <li key={item.label}>
                   <span style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(61,170,53,0.55)', display: 'block', marginBottom: 2 }}>{item.label}</span>

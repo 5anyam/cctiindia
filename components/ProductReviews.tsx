@@ -80,7 +80,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId, productName 
     rating: 0,
   });
 
-  const API_BASE = 'https://cms.amraj.in/wp-json/wc/v3';
+  const API_BASE = 'https://cms.sachdevamedline.com/wp-json/wc/v3';
   const CONSUMER_KEY = 'ck_7610f309972822bfa8e87304ea6c47e9e93b8ff6';
   const CONSUMER_SECRET = 'cs_0f117bc7ec4611ca378adde03010f619c0af59b2';
 
@@ -120,7 +120,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId, productName 
 
   const parseImageUrlsFromMeta = (meta?: ApiMetaItem[]): string[] | undefined => {
     if (!Array.isArray(meta)) return undefined;
-    const urlsItem = meta.find((m) => isApiMetaItem(m) && m.key === 'amraj_review_image_urls');
+    const urlsItem = meta.find((m) => isApiMetaItem(m) && m.key === 'sachdeva_review_image_urls');
     if (!urlsItem) return undefined;
     const v = urlsItem.value;
     if (Array.isArray(v) && v.every((x) => typeof x === 'string')) {

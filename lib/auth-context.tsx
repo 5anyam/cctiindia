@@ -24,10 +24,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   
-  const API_URL = 'https://cms.amraj.in/wp-json/amraj/v1'; // Change to your CMS URL
+  const API_URL = 'https://cms.sachdevamedline.com/wp-json/sachdeva/v1'; // Change to your CMS URL
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('amraj_auth_token');
+    const savedToken = localStorage.getItem('sachdeva_auth_token');
     if (savedToken) {
       verifyToken(savedToken);
     } else {
@@ -49,11 +49,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(data.user);
         setToken(savedToken);
       } else {
-        localStorage.removeItem('amraj_auth_token');
+        localStorage.removeItem('sachdeva_auth_token');
       }
     } catch (error) {
       console.error('Token verification failed:', error);
-      localStorage.removeItem('amraj_auth_token');
+      localStorage.removeItem('sachdeva_auth_token');
     } finally {
       setLoading(false);
     }
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setUser(data.user);
     setToken(data.token);
-    localStorage.setItem('amraj_auth_token', data.token);
+    localStorage.setItem('sachdeva_auth_token', data.token);
   };
 
   const register = async (email: string, password: string, name: string) => {
@@ -92,13 +92,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setUser(data.user);
     setToken(data.token);
-    localStorage.setItem('amraj_auth_token', data.token);
+    localStorage.setItem('sachdeva_auth_token', data.token);
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('amraj_auth_token');
+    localStorage.removeItem('sachdeva_auth_token');
   };
 
   return (

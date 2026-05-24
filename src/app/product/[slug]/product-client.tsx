@@ -332,7 +332,7 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
             </div>
 
             {/* Trust Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+            <div className="trust-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
               {[
                 { icon: ShieldCheck, title: '100% Genuine', sub: 'Authorised dealer' },
                 { icon: RotateCcw, title: 'Easy Returns', sub: '7-day return policy' },
@@ -394,22 +394,24 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
       </div>
 
       {/* Mobile Sticky Bottom CTA */}
-      <div className="mobile-cta-outer" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: '#fff', borderTop: `2px solid #e8f0e8`, padding: '12px 16px', zIndex: 500, boxShadow: '0 -4px 16px rgba(0,0,0,0.08)', display: 'none' }}>
-        <div style={{ display: 'flex', gap: 10 }}>
+      <div className="mobile-cta-outer" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: '#fff', borderTop: `2px solid #e8f0e8`, padding: '10px 12px', zIndex: 500, boxShadow: '0 -4px 16px rgba(0,0,0,0.08)', display: 'none' }}>
+        <div style={{ display: 'flex', gap: 8, maxWidth: 600, margin: '0 auto' }}>
           <button
             onClick={handleAddToCart}
             disabled={isAddingToCart}
-            style={{ background: '#fff', color: DARK, padding: '14px 18px', border: `2px solid #e8f0e8`, borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}
+            style={{ flex: '0 0 auto', padding: '13px 14px', background: '#fff', color: DARK, border: `2px solid #e8f0e8`, borderRadius: 10, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}
           >
             {isAddingToCart ? '✓ ADDED' : 'ADD TO CART'}
           </button>
           <button
             onClick={handleBuyNow}
             disabled={isBuyingNow}
-            style={{ flex: 1, background: GREEN, color: '#fff', padding: '14px 16px', border: 'none', borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: 'inherit', boxShadow: `0 4px 14px rgba(61,170,53,0.3)` }}
+            style={{ flex: 1, background: GREEN, color: '#fff', padding: '13px 12px', border: 'none', borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontFamily: 'inherit', boxShadow: `0 4px 14px rgba(61,170,53,0.3)`, minWidth: 0 }}
           >
-            <Zap style={{ width: 14, height: 14 }} />
-            {isBuyingNow ? 'PROCESSING...' : `BUY NOW — ₹${product.price.toLocaleString('en-IN')}`}
+            <Zap style={{ width: 13, height: 13, flexShrink: 0 }} />
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {isBuyingNow ? 'PROCESSING...' : `BUY NOW — ₹${product.price.toLocaleString('en-IN')}`}
+            </span>
           </button>
         </div>
       </div>
@@ -417,13 +419,15 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
       <style>{`
         @media (max-width: 768px) {
           .mobile-cta-outer { display: block !important; }
-          .product-container { padding: 20px 16px 120px !important; }
-          .product-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+          .product-container { padding: 16px 14px 100px !important; }
+          .product-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
           .product-image-sticky { position: relative !important; top: auto !important; }
           .related-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 480px) {
           .related-grid { grid-template-columns: 1fr !important; }
+          .product-container { padding: 12px 12px 100px !important; }
+          .trust-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

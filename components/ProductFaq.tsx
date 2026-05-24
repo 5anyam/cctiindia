@@ -13,152 +13,93 @@ interface ProductFAQProps {
   productName: string;
 }
 
-// FAQ Data for different products
 const faqData: Record<string, FAQ[]> = {
-  'prostate-care': [
+  'oxygen-concentrator': [
     {
-      question: "What is Amraj Advanced Prostate Care?",
-      answer: "It's a premium Ayurvedic + nutraceutical formula crafted to support prostate health, improve urinary function, and promote male vitality. It blends clinically backed ingredients like Beta Sitosterol, Saw Palmetto, Stinging Nettle Root, Lycopene, and Pumpkin Seed Extract with time-tested herbs like Gokshura, Varuna, Chandraprabha Vati. And this formulation is powered by Shilajit to promote male vitality."
+      question: "What is an oxygen concentrator and how does it work?",
+      answer: "An oxygen concentrator is a medical device that filters ambient air to deliver concentrated oxygen (typically 90–96% purity) to patients who require supplemental oxygen therapy. It uses a molecular sieve (zeolite) to separate oxygen from nitrogen and other gases, delivering a continuous supply without the need for oxygen cylinders."
     },
     {
-      question: "What makes it different from other prostate supplements?",
-      answer: "Most products use single action formulas. Amraj Advanced Prostate Care is a multi-target approach - it reduces prostate inflammation, supports healthy urine flow, improves bladder emptying, and boosts overall male wellness."
+      question: "Do I need a doctor's prescription to buy an oxygen concentrator?",
+      answer: "Yes. Oxygen concentrators are medical devices and should only be used under the guidance of a qualified healthcare professional. A doctor's prescription specifying the required flow rate (LPM) and duration of use is recommended before purchase."
     },
     {
-      question: "How does it work?",
-      answer: "• Reduces inflammation: Beta Sitosterol, Stinging Nettle, and Curcumin\n• Supports prostate size & function: Saw Palmetto, Pumpkin Seed, Pygeum Bark\n• Improves urinary flow: Varuna, Punarnava, Neem\n• Boosts energy & vitality: Shilajit, Gokshura, Lycopene"
+      question: "What flow rate do I need — 5 LPM or 10 LPM?",
+      answer: "Flow rate depends on your doctor's prescription. For most patients with mild to moderate hypoxia, a 5 LPM concentrator is sufficient. Patients with higher oxygen requirements (e.g., COPD, severe hypoxia) may need a 10 LPM model. Always follow your physician's recommendation."
     },
     {
-      question: "Why combine modern science with Ayurvedic herbs?",
-      answer: "Modern nutraceuticals deliver precision and clinical results, while Ayurveda offers safe, holistic support. This combination gives both fast relief and long-term protection for prostate health."
+      question: "How long can I run the concentrator continuously?",
+      answer: "Longfian oxygen concentrators are designed for continuous 24/7 operation. They are built for long-term home use and clinical settings. Regular filter cleaning every 1–2 weeks is recommended to maintain performance."
     },
     {
-      question: "Who should take this product?",
-      answer: "Men over 40, or younger men experiencing:\n• Frequent night urination\n• Weak urine stream or incomplete bladder emptying\n• Prostate enlargement symptoms\n• Reduced vitality or energy levels"
+      question: "What is the oxygen purity delivered?",
+      answer: "At rated flow, Longfian concentrators deliver 93% ± 3% oxygen purity — meeting medical-grade standards. Purity may decrease slightly at higher flow rates, which is normal."
     },
     {
-      question: "Is it safe for long-term use?",
-      answer: "Yes. All ingredients are plant-based, non-hormonal, and safe for daily use under recommended dosage. It's free from synthetic drugs and harmful additives."
+      question: "Does it work during power cuts?",
+      answer: "No, oxygen concentrators require a stable electricity supply and do not have built-in battery backup. For power-cut scenarios, we recommend keeping an oxygen cylinder as backup. An inverter/UPS can be used to ensure uninterrupted power supply."
     },
     {
-      question: "How should I take it?",
-      answer: "Take 1 capsule twice daily after meals, with water. For best results, use consistently for 3 months and maintain a healthy lifestyle."
+      question: "Is the warranty included?",
+      answer: "Yes. All Longfian oxygen concentrators sold by Sachdeva Medline come with the manufacturer's warranty covering manufacturing defects. We assist with all warranty claims from day one. Please retain the warranty card included with your product."
     },
     {
-      question: "Are there any side effects?",
-      answer: "It's generally well-tolerated. Our Product is made from high quality globally sourced ingredients and is free from harmful additives."
+      question: "Do you provide after-sale support and servicing?",
+      answer: "Yes. Sachdeva Medline provides comprehensive after-sale support including setup guidance, usage training, and service assistance. You can reach us at +91 98915 21090 or +91 99110 06187."
     },
     {
-      question: "How soon can I expect results?",
-      answer: "Most users notice improved urine flow and reduced night-time urination within 2–4 weeks. Full benefits for prostate health are typically seen over 8–12 weeks."
+      question: "Can I use it for multiple family members?",
+      answer: "An oxygen concentrator can be used by different patients provided the flow rate settings are adjusted as per each individual's prescription. A separate nasal cannula or mask should always be used per patient to maintain hygiene."
     },
     {
-      question: "Is it vegetarian and premium quality?",
-      answer: "Yes. It's 100% vegetarian, made with pharmaceutical-grade extracts, and produced in GMP-certified, ISO-approved facilities for maximum purity and effectiveness."
+      question: "How is the product delivered and what is included in the box?",
+      answer: "We dispatch orders within 24 hours across pan-India via reliable courier partners. The box typically includes the concentrator unit, nasal cannula, power cord, humidifier bottle, air filter, and user manual. Delivery usually takes 3–5 business days."
     }
   ],
-  'liver-detox': [
+  'recliner-bed': [
     {
-      question: "What is Amraj Advanced Liver Detox?",
-      answer: "It's a premium Ayurvedic + nutraceutical formula designed to support healthy liver function, aid detoxification, and promote overall wellness."
+      question: "What is a patient recliner bed used for?",
+      answer: "A patient recliner bed (also called a fowler bed or hospital-type bed) is designed for home care patients who need adjustable positioning — including head elevation, knee break, and flat positions. It is commonly used for post-surgery recovery, long-term illness, COPD patients, and elderly care."
     },
     {
-      question: "What makes Amraj Advanced Liver Detox different from other liver supplements?",
-      answer: "Unlike generic products, our formula is an innovative fusion of clinically backed nutraceuticals like TUDCA, NAC, and Glutathione with time-tested herbs like Milk Thistle, Triphala, and Turmeric, delivering both rapid and long-term liver health benefits."
+      question: "How does the recliner mechanism work?",
+      answer: "The backrest and knee rest can be adjusted manually or via crank mechanism to various angles. This allows caregivers to position the patient safely for eating, resting, breathing, or medical procedures."
     },
     {
-      question: "How does it work?",
-      answer: "Our formula supports the liver's natural detox pathways by:\n• Protecting liver cells from oxidative stress\n• Promoting bile flow and fat metabolism\n• Helping flush out toxins and metabolic waste\n• Supporting energy and digestion"
+      question: "What is the weight capacity?",
+      answer: "Please refer to the product specification sheet for the exact weight capacity. Generally, patient beds of this type support up to 100–120 kg. Contact us to confirm specifications before purchasing."
     },
     {
-      question: "Why combine modern science with Ayurveda?",
-      answer: "Modern science offers precision, standardised potency, and targeted action, while Ayurveda brings holistic healing and centuries of safe, proven herbal wisdom. Together, they offer complete liver protection, detox, and regeneration."
+      question: "Is a mattress included?",
+      answer: "Please check the product listing or contact us to confirm whether a mattress is included. We can also recommend compatible anti-decubitus (anti-bedsore) air mattresses separately."
     },
     {
-      question: "Who should take this product?",
-      answer: "It's ideal for adults who:\n• Want to maintain liver health despite lifestyle, alcohol, or processed food consumption\n• Have fatty liver or sluggish digestion\n• Are undergoing detox or weight management programs\n• Want to protect their liver from daily environmental toxins"
+      question: "How is it delivered given the size?",
+      answer: "The recliner bed is dispatched in a flat-pack or semi-assembled form to facilitate shipping. Detailed assembly instructions are included. Delivery takes 5–7 business days depending on the delivery location."
     },
     {
-      question: "How does it support liver health?",
-      answer: "• Protects: Milk Thistle, NAC, and Glutathione shield liver cells from oxidative stress\n• Cleanses: Triphala, Turmeric, and Green Tea Extract help flush toxins\n• Regenerates: TUDCA and L-Ornithine support cell repair and bile flow\n• Energises: Ginseng, Ginkgo, and Astragalus boost energy & metabolism"
-    },
-    {
-      question: "How should I take it?",
-      answer: "Take 1 capsule twice daily with water, preferably after meals, or as directed by your healthcare provider. For best results, use consistently for 90 days for full body detox."
-    },
-    {
-      question: "Are there any side effects?",
-      answer: "Our product is made from high-quality, globally sourced ingredients and is free from harmful additives. It is generally well tolerated."
-    },
-    {
-      question: "How long before I notice results?",
-      answer: "Some users feel lighter, more energetic, and experience improved digestion within 7–10 days. However, noticeable liver health improvements usually occur over 4–12 weeks of consistent use."
-    },
-    {
-      question: "Is this product vegetarian and premium quality?",
-      answer: "Yes. It's 100% vegetarian, formulated with pharmaceutical-grade nutraceuticals, standardised herbal extracts, and manufactured in GMP-certified, ISO-approved facilities for maximum purity and effectiveness."
-    }
-  ],
-  'weight-management': [
-    {
-      question: "What is Amraj Weight Management Pro+?",
-      answer: "A scientifically formulated weight management capsule that combines clinically backed nutraceuticals like Garcinia Cambogia, Green Coffee Bean, L-Carnitine, and Apple Cider Vinegar with time-tested Ayurvedic herbs like Moringa, Guggal, Fenugreek, Shilajit, and Cinnamon for effective and natural weight support."
-    },
-    {
-      question: "How does it work for weight management?",
-      answer: "• Blocks excess fat formation (HCA from Garcinia Cambogia)\n• Boosts metabolism & energy (Green Coffee Bean, L-Carnitine, Shilajit)\n• Controls appetite & cravings (Fenugreek, Caralluma)\n• Improves digestion & detox (Moringa, Apple Cider Vinegar, Cinnamon)"
-    },
-    {
-      question: "What makes it different from other weight loss supplements?",
-      answer: "Most formulas focus only on fat burning. Amraj Weight Management Pro+ uses a 4-in-1 approach — burn fat, block fat, suppress appetite, and detox — ensuring sustainable results without crash diets or fatigue."
-    },
-    {
-      question: "Is it suitable for both men and women?",
-      answer: "Yes, it's safe and effective for both men and women over the age of 18."
-    },
-    {
-      question: "How should I take it for best results?",
-      answer: "Take 1 capsule twice daily, 30 minutes before meals, with water. Combine with balanced nutrition and regular activity for maximum results."
-    },
-    {
-      question: "How soon can I expect to see changes?",
-      answer: "Many users notice reduced bloating and improved energy in the first 2 weeks. Visible weight and inch loss usually occur within 4–6 weeks with consistent use."
-    },
-    {
-      question: "Is it safe for long-term use?",
-      answer: "Yes, all ingredients are plant based and naturally sourced. It contains no synthetic fat burners, no hormones, or no banned substances."
-    },
-    {
-      question: "Does it have any side effects?",
-      answer: "It's generally well tolerated. Our Product is made from high quality, globally sourced ingredients and is free from harmful additives."
-    },
-    {
-      question: "Can I take it on an empty stomach?",
-      answer: "Yes, it's best taken 30 minutes before meals for optimal absorption and appetite control."
-    },
-    {
-      question: "Is it vegetarian and premium quality?",
-      answer: "Yes, it's 100% vegetarian, made from pharmaceutical grade nutraceutical, and manufactured in GMP-certified, ISO-approved facilities for purity and effectiveness."
+      question: "Do you offer return or replacement for this product?",
+      answer: "Returns are accepted within 7 days of delivery only for manufacturing defects, wrong product delivered, or damaged unit. Please contact us within 7 days with photos of the issue at info@sachdevamedline.com or +91 98915 21090."
     }
   ]
 };
 
 const defaultFAQs: FAQ[] = [
   {
-    question: "How should I take this product?",
-    answer: "Follow the dosage instructions on the product label. Generally, take with water after meals for best absorption."
+    question: "Is this product covered under warranty?",
+    answer: "Yes. All products sold by Sachdeva Medline include the manufacturer's warranty covering manufacturing defects. We assist with warranty claims at no additional cost."
   },
   {
-    question: "Is this product safe?",
-    answer: "Yes, our products are made with high-quality, natural ingredients and are manufactured in GMP-certified facilities."
+    question: "Do you deliver pan-India?",
+    answer: "Yes. We deliver across India. Most orders are dispatched within 24 hours and delivered within 3–5 business days depending on the location."
   },
   {
-    question: "How long before I see results?",
-    answer: "Results may vary, but most customers notice benefits within 2-4 weeks of consistent use. For best results, use for at least 8-12 weeks."
+    question: "Can I get expert guidance before purchasing?",
+    answer: "Absolutely. Call or WhatsApp us at +91 98915 21090 and our team will help you choose the right product based on your medical requirement and doctor's prescription."
   },
   {
-    question: "Are there any side effects?",
-    answer: "Our products are generally well-tolerated. However, if you experience any adverse reactions, discontinue use and consult your healthcare provider."
+    question: "What is your return policy?",
+    answer: "We accept returns within 7 days of delivery for damaged, defective, or incorrect products. Change of mind returns are not accepted for medical equipment. Contact us at info@sachdevamedline.com to initiate a return."
   }
 ];
 
@@ -166,18 +107,12 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const getFAQs = (): FAQ[] => {
-    if (faqData[productSlug]) {
-      return faqData[productSlug];
+    if (productSlug.includes('recliner') || productSlug.includes('bed')) {
+      return faqData['recliner-bed'];
     }
-
-    const slugKey = Object.keys(faqData).find(key => 
-      productSlug.includes(key) || key.includes(productSlug.split('-')[0])
-    );
-
-    if (slugKey) {
-      return faqData[slugKey];
+    if (productSlug.includes('oxygen') || productSlug.includes('concentrator') || productSlug.includes('longfian') || productSlug.includes('jay')) {
+      return faqData['oxygen-concentrator'];
     }
-
     return defaultFAQs;
   };
 
@@ -189,7 +124,6 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => 
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-      {/* Modern Header */}
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center justify-center gap-3 mb-2">
           <QuestionMarkCircleIcon className="h-8 w-8 text-emerald-600" />
@@ -202,11 +136,9 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => 
         </p>
       </div>
 
-      {/* FAQ Items */}
       <div className="divide-y divide-gray-200">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
-          
           return (
             <div key={index} className="group">
               <button
@@ -217,8 +149,8 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => 
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex items-start gap-3 flex-1">
                     <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-200 ${
-                      isOpen 
-                        ? 'bg-emerald-600 text-white' 
+                      isOpen
+                        ? 'bg-emerald-600 text-white'
                         : 'bg-gray-200 text-gray-600 group-hover:bg-emerald-100 group-hover:text-emerald-700'
                     }`}>
                       {index + 1}
@@ -234,12 +166,9 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => 
                   </div>
                 </div>
               </button>
-              
-              {/* Answer with Smooth Animation */}
+
               <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isOpen 
-                  ? 'max-h-[800px] opacity-100' 
-                  : 'max-h-0 opacity-0'
+                isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
               }`}>
                 <div className="px-6 pb-6">
                   <div className="ml-9 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl p-4 border-l-4 border-emerald-500">
@@ -254,10 +183,9 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => 
         })}
       </div>
 
-      {/* Footer CTA */}
       <div className="p-6 bg-gray-50 border-t border-gray-200 text-center">
         <p className="text-gray-700 text-sm mb-3">
-          Still have questions? We are here to help!
+          Still have questions? Our team is here to help.
         </p>
         <a
           href="/contact"
