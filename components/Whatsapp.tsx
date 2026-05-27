@@ -5,10 +5,10 @@ function Whatsapp() {
   return (
     <Link
       passHref
-      href="https://api.whatsapp.com/send?phone=919891521090"
+      href="https://api.whatsapp.com/send?phone=919899955506"
       target="_blank"
       rel="noopener noreferrer"
-      style={{ position: 'fixed', bottom: 90, right: 20, zIndex: 999, display: 'block' }}
+      style={{ position: 'fixed', bottom: 28, right: 20, zIndex: 999, display: 'block' }}
     >
       <div style={{ position: 'relative', width: 52, height: 52 }}>
         <IconBrandWhatsapp

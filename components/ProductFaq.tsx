@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDownIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQ {
   question: string;
@@ -13,185 +13,87 @@ interface ProductFAQProps {
   productName: string;
 }
 
-const faqData: Record<string, FAQ[]> = {
-  'oxygen-concentrator': [
-    {
-      question: "What is an oxygen concentrator and how does it work?",
-      answer: "An oxygen concentrator is a medical device that filters ambient air to deliver concentrated oxygen (typically 90–96% purity) to patients who require supplemental oxygen therapy. It uses a molecular sieve (zeolite) to separate oxygen from nitrogen and other gases, delivering a continuous supply without the need for oxygen cylinders."
-    },
-    {
-      question: "Do I need a doctor's prescription to buy an oxygen concentrator?",
-      answer: "Yes. Oxygen concentrators are medical devices and should only be used under the guidance of a qualified healthcare professional. A doctor's prescription specifying the required flow rate (LPM) and duration of use is recommended before purchase."
-    },
-    {
-      question: "What flow rate do I need — 5 LPM or 10 LPM?",
-      answer: "Flow rate depends on your doctor's prescription. For most patients with mild to moderate hypoxia, a 5 LPM concentrator is sufficient. Patients with higher oxygen requirements (e.g., COPD, severe hypoxia) may need a 10 LPM model. Always follow your physician's recommendation."
-    },
-    {
-      question: "How long can I run the concentrator continuously?",
-      answer: "Longfian oxygen concentrators are designed for continuous 24/7 operation. They are built for long-term home use and clinical settings. Regular filter cleaning every 1–2 weeks is recommended to maintain performance."
-    },
-    {
-      question: "What is the oxygen purity delivered?",
-      answer: "At rated flow, Longfian concentrators deliver 93% ± 3% oxygen purity — meeting medical-grade standards. Purity may decrease slightly at higher flow rates, which is normal."
-    },
-    {
-      question: "Does it work during power cuts?",
-      answer: "No, oxygen concentrators require a stable electricity supply and do not have built-in battery backup. For power-cut scenarios, we recommend keeping an oxygen cylinder as backup. An inverter/UPS can be used to ensure uninterrupted power supply."
-    },
-    {
-      question: "Is the warranty included?",
-      answer: "Yes. All Longfian oxygen concentrators sold by Sachdeva Medline come with the manufacturer's warranty covering manufacturing defects. We assist with all warranty claims from day one. Please retain the warranty card included with your product."
-    },
-    {
-      question: "Do you provide after-sale support and servicing?",
-      answer: "Yes. Sachdeva Medline provides comprehensive after-sale support including setup guidance, usage training, and service assistance. You can reach us at +91 98915 21090 or +91 99110 06187."
-    },
-    {
-      question: "Can I use it for multiple family members?",
-      answer: "An oxygen concentrator can be used by different patients provided the flow rate settings are adjusted as per each individual's prescription. A separate nasal cannula or mask should always be used per patient to maintain hygiene."
-    },
-    {
-      question: "How is the product delivered and what is included in the box?",
-      answer: "We dispatch orders within 24 hours across pan-India via reliable courier partners. The box typically includes the concentrator unit, nasal cannula, power cord, humidifier bottle, air filter, and user manual. Delivery usually takes 3–5 business days."
-    }
-  ],
-  'recliner-bed': [
-    {
-      question: "What is a patient recliner bed used for?",
-      answer: "A patient recliner bed (also called a fowler bed or hospital-type bed) is designed for home care patients who need adjustable positioning — including head elevation, knee break, and flat positions. It is commonly used for post-surgery recovery, long-term illness, COPD patients, and elderly care."
-    },
-    {
-      question: "How does the recliner mechanism work?",
-      answer: "The backrest and knee rest can be adjusted manually or via crank mechanism to various angles. This allows caregivers to position the patient safely for eating, resting, breathing, or medical procedures."
-    },
-    {
-      question: "What is the weight capacity?",
-      answer: "Please refer to the product specification sheet for the exact weight capacity. Generally, patient beds of this type support up to 100–120 kg. Contact us to confirm specifications before purchasing."
-    },
-    {
-      question: "Is a mattress included?",
-      answer: "Please check the product listing or contact us to confirm whether a mattress is included. We can also recommend compatible anti-decubitus (anti-bedsore) air mattresses separately."
-    },
-    {
-      question: "How is it delivered given the size?",
-      answer: "The recliner bed is dispatched in a flat-pack or semi-assembled form to facilitate shipping. Detailed assembly instructions are included. Delivery takes 5–7 business days depending on the delivery location."
-    },
-    {
-      question: "Do you offer return or replacement for this product?",
-      answer: "Returns are accepted within 7 days of delivery only for manufacturing defects, wrong product delivered, or damaged unit. Please contact us within 7 days with photos of the issue at info@sachdevamedline.com or +91 98915 21090."
-    }
-  ]
-};
+const BLUE = '#0A5BD6';
+const DARK = '#0B1E3D';
 
-const defaultFAQs: FAQ[] = [
+const coolerFAQs: FAQ[] = [
   {
-    question: "Is this product covered under warranty?",
-    answer: "Yes. All products sold by Sachdeva Medline include the manufacturer's warranty covering manufacturing defects. We assist with warranty claims at no additional cost."
+    question: 'How long can the cooler run continuously?',
+    answer: 'CCTI India coolers are designed for extended operation. With a full tank, most models run 8–14 hours depending on tank size and water consumption rate. For continuous use, the water inlet pipe connection option allows uninterrupted operation.'
   },
   {
-    question: "Do you deliver pan-India?",
-    answer: "Yes. We deliver across India. Most orders are dispatched within 24 hours and delivered within 3–5 business days depending on the location."
+    question: 'What size cooler do I need for my room?',
+    answer: 'As a general guideline: Personal coolers (15–25L) suit rooms up to 100 sq ft. Tower/window coolers (40–70L) suit rooms up to 300 sq ft. Large desert coolers (80–100L) suit rooms up to 500 sq ft. Industrial coolers (150L+) are for large halls or factory floors.'
   },
   {
-    question: "Can I get expert guidance before purchasing?",
-    answer: "Absolutely. Call or WhatsApp us at +91 98915 21090 and our team will help you choose the right product based on your medical requirement and doctor's prescription."
+    question: 'Does it work during a power cut?',
+    answer: 'Most CCTI India coolers are inverter-compatible. You can connect them to a home inverter or UPS for uninterrupted cooling during power cuts. Industrial models support both single-phase and three-phase power.'
   },
   {
-    question: "What is your return policy?",
-    answer: "We accept returns within 7 days of delivery for damaged, defective, or incorrect products. Change of mind returns are not accepted for medical equipment. Contact us at info@sachdevamedline.com to initiate a return."
-  }
+    question: 'How do I order? Is there a physical store?',
+    answer: 'Simply WhatsApp us at +91 98999 55506 or call us. You can also visit our factory in Bawana Industrial Area, Delhi (Mon–Sat, 9 AM–7 PM). We accept online orders and ship pan-India.'
+  },
+  {
+    question: 'Are spare parts available?',
+    answer: 'Yes — pumps, motors, honeycomb cooling pads, and other spare parts are stocked at our Bawana facility and available for purchase separately. WhatsApp us with your model number for availability.'
+  },
+  {
+    question: 'What is the warranty on your coolers?',
+    answer: 'All CCTI India coolers come with manufacturer warranty covering the motor and pump. Warranty period varies by model — details are included in the product box. Contact us on WhatsApp for after-sales service.'
+  },
+  {
+    question: 'Do you deliver outside Delhi?',
+    answer: 'Yes, we deliver pan-India. Orders are well-packed and dispatched via reliable logistics partners. Delivery typically takes 3–7 business days depending on your location.'
+  },
+  {
+    question: 'Can I get a bulk or institutional quote?',
+    answer: 'Yes. We supply to dealers, contractors, housing societies, factories and institutions at wholesale rates. WhatsApp us at +91 98999 55506 with your requirements for a custom quote.'
+  },
 ];
 
-const ProductFAQ: React.FC<ProductFAQProps> = ({ productSlug, productName }) => {
+const ProductFAQ: React.FC<ProductFAQProps> = ({ productName }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const getFAQs = (): FAQ[] => {
-    if (productSlug.includes('recliner') || productSlug.includes('bed')) {
-      return faqData['recliner-bed'];
-    }
-    if (productSlug.includes('oxygen') || productSlug.includes('concentrator') || productSlug.includes('longfian') || productSlug.includes('jay')) {
-      return faqData['oxygen-concentrator'];
-    }
-    return defaultFAQs;
-  };
-
-  const faqs = getFAQs();
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-      <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <QuestionMarkCircleIcon className="h-8 w-8 text-emerald-600" />
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
-            Frequently Asked Questions
-          </h2>
-        </div>
-        <p className="text-gray-600 text-center text-sm lg:text-base">
-          Everything you need to know about {productName}
-        </p>
+    <div style={{ background: '#fff', borderRadius: 16, border: `1.5px solid #dde8ff`, overflow: 'hidden', boxShadow: '0 2px 12px rgba(10,91,214,0.06)' }}>
+      <div style={{ padding: '20px 28px', borderBottom: `1px solid #dde8ff`, background: '#f0f5ff' }}>
+        <h3 style={{ fontSize: 16, fontWeight: 800, color: DARK }}>Common Questions About {productName}</h3>
+        <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.45)', marginTop: 4 }}>Can&apos;t find an answer? WhatsApp us at +91 98999 55506</p>
       </div>
-
-      <div className="divide-y divide-gray-200">
-        {faqs.map((faq, index) => {
+      <div>
+        {coolerFAQs.map((faq, index) => {
           const isOpen = openIndex === index;
           return (
-            <div key={index} className="group">
+            <div key={index} style={{ borderBottom: index < coolerFAQs.length - 1 ? `1px solid #dde8ff` : 'none' }}>
               <button
-                className="w-full px-6 py-5 text-left hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:bg-gray-50"
-                onClick={() => toggleFAQ(index)}
-                aria-expanded={isOpen}
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                style={{ width: '100%', padding: '18px 24px', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, background: isOpen ? '#f0f5ff' : 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'inherit', transition: 'background 0.2s' }}
               >
-                <div className="flex justify-between items-start gap-4">
-                  <div className="flex items-start gap-3 flex-1">
-                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-200 ${
-                      isOpen
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-gray-200 text-gray-600 group-hover:bg-emerald-100 group-hover:text-emerald-700'
-                    }`}>
-                      {index + 1}
-                    </span>
-                    <h3 className="font-semibold text-gray-900 text-sm lg:text-base leading-relaxed pr-2">
-                      {faq.question}
-                    </h3>
-                  </div>
-                  <div className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                    <ChevronDownIcon className={`h-5 w-5 transition-colors duration-200 ${
-                      isOpen ? 'text-emerald-600' : 'text-gray-400 group-hover:text-emerald-600'
-                    }`} />
-                  </div>
+                <div style={{ display: 'flex', gap: 12, flex: 1 }}>
+                  <span style={{ width: 24, height: 24, borderRadius: '50%', background: isOpen ? BLUE : 'rgba(10,91,214,0.1)', color: isOpen ? '#fff' : BLUE, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {index + 1}
+                  </span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: DARK, lineHeight: 1.5 }}>{faq.question}</span>
                 </div>
+                <ChevronDown style={{ width: 16, height: 16, color: BLUE, flexShrink: 0, transition: 'transform 0.25s', transform: isOpen ? 'rotate(180deg)' : 'none', marginTop: 4 }} />
               </button>
-
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
-              }`}>
-                <div className="px-6 pb-6">
-                  <div className="ml-9 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl p-4 border-l-4 border-emerald-500">
-                    <p className="text-gray-700 text-sm lg:text-base leading-relaxed whitespace-pre-line">
-                      {faq.answer}
-                    </p>
+              {isOpen && (
+                <div style={{ padding: '0 24px 20px 60px' }}>
+                  <div style={{ background: 'rgba(10,91,214,0.05)', borderLeft: `3px solid ${BLUE}`, borderRadius: '0 8px 8px 0', padding: '14px 16px' }}>
+                    <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.75)', lineHeight: 1.85 }}>{faq.answer}</p>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           );
         })}
       </div>
-
-      <div className="p-6 bg-gray-50 border-t border-gray-200 text-center">
-        <p className="text-gray-700 text-sm mb-3">
-          Still have questions? Our team is here to help.
-        </p>
-        <a
-          href="/contact"
-          className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 shadow-sm hover:shadow-md"
+      <div style={{ padding: '20px 24px', background: '#f0f5ff', borderTop: `1px solid #dde8ff`, textAlign: 'center' }}>
+        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.6)', marginBottom: 12 }}>Still have questions?</p>
+        <a href="https://wa.me/919899955506" target="_blank" rel="noopener noreferrer"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#25D366', color: '#fff', padding: '10px 22px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none' }}
         >
-          Contact Support
+          WhatsApp Us →
         </a>
       </div>
     </div>

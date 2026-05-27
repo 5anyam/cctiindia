@@ -17,27 +17,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: 'Product Not Found | Amraj',
+      title: 'Product Not Found | CCTI India',
       robots: { index: false, follow: false },
     };
   }
 
-  const title = `${product.name} – ${product.tagline} | Amraj`;
-  const description = `Buy ${product.name} online at ₹${product.price}. ${product.tagline}. FSSAI certified, GMP tested. Free delivery across India.`;
+  const title = `${product.name} – ${product.tagline} | CCTI India`;
+  const description = `Buy ${product.name} from CCTI India at ₹${product.price.toLocaleString('en-IN')}. ${product.tagline}. Factory direct price. Pan-India delivery. WhatsApp to order.`;
   const imageUrl = product.images[0];
-  const canonical = `https://www.amraj.in/product/${product.slug}`;
+  const canonical = `https://www.cctiindia.com/product/${product.slug}`;
 
   return {
     title,
     description,
-    keywords: [product.name, product.category, 'supplement', 'India', 'buy online'],
+    keywords: [product.name, product.category, 'air cooler', 'cooler manufacturer', 'CCTI India', 'Bawana Delhi', 'buy cooler online'],
     alternates: { canonical },
     openGraph: {
       type: 'website',
       title,
       description,
       url: canonical,
-      siteName: 'Amraj',
+      siteName: 'CCTI India',
       images: [{ url: imageUrl, width: 1200, height: 630, alt: product.name }],
     },
     twitter: {
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [imageUrl],
     },
     robots: { index: true, follow: true },
-    metadataBase: new URL('https://www.amraj.in'),
+    metadataBase: new URL('https://www.cctiindia.com'),
   };
 }
 
@@ -57,19 +57,19 @@ export default async function Page({ params }: Props) {
 
   if (!product) notFound();
 
-  const canonical = `https://www.amraj.in/product/${product.slug}`;
+  const canonical = `https://www.cctiindia.com/product/${product.slug}`;
 
   const jsonLd = {
     '@context': 'https://schema.org/',
     '@type': 'Product',
     name: product.name,
-    description: `${product.tagline}. FSSAI certified, GMP tested. Free delivery across India.`,
+    description: `${product.tagline}. Manufactured by CCTI India, Bawana Delhi. Factory direct pricing. Pan-India delivery.`,
     image: product.images,
     url: canonical,
-    sku: `AMRAJ-${product.id}`,
+    sku: `CCTI-${product.id}`,
     brand: {
       '@type': 'Brand',
-      name: 'Amraj Wellness',
+      name: 'CCTI India',
     },
     offers: {
       '@type': 'Offer',
@@ -79,16 +79,6 @@ export default async function Page({ params }: Props) {
       priceValidUntil: '2026-12-31',
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'INR' },
-        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 1, unitCode: 'DAY' },
-          transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 5, unitCode: 'DAY' },
-        },
-      },
     },
     aggregateRating: {
       '@type': 'AggregateRating',

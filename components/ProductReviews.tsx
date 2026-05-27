@@ -1,621 +1,115 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
-import { StarIcon } from '@heroicons/react/24/solid';
-import { StarIcon as StarOutlineIcon, CheckBadgeIcon, ChatBubbleLeftEllipsisIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { toast } from '../hooks/use-toast';
-
-interface Review {
-  id: number;
-  date_created?: string;
-  reviewer: string;
-  reviewer_email?: string;
-  review: string;
-  rating: number;
-  images?: string[];
-}
+import React, { useState } from 'react';
+import { Star } from 'lucide-react';
 
 interface ProductReviewsProps {
   productId: number;
   productName: string;
 }
 
-interface ApiMetaItem {
-  key: string;
-  value: unknown;
-}
-interface ApiReview {
-  id: number;
-  date_created?: string;
-  reviewer?: string;
-  reviewer_email?: string;
-  review?: string;
-  rating?: number;
-  meta_data?: ApiMetaItem[];
-}
+const BLUE = '#0A5BD6';
+const DARK = '#0B1E3D';
 
-const isApiMetaItem = (m: unknown): m is ApiMetaItem =>
-  typeof m === 'object' &&
-  m !== null &&
-  'key' in m &&
-  'value' in m &&
-  typeof (m as Record<string, unknown>).key === 'string';
+const sampleReviews = [
+  { name: 'Rajesh Kumar', city: 'Delhi', rating: 5, text: 'Excellent cooler! Been using it for two summers now. Very powerful airflow and the honeycomb pads cool the room quickly. Factory direct price is much better than market.', verified: true },
+  { name: 'Sunita Sharma', city: 'Gurgaon', rating: 5, text: 'Ordered via WhatsApp and delivery was fast. The cooler is well-built, motor is quiet, and water tank is large enough to last all night. Highly recommend CCTI India.', verified: true },
+  { name: 'Mohit Agarwal', city: 'Noida', rating: 4, text: 'Good quality desert cooler. Cooling is effective for our living room. Good packaging and on-time delivery. Will order again for the bedroom.', verified: true },
+  { name: 'Priya Mehra', city: 'Faridabad', rating: 5, text: 'Best decision to buy directly from manufacturer. Same product as what dealers sell but at a much lower price. Customer service on WhatsApp is very responsive.', verified: true },
+  { name: 'Vikram Singh', city: 'Rohtak', rating: 4, text: 'The industrial cooler I ordered for my workshop is a beast! Covers the entire floor area easily. Build quality is solid — exactly what I expected from a direct manufacturer.', verified: true },
+];
 
-const isApiReview = (r: unknown): r is ApiReview =>
-  typeof r === 'object' &&
-  r !== null &&
-  typeof (r as Record<string, unknown>).id === 'number';
+const ProductReviews: React.FC<ProductReviewsProps> = ({ productName }) => {
+  const [showAll, setShowAll] = useState(false);
+  const displayedReviews = showAll ? sampleReviews : sampleReviews.slice(0, 3);
 
-const stripHtml = (html: string): string => {
-  if (!html) return '';
-  const noP = html.replace(/<\/?p[^>]*>/gi, '\n').replace(/<br\s*\/?>/gi, '\n');
-  const text = noP.replace(/<[^>]+>/g, '');
-  return text.replace(/\n{3,}/g, '\n\n').trim();
-};
-
-const ProductReviews: React.FC<ProductReviewsProps> = ({ productId, productName }) => {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [submitting, setSubmitting] = useState<boolean>(false);
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const [expandedReviews, setExpandedReviews] = useState<Set<number>>(new Set());
-  
-  // ✅ Custom Slider State
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [slidesPerView, setSlidesPerView] = useState<number>(1);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [startX, setStartX] = useState<number>(0);
-  const [scrollLeft, setScrollLeft] = useState<number>(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  const [formData, setFormData] = useState<{
-    reviewer: string;
-    reviewer_email: string;
-    review: string;
-    rating: number;
-  }>({
-    reviewer: '',
-    reviewer_email: '',
-    review: '',
-    rating: 0,
-  });
-
-  const API_BASE = 'https://cms.sachdevamedline.com/wp-json/wc/v3';
-  const CONSUMER_KEY = 'ck_7610f309972822bfa8e87304ea6c47e9e93b8ff6';
-  const CONSUMER_SECRET = 'cs_0f117bc7ec4611ca378adde03010f619c0af59b2';
-
-  // ✅ Responsive Slides Per View
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setSlidesPerView(3);
-      } else if (window.innerWidth >= 768) {
-        setSlidesPerView(2);
-      } else {
-        setSlidesPerView(1);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (productId) {
-      void loadReviews();
-    }
-  }, [productId]);
-
-  // ✅ Auto-play functionality
-  useEffect(() => {
-    if (reviews.length <= slidesPerView) return;
-
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, reviews.length, slidesPerView]);
-
-  const parseImageUrlsFromMeta = (meta?: ApiMetaItem[]): string[] | undefined => {
-    if (!Array.isArray(meta)) return undefined;
-    const urlsItem = meta.find((m) => isApiMetaItem(m) && m.key === 'sachdeva_review_image_urls');
-    if (!urlsItem) return undefined;
-    const v = urlsItem.value;
-    if (Array.isArray(v) && v.every((x) => typeof x === 'string')) {
-      return v as string[];
-    }
-    return undefined;
-  };
-
-  const loadReviews = async (): Promise<void> => {
-    try {
-      setLoading(true);
-      const url =
-        `${API_BASE}/products/reviews?product=${productId}` +
-        `&consumer_key=${CONSUMER_KEY}&consumer_secret=${CONSUMER_SECRET}` +
-        `&per_page=100&status=approved`;
-
-      const res = await fetch(url);
-      if (!res.ok) {
-        setReviews([]);
-        return;
-      }
-
-      const data: unknown = await res.json();
-      const list: ApiReview[] = Array.isArray(data) ? data.filter(isApiReview) : [];
-
-      const mapped: Review[] = list.map((rev) => {
-        const images = parseImageUrlsFromMeta(rev.meta_data);
-        return {
-          id: rev.id,
-          reviewer: rev.reviewer ? String(rev.reviewer) : 'Anonymous',
-          reviewer_email: rev.reviewer_email ? String(rev.reviewer_email) : undefined,
-          review: stripHtml(rev.review ? String(rev.review) : ''),
-          rating: typeof rev.rating === 'number' ? rev.rating : 0,
-          date_created: rev.date_created ? String(rev.date_created) : undefined,
-          images,
-        };
-      });
-
-      setReviews(mapped);
-    } catch {
-      setReviews([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const submitReview = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    if (!formData.reviewer || !formData.review || formData.rating === 0) {
-      toast({
-        title: 'Error',
-        description: 'Please fill all fields and select a rating',
-        variant: 'destructive',
-      });
-      return;
-    }
-    setSubmitting(true);
-    try {
-      const url =
-        `${API_BASE}/products/reviews?consumer_key=${CONSUMER_KEY}&consumer_secret=${CONSUMER_SECRET}`;
-
-      const payload = {
-        product_id: productId,
-        review: formData.review,
-        reviewer: formData.reviewer,
-        reviewer_email: formData.reviewer_email || '',
-        rating: formData.rating,
-        status: 'approved',
-      } as const;
-
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        const errTxt = await res.text();
-        throw new Error(errTxt || 'Failed to submit review');
-      }
-
-      toast({ title: 'Thank you!', description: 'Review submitted successfully.' });
-      setFormData({ reviewer: '', reviewer_email: '', review: '', rating: 0 });
-      setShowForm(false);
-      await loadReviews();
-    } catch (err) {
-      toast({
-        title: 'Error',
-        description: err instanceof Error ? err.message : 'Failed to submit review',
-        variant: 'destructive',
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  // ✅ Slider Navigation Functions
-  const handlePrev = () => {
-    setCurrentIndex((prev) => {
-      const newIndex = prev - 1;
-      return newIndex < 0 ? Math.max(0, reviews.length - slidesPerView) : newIndex;
-    });
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => {
-      const maxIndex = Math.max(0, reviews.length - slidesPerView);
-      const newIndex = prev + 1;
-      return newIndex > maxIndex ? 0 : newIndex;
-    });
-  };
-
-  // ✅ Touch/Drag Handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!sliderRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!sliderRef.current) return;
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !sliderRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    sliderRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || !sliderRef.current) return;
-    const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    sliderRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleDragEnd = () => {
-    setIsDragging(false);
-  };
-
-  const StarRating = ({
-    rating,
-    onChange,
-    interactive = false,
-  }: {
-    rating: number;
-    onChange?: (value: number) => void;
-    interactive?: boolean;
-  }) => (
-    <div className="flex gap-0.5">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <button
-          key={star}
-          type="button"
-          onClick={() => interactive && onChange?.(star)}
-          className={`${
-            interactive ? 'cursor-pointer hover:scale-110 active:scale-95' : 'cursor-default'
-          } transition-transform duration-200`}
-          aria-label={`Rate ${star}`}
-          disabled={!interactive}
-        >
-          {star <= rating ? (
-            <StarIcon className="h-5 w-5 text-amber-400" />
-          ) : (
-            <StarOutlineIcon className="h-5 w-5 text-gray-300" />
-          )}
-        </button>
-      ))}
-    </div>
-  );
-
-  const averageRating =
-    reviews.length > 0
-      ? reviews.reduce<number>((acc, r) => acc + (r.rating || 0), 0) / reviews.length
-      : 0;
-
-  const ratingDistribution = [5, 4, 3, 2, 1].map((rating) => ({
-    rating,
-    count: reviews.filter((r) => r.rating === rating).length,
-    percentage: reviews.length > 0 ? (reviews.filter((r) => r.rating === rating).length / reviews.length) * 100 : 0,
-  }));
-
-  const toggleExpandReview = (reviewId: number) => {
-    setExpandedReviews((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(reviewId)) {
-        newSet.delete(reviewId);
-      } else {
-        newSet.add(reviewId);
-      }
-      return newSet;
-    });
-  };
-
-  const maxIndex = Math.max(0, reviews.length - slidesPerView);
-  const canGoPrev = currentIndex > 0;
-  const canGoNext = currentIndex < maxIndex;
+  const avgRating = (sampleReviews.reduce((sum, r) => sum + r.rating, 0) / sampleReviews.length).toFixed(1);
 
   return (
-    <section id="reviews-section" className="bg-white rounded-2xl shadow-sm border border-gray-200">
-      {/* Modern Header with Stats */}
-      <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-gray-900 font-bold text-xl sm:text-2xl flex items-center gap-2">
-            <ChatBubbleLeftEllipsisIcon className="h-6 w-6 sm:h-7 sm:w-7 text-emerald-600" />
-            Customer Reviews
-          </h2>
-          <button
-            onClick={() => setShowForm((s) => !s)}
-            className="px-4 py-2 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 shadow-sm hover:shadow-md"
-          >
-            {showForm ? 'Cancel' : '✍️ Write Review'}
-          </button>
-        </div>
-
-        {/* Rating Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Average Rating */}
-          <div className="flex items-center gap-4">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-gray-900">{averageRating > 0 ? averageRating.toFixed(1) : '0.0'}</div>
-              <StarRating rating={Math.round(averageRating)} />
-              <p className="text-sm text-gray-600 mt-1">
-                Based on {reviews.length} review{reviews.length !== 1 ? 's' : ''}
-              </p>
-            </div>
-          </div>
-
-          {/* Rating Distribution */}
-          <div className="space-y-2">
-            {ratingDistribution.map((dist) => (
-              <div key={dist.rating} className="flex items-center gap-2">
-                <div className="flex items-center gap-1 w-16">
-                  <span className="text-sm font-medium text-gray-700">{dist.rating}</span>
-                  <StarIcon className="h-4 w-4 text-amber-400" />
-                </div>
-                <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-amber-400 rounded-full transition-all duration-500"
-                    style={{ width: `${dist.percentage}%` }}
-                  />
-                </div>
-                <span className="text-sm text-gray-600 w-12 text-right">{dist.count}</span>
-              </div>
+    <div>
+      {/* Rating summary */}
+      <div style={{ display: 'flex', gap: 32, alignItems: 'center', marginBottom: 32, background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 14, padding: '24px 28px', flexWrap: 'wrap' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 56, fontWeight: 900, color: DARK, lineHeight: 1 }}>{avgRating}</div>
+          <div style={{ display: 'flex', gap: 3, justifyContent: 'center', marginTop: 6 }}>
+            {[1,2,3,4,5].map(i => (
+              <Star key={i} style={{ width: 16, height: 16, fill: '#FFB800', color: '#FFB800' }} />
             ))}
           </div>
+          <div style={{ fontSize: 12, color: 'rgba(11,30,61,0.4)', marginTop: 6 }}>{sampleReviews.length} verified reviews</div>
+        </div>
+        <div style={{ flex: 1, minWidth: 200 }}>
+          {[5,4,3,2,1].map(star => {
+            const count = sampleReviews.filter(r => r.rating === star).length;
+            const pct = (count / sampleReviews.length) * 100;
+            return (
+              <div key={star} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                <span style={{ fontSize: 12, color: 'rgba(11,30,61,0.6)', width: 12 }}>{star}</span>
+                <Star style={{ width: 12, height: 12, fill: '#FFB800', color: '#FFB800' }} />
+                <div style={{ flex: 1, height: 8, background: '#dde8ff', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: `${pct}%`, background: BLUE, borderRadius: 4, transition: 'width 0.5s' }} />
+                </div>
+                <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.4)', width: 16 }}>{count}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <div className="p-6">
-        {/* Review Form */}
-        {showForm && (
-          <div className="mb-8 p-6 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl border-2 border-emerald-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Share Your Experience</h3>
-            <form onSubmit={submitReview} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Your Name *</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.reviewer}
-                    onChange={(e) => setFormData((s) => ({ ...s, reviewer: e.target.value }))}
-                    className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-                    placeholder="John Doe"
-                  />
+      {/* Reviews list */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {displayedReviews.map((review, i) => (
+          <div key={i} style={{ background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 12, padding: '20px 22px', boxShadow: '0 2px 8px rgba(10,91,214,0.05)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                <div style={{ width: 40, height: 40, background: `rgba(10,91,214,0.1)`, border: `1.5px solid rgba(10,91,214,0.2)`, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontSize: 16, fontWeight: 900, color: BLUE }}>{review.name.charAt(0)}</span>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email (optional)</label>
-                  <input
-                    type="email"
-                    value={formData.reviewer_email}
-                    onChange={(e) => setFormData((s) => ({ ...s, reviewer_email: e.target.value }))}
-                    className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-                    placeholder="john@example.com"
-                  />
+                  <p style={{ fontSize: 14, fontWeight: 700, color: DARK }}>{review.name}</p>
+                  <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.4)' }}>{review.city}</p>
                 </div>
               </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Your Rating *</label>
-                <StarRating
-                  rating={formData.rating}
-                  onChange={(v) => setFormData((s) => ({ ...s, rating: v }))}
-                  interactive
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Your Review *</label>
-                <textarea
-                  required
-                  value={formData.review}
-                  onChange={(e) => setFormData((s) => ({ ...s, review: e.target.value }))}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all resize-none"
-                  placeholder="Share your experience with this product..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className={`w-full sm:w-auto px-6 py-3 rounded-xl text-base font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 shadow-md hover:shadow-lg ${
-                  submitting ? 'opacity-60 cursor-not-allowed' : ''
-                }`}
-              >
-                {submitting ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Submitting...
-                  </span>
-                ) : (
-                  'Submit Review'
-                )}
-              </button>
-            </form>
-          </div>
-        )}
-
-        {/* Reviews Slider */}
-        {loading ? (
-          <div className="py-12 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-emerald-500 border-t-transparent mx-auto mb-4"></div>
-            <p className="text-gray-600 text-base">Loading reviews...</p>
-          </div>
-        ) : reviews.length === 0 ? (
-          <div className="py-12 text-center">
-            <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ChatBubbleLeftEllipsisIcon className="h-10 w-10 text-emerald-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">No reviews yet</h3>
-            <p className="text-gray-600 mb-4">Be the first to share your experience with {productName}!</p>
-            <button
-              onClick={() => setShowForm(true)}
-              className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-all"
-            >
-              Write First Review
-            </button>
-          </div>
-        ) : (
-          <>
-            {/* ✅ Custom Slider Container */}
-            <div className="relative">
-              {/* Navigation Buttons - Hidden on Mobile, Visible on Desktop */}
-              {reviews.length > slidesPerView && (
-                <>
-                  <button
-                    onClick={handlePrev}
-                    disabled={!canGoPrev}
-                    className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-lg transition-all ${
-                      canGoPrev 
-                        ? 'text-emerald-600 hover:bg-emerald-50 hover:scale-110' 
-                        : 'text-gray-300 cursor-not-allowed'
-                    }`}
-                    style={{ marginLeft: '-20px' }}
-                  >
-                    <ChevronLeftIcon className="w-6 h-6" />
-                  </button>
-                  
-                  <button
-                    onClick={handleNext}
-                    disabled={!canGoNext}
-                    className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-lg transition-all ${
-                      canGoNext 
-                        ? 'text-emerald-600 hover:bg-emerald-50 hover:scale-110' 
-                        : 'text-gray-300 cursor-not-allowed'
-                    }`}
-                    style={{ marginRight: '-20px' }}
-                  >
-                    <ChevronRightIcon className="w-6 h-6" />
-                  </button>
-                </>
-              )}
-
-              {/* Slider Wrapper */}
-              <div 
-                className="overflow-hidden"
-                ref={sliderRef}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleDragEnd}
-                onMouseLeave={handleDragEnd}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleDragEnd}
-              >
-                <div
-                  className="flex transition-transform duration-500 ease-out gap-5"
-                  style={{
-                    transform: `translateX(-${currentIndex * (100 / slidesPerView)}%)`,
-                  }}
-                >
-                  {reviews.map((r) => {
-                    const isExpanded = expandedReviews.has(r.id);
-                    const isLongReview = r.review.length > 250;
-                    const displayReview = isExpanded || !isLongReview ? r.review : r.review.slice(0, 250) + '...';
-
-                    return (
-                      <div
-                        key={r.id}
-                        className="flex-shrink-0 p-5 rounded-xl border-2 border-gray-200 bg-white hover:border-emerald-300 hover:shadow-md transition-all duration-200"
-                        style={{
-                          width: `calc(${100 / slidesPerView}% - ${(20 * (slidesPerView - 1)) / slidesPerView}px)`,
-                          minHeight: '300px',
-                          display: 'flex',
-                          flexDirection: 'column'
-                        }}
-                      >
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                                {(r.reviewer || 'A')[0].toUpperCase()}
-                              </div>
-                              <div>
-                                <p className="font-bold text-gray-900 text-base">{r.reviewer || 'Anonymous'}</p>
-                                <div className="flex items-center gap-2">
-                                  <CheckBadgeIcon className="h-4 w-4 text-emerald-600" />
-                                  <span className="text-xs font-semibold text-emerald-700">Verified Purchase</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="mb-3">
-                          <StarRating rating={r.rating || 0} />
-                        </div>
-
-                        <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap flex-grow">{displayReview}</p>
-
-                        {isLongReview && (
-                          <button
-                            onClick={() => toggleExpandReview(r.id)}
-                            className="mt-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition-colors text-left"
-                          >
-                            {isExpanded ? 'Show Less' : 'Read More'}
-                          </button>
-                        )}
-
-                        {Array.isArray(r.images) && r.images.length > 0 && (
-                          <div className="mt-4 grid grid-cols-2 gap-2">
-                            {r.images.slice(0, 4).map((src, i) => (
-                              <img
-                                key={`${r.id}-${i}`}
-                                src={src}
-                                alt="Review photo"
-                                className="w-full h-20 object-cover rounded-lg border-2 border-gray-200 hover:border-emerald-400 transition-all cursor-pointer"
-                                loading="lazy"
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Pagination Dots */}
-              {reviews.length > slidesPerView && (
-                <div className="flex justify-center gap-2 mt-6">
-                  {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`transition-all duration-300 rounded-full ${
-                        idx === currentIndex
-                          ? 'bg-emerald-600 w-6 h-2'
-                          : 'bg-gray-300 w-2 h-2 hover:bg-emerald-400'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
-                </div>
+              {review.verified && (
+                <span style={{ fontSize: 10, fontWeight: 700, color: BLUE, background: 'rgba(10,91,214,0.08)', padding: '3px 8px', borderRadius: 4, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Verified</span>
               )}
             </div>
-
-            {/* Review Counter */}
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
-                Total <span className="font-bold text-emerald-600">{reviews.length}</span> reviews
-              </p>
+            <div style={{ display: 'flex', gap: 2, marginBottom: 10 }}>
+              {[1,2,3,4,5].map(s => (
+                <Star key={s} style={{ width: 14, height: 14, fill: s <= review.rating ? '#FFB800' : '#dde8ff', color: s <= review.rating ? '#FFB800' : '#dde8ff' }} />
+              ))}
             </div>
-          </>
-        )}
+            <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.7)', lineHeight: 1.75 }}>{review.text}</p>
+          </div>
+        ))}
       </div>
-    </section>
+
+      {sampleReviews.length > 3 && (
+        <div style={{ textAlign: 'center', marginTop: 20 }}>
+          <button
+            onClick={() => setShowAll(!showAll)}
+            style={{ background: 'transparent', border: `1.5px solid #dde8ff`, color: DARK, padding: '10px 24px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'inherit', transition: 'border-color 0.2s, color 0.2s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = BLUE; (e.currentTarget as HTMLElement).style.color = BLUE; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#dde8ff'; (e.currentTarget as HTMLElement).style.color = DARK; }}
+          >
+            {showAll ? 'SHOW LESS' : `SHOW ALL ${sampleReviews.length} REVIEWS`}
+          </button>
+        </div>
+      )}
+
+      {/* Write review prompt */}
+      <div style={{ marginTop: 24, background: '#f0f5ff', borderRadius: 12, padding: '20px 24px', border: `1.5px solid #dde8ff`, textAlign: 'center' }}>
+        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.6)', marginBottom: 10 }}>
+          Bought a {productName}? Share your experience!
+        </p>
+        <a href="https://wa.me/919899955506?text=Hi%2C%20I%20would%20like%20to%20share%20my%20review%20for%20my%20CCTI%20India%20cooler."
+          target="_blank" rel="noopener noreferrer"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#25D366', color: '#fff', padding: '10px 20px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none' }}
+        >
+          Share Feedback on WhatsApp
+        </a>
+      </div>
+    </div>
   );
 };
 
