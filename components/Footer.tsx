@@ -134,6 +134,19 @@ export default function Footer() {
         <p style={{ fontSize: 11, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.2)' }}>
           © {new Date().getFullYear()} CCTI India. All rights reserved.
         </p>
+        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.22)', letterSpacing: '0.04em' }}>
+          Developed by{' '}
+          <Link
+            href="https://proshala.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'rgba(10,91,214,0.7)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#7EB3FF')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(10,91,214,0.7)')}
+          >
+            Proshala
+          </Link>
+        </p>
         <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: `rgba(10,91,214,0.45)` }}>
           COOLER MANUFACTURER · SINCE 1998 · BAWANA, DELHI ◆
         </p>
