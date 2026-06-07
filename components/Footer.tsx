@@ -1,21 +1,21 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 
 const BLUE = '#0A5BD6';
-const DARK = '#0B1E3D';
 
 export default function Footer() {
   return (
-    <footer style={{ background: DARK, borderTop: `4px solid ${BLUE}` }}>
+    <footer style={{ background: '#fff', borderTop: `4px solid ${BLUE}` }}>
 
       {/* Marquee belt */}
-      <div style={{ overflow: 'hidden', borderBottom: '2px solid rgba(255,255,255,0.06)', padding: '12px 0' }}>
+      <div style={{ overflow: 'hidden', borderBottom: `2px solid #dde8ff`, padding: '10px 0', background: '#F0F5FF' }}>
         <div style={{ display: 'inline-flex', whiteSpace: 'nowrap', animation: 'mq-fwd 24s linear infinite' }}>
           {[...Array(2)].map((_, r) => (
             <span key={r} style={{ display: 'inline-flex' }}>
-              {['CCTI INDIA', 'COOLER MANUFACTURER', 'BAWANA DELHI', 'EST. 1998', 'FACTORY DIRECT', 'PAN-INDIA DELIVERY', 'MADE IN INDIA'].map((t) => (
-                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: '0 24px', fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>
+              {['CCTI INDIA', 'STAY COOL LIVE EASY', 'BAWANA DELHI', 'EST. 1977', 'FACTORY DIRECT', 'PAN-INDIA DELIVERY', 'MADE IN INDIA'].map((t) => (
+                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: '0 24px', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(10,30,61,0.35)' }}>
                   {t}
                   <span style={{ color: BLUE, fontSize: 6 }}>◆</span>
                 </span>
@@ -26,36 +26,31 @@ export default function Footer() {
       </div>
 
       {/* Main content */}
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '56px 32px 40px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '52px 32px 36px' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1fr', gap: '40px 32px' }}>
 
           {/* Brand */}
           <div>
-            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 20 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ background: BLUE, borderRadius: 8, width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <span style={{ fontSize: 14, fontWeight: 900, color: '#fff' }}>CC</span>
-                </div>
-                <div>
-                  <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1 }}>CCTI India</div>
-                  <div style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.16em', textTransform: 'uppercase', marginTop: 2 }}>Cooler Manufacturer</div>
-                </div>
-              </div>
+            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
+              <Image src="/ccti-logo.png" alt="CCTI India" width={160} height={48} style={{ objectFit: 'contain', height: 48, width: 'auto' }} />
             </Link>
-            <p style={{ fontSize: 13, fontWeight: 300, color: 'rgba(255,255,255,0.45)', lineHeight: 1.85, marginBottom: 24, maxWidth: 260 }}>
-              Manufacturing quality air coolers in Bawana, Delhi since 1998. Desert coolers, tower coolers, personal coolers, window coolers and industrial coolers — direct from factory to your doorstep.
+            <p style={{ fontSize: 11, fontWeight: 600, color: 'rgba(10,30,61,0.4)', letterSpacing: '0.04em', marginBottom: 12 }}>
+              Agroson Electrical Industries
+            </p>
+            <p style={{ fontSize: 13, fontWeight: 400, color: 'rgba(10,30,61,0.55)', lineHeight: 1.85, marginBottom: 24, maxWidth: 260 }}>
+              &ldquo;Stay Cool, Live Easy.&rdquo; — Manufacturing quality air coolers in Bawana, Delhi since 1977. Factory-direct pricing, pan-India delivery.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               {[
-                { href: '#', icon: <FaFacebookF size={13} /> },
+                { href: 'https://www.facebook.com/Aircoolercabinetnewdelhi', icon: <FaFacebookF size={13} /> },
                 { href: '#', icon: <FaInstagram size={13} /> },
                 { href: '#', icon: <FaYoutube size={13} /> },
                 { href: 'https://wa.me/919899955506', icon: <FaWhatsapp size={13} /> },
               ].map(({ href, icon }, i) => (
                 <Link key={i} href={href} target="_blank" rel="noopener noreferrer"
-                  style={{ width: 34, height: 34, border: '1.5px solid rgba(255,255,255,0.15)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = BLUE; e.currentTarget.style.color = BLUE; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; }}
+                  style={{ width: 34, height: 34, border: `1.5px solid #dde8ff`, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(10,30,61,0.4)', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s, background 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = BLUE; e.currentTarget.style.color = BLUE; e.currentTarget.style.background = '#F0F5FF'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#dde8ff'; e.currentTarget.style.color = 'rgba(10,30,61,0.4)'; e.currentTarget.style.background = 'transparent'; }}
                 >
                   {icon}
                 </Link>
@@ -68,17 +63,17 @@ export default function Footer() {
             <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: BLUE, marginBottom: 20, fontWeight: 700 }}>PRODUCTS</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                { name: 'Desert Coolers', to: '/shop' },
-                { name: 'Tower Coolers', to: '/shop' },
-                { name: 'Personal Coolers', to: '/shop' },
-                { name: 'Window Coolers', to: '/shop' },
-                { name: 'Industrial Coolers', to: '/shop' },
+                { name: 'IcyChill Tower Coolers', to: '/shop' },
+                { name: 'Fiesta Tower Coolers', to: '/shop' },
+                { name: 'Brezza Tower Coolers', to: '/shop' },
+                { name: 'Neo Personal Coolers', to: '/shop' },
+                { name: 'Swish Personal Coolers', to: '/shop' },
                 { name: 'All Products', to: '/shop' },
               ].map(({ name, to }) => (
                 <li key={name}>
-                  <Link href={to} style={{ fontSize: 13, fontWeight: 400, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#7EB3FF')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+                  <Link href={to} style={{ fontSize: 13, fontWeight: 400, color: 'rgba(10,30,61,0.55)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = BLUE)}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(10,30,61,0.55)')}
                   >
                     {name}
                   </Link>
@@ -96,11 +91,12 @@ export default function Footer() {
                 { name: 'Contact', to: '/contact' },
                 { name: 'Privacy Policy', to: '/privacy-policy' },
                 { name: 'Terms & Conditions', to: '/terms-and-conditions' },
+                { name: 'Disclaimer', to: '/disclaimer' },
               ].map(({ name, to }) => (
                 <li key={name}>
-                  <Link href={to} style={{ fontSize: 13, fontWeight: 400, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#7EB3FF')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+                  <Link href={to} style={{ fontSize: 13, fontWeight: 400, color: 'rgba(10,30,61,0.55)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = BLUE)}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(10,30,61,0.55)')}
                   >
                     {name}
                   </Link>
@@ -114,14 +110,14 @@ export default function Footer() {
             <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: BLUE, marginBottom: 20, fontWeight: 700 }}>CONTACT</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
-                { label: 'Phone / WhatsApp', val: '+91 98999 55506' },
-                { label: 'Factory Address', val: 'Bawana Industrial Area,\nDelhi – 110039' },
+                { label: 'Phone / WhatsApp', val: '+91 98999 55506\n+91 98100 37985\n+91 99990 11801' },
+                { label: 'Factory Address', val: 'D-327, Sector-5, DSIIDC\nIndustrial Area, Bawana\nNew Delhi – 110039' },
                 { label: 'Website', val: 'cctiindia.com' },
                 { label: 'Business Hours', val: 'Mon – Sat: 9 AM – 7 PM' },
               ].map((item) => (
                 <li key={item.label}>
-                  <span style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: `rgba(10,91,214,0.6)`, display: 'block', marginBottom: 2 }}>{item.label}</span>
-                  <span style={{ fontSize: 13, fontWeight: 300, color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{item.val}</span>
+                  <span style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: BLUE, display: 'block', marginBottom: 3, fontWeight: 600 }}>{item.label}</span>
+                  <span style={{ fontSize: 12, fontWeight: 400, color: 'rgba(10,30,61,0.6)', lineHeight: 1.75, whiteSpace: 'pre-line' }}>{item.val}</span>
                 </li>
               ))}
             </ul>
@@ -130,25 +126,25 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', padding: '18px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
-        <p style={{ fontSize: 11, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.2)' }}>
-          © {new Date().getFullYear()} CCTI India. All rights reserved.
+      <div style={{ borderTop: `1px solid #dde8ff`, background: '#F0F5FF', padding: '16px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+        <p style={{ fontSize: 11, letterSpacing: '0.04em', color: 'rgba(10,30,61,0.4)' }}>
+          © {new Date().getFullYear()} CCTI India — Agroson Electrical Industries. All rights reserved.
         </p>
-        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.22)', letterSpacing: '0.04em' }}>
+        <p style={{ fontSize: 11, color: 'rgba(10,30,61,0.35)', letterSpacing: '0.04em' }}>
           Developed by{' '}
           <Link
             href="https://proshala.com"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'rgba(10,91,214,0.7)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#7EB3FF')}
-            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(10,91,214,0.7)')}
+            style={{ color: BLUE, textDecoration: 'none', fontWeight: 600, transition: 'opacity 0.2s' }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
             Proshala
           </Link>
         </p>
-        <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: `rgba(10,91,214,0.45)` }}>
-          COOLER MANUFACTURER · SINCE 1998 · BAWANA, DELHI ◆
+        <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: `rgba(10,91,214,0.5)`, fontWeight: 600 }}>
+          COOLER MANUFACTURER · SINCE 1977 · BAWANA, DELHI ◆
         </p>
       </div>
 

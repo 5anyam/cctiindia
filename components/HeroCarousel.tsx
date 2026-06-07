@@ -1,127 +1,136 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const IMAGES = [
-  {
-    src: 'https://cms.amraj.in/wp-content/uploads/2025/10/amraj-banner-1-scaled.jpg',
-    alt: 'Healthy skin with bottle',
-  },
-  {
-    src: 'https://cms.amraj.in/wp-content/uploads/2025/06/Amraj-Bg-Photo_20250623_113828_0000-scaled.jpg',
-    alt: 'Model smiling with serum',
-  }
+// ─────────────────────────────────────────────────────────────
+// ADD BANNER IMAGES HERE
+// Drop banner files into /public/banners/ (JPG or PNG)
+// Recommended size: 1920×720px (16:6 ratio)
+// ─────────────────────────────────────────────────────────────
+const BANNERS = [
+  { src: '/banners/banner-1.jpg', alt: 'CCTI India — Premium Air Coolers' },
+  { src: '/banners/banner-2.jpg', alt: 'Factory Direct — No Middlemen' },
+  { src: '/banners/banner-3.jpg', alt: 'Made in India — Built for Indian Summers' },
 ];
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrent((p) => (p + 1) % BANNERS.length);
+    }, 4000);
+  }, []);
 
-  // Auto-play functionality
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % IMAGES.length);
-    }, 3000);
+    resetTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [resetTimer]);
 
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const goToPrevious = () => {
-    setCurrent((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
-    setIsAutoPlaying(false);
-  };
-
-  const goToNext = () => {
-    setCurrent((prev) => (prev + 1) % IMAGES.length);
-    setIsAutoPlaying(false);
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrent(index);
-    setIsAutoPlaying(false);
-  };
+  const go = useCallback(
+    (idx: number) => {
+      setCurrent((idx + BANNERS.length) % BANNERS.length);
+      resetTimer();
+    },
+    [resetTimer]
+  );
 
   return (
-    <div className="w-full relative bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-      {/* Main carousel container - Using banner-like aspect ratio */}
-      <div className="w-full relative overflow-hidden" style={{ aspectRatio: '16/6' }}>
-        
-        {/* Images container */}
-        <div 
-          className="flex transition-transform duration-700 ease-in-out h-full"
-          style={{ transform: `translateX(-${current * 100}%)` }}
-        >
-          {IMAGES.map((img, index) => (
-            <div key={index} className="w-full h-full flex-shrink-0 relative">
-              { (
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-contain bg-gray-50 transition-transform duration-300 hover:scale-105"
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                />
-              
-              )}
-              
-              {/* Subtle overlay for better contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent pointer-events-none" />
-            </div>
-          ))}
-        </div>
-
-        {/* Navigation buttons */}
-        <button
-          onClick={goToPrevious}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-40 
-            bg-white/90 hover:bg-white border border-gray-200 text-gray-700 
-            w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-all duration-300 hover:scale-110
-            flex items-center justify-center shadow-lg hover:shadow-xl"
-          aria-label="Previous image"
-        >
-          <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
-        </button>
-
-        <button
-          onClick={goToNext}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-40 
-            bg-white/90 hover:bg-white border border-gray-200 text-gray-700 
-            w-8 h-8 sm:w-10 sm:h-10 rounded-full transition-all duration-300 hover:scale-110
-            flex items-center justify-center shadow-lg hover:shadow-xl"
-          aria-label="Next image"
-        >
-          <ChevronRight size={16} className="sm:w-5 sm:h-5" />
-        </button>
-
-        {/* Slide indicators */}
-        <div className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 z-30 
-          flex gap-1.5 sm:gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-2 shadow-lg">
-          {IMAGES.map((_, index) => (
-            <button
-              key={index}
-              className={`rounded-full cursor-pointer transition-all duration-300 
-                hover:scale-110 focus:outline-none focus:ring-2 focus:ring-teal-500/50 
-                ${index === current
-                  ? 'bg-teal-500 w-6 sm:w-8 h-2 sm:h-2.5' 
-                  : 'bg-gray-300 hover:bg-gray-400 w-2 sm:w-2.5 h-2 sm:h-2.5'
-                }`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
+    <section style={{ width: '100%', position: 'relative', overflow: 'hidden', background: '#0B1E3D' }}>
+      {/* Slides strip */}
+      <div
+        style={{
+          display: 'flex',
+          transition: 'transform 0.65s cubic-bezier(0.4,0,0.2,1)',
+          transform: `translateX(-${current * 100}%)`,
+          willChange: 'transform',
+        }}
+      >
+        {BANNERS.map((b, i) => (
+          <div
+            key={i}
+            style={{ flex: '0 0 100%', width: '100%', aspectRatio: '16/6', position: 'relative', minHeight: 220 }}
+          >
+            <Image
+              src={b.src}
+              alt={b.alt}
+              fill
+              style={{ objectFit: 'cover' }}
+              priority={i === 0}
             />
-          ))}
-        </div>
-
+          </div>
+        ))}
       </div>
 
+      {/* Prev / Next arrows */}
+      {(['prev', 'next'] as const).map((dir) => (
+        <button
+          key={dir}
+          onClick={() => go(current + (dir === 'next' ? 1 : -1))}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLElement).style.background = 'rgba(10,91,214,0.6)')
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')
+          }
+          aria-label={dir}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            [dir === 'prev' ? 'left' : 'right']: 16,
+            zIndex: 10,
+            background: 'rgba(255,255,255,0.15)',
+            border: '1.5px solid rgba(255,255,255,0.3)',
+            color: '#fff',
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(4px)',
+            transition: 'background 0.2s',
+          }}
+        >
+          {dir === 'prev' ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
+        </button>
+      ))}
 
-      {/* Image info for debugging */}
-      <div className="hidden">
-        <p className="text-xs text-gray-400 mt-2">
-          Current slide: {current + 1} of {IMAGES.length}
-        </p>
+      {/* Dot indicators */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 14,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: 8,
+          zIndex: 10,
+        }}
+      >
+        {BANNERS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => go(i)}
+            aria-label={`Slide ${i + 1}`}
+            style={{
+              width: i === current ? 28 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: i === current ? '#0A5BD6' : 'rgba(255,255,255,0.4)',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'width 0.3s, background 0.3s',
+            }}
+          />
+        ))}
       </div>
-    </div>
+    </section>
   );
 }

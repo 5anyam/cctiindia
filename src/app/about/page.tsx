@@ -22,7 +22,7 @@ export default function AboutPage() {
             ABOUT<br /><span style={{ color: BLUE }}>CCTI</span><br /><span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.6em', letterSpacing: '0.02em' }}>INDIA</span>
           </h1>
           <p style={{ fontSize: 15, fontWeight: 300, color: 'rgba(255,255,255,0.55)', maxWidth: 540, margin: '0 auto', lineHeight: 1.85 }}>
-            Established in 1998 in Bawana, Delhi — CCTI India has spent over 27 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
+            Established in 1977 in Bawana, Delhi — Agroson Electrical Industries (CCTI brand) has spent over 47 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
           </p>
         </div>
       </section>
@@ -37,7 +37,7 @@ export default function AboutPage() {
               <div style={{ fontSize: 'clamp(48px,7vw,88px)', fontWeight: 900, color: BLUE, letterSpacing: '-0.03em', lineHeight: 1 }}>CCTI</div>
               <div style={{ fontSize: 16, fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.22em', textTransform: 'uppercase', marginTop: 8 }}>India</div>
               <div style={{ width: 60, height: 3, background: BLUE, borderRadius: 2, margin: '16px auto' }} />
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Since 1998 · Bawana, Delhi</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Since 1977 · Bawana, Delhi</div>
             </div>
           </div>
           <div>
@@ -46,10 +46,10 @@ export default function AboutPage() {
               YOUR TRUSTED<br /><span style={{ color: BLUE }}>COOLER</span><br />MANUFACTURER
             </h2>
             <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.65)', lineHeight: 1.85, marginBottom: 20 }}>
-              CCTI India is a cooler manufacturing company based in the Bawana Industrial Area, Delhi. Founded in 1998, we have spent over two decades designing and manufacturing air coolers that are built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
+              CCTI India is the brand of Agroson Electrical Industries, a cooler manufacturing company based at D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi. Founded in 1977, we have spent over four decades designing and manufacturing air coolers built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
             </p>
             <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.65)', lineHeight: 1.85, marginBottom: 28 }}>
-              We manufacture <strong style={{ color: DARK }}>desert coolers, tower coolers, personal coolers, window coolers and heavy-duty industrial coolers</strong>. With our D2C initiative, we now sell directly to homes and businesses across India — cutting out middlemen so you get the best price straight from the factory.
+              We manufacture the <strong style={{ color: DARK }}>IcyChill, Fiesta, Brezza, Neo and Swish</strong> ranges — tower coolers, personal coolers, and double blower models. With our D2C initiative, we now sell directly to homes and businesses across India — cutting out middlemen so you get the best factory price.
             </p>
             <div style={{ display: 'flex', gap: 16 }}>
               <Link href="/shop" style={{ background: BLUE, color: '#fff', padding: '12px 24px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', transition: 'background 0.2s', boxShadow: `0 4px 14px rgba(10,91,214,0.3)` }}
@@ -71,7 +71,7 @@ export default function AboutPage() {
         {/* Stats */}
         <section style={{ background: BLUE, borderRadius: 16, padding: '52px 48px', marginBottom: 88, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24, textAlign: 'center' }}>
           {[
-            { num: '27+', label: 'Years Manufacturing' },
+            { num: '47+', label: 'Years Manufacturing' },
             { num: '50,000+', label: 'Coolers Sold' },
             { num: '6', label: 'Product Lines' },
             { num: '100%', label: 'Made in India' },
@@ -115,7 +115,7 @@ export default function AboutPage() {
           <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
             {[
               { icon: Factory, title: 'Direct from Factory', desc: 'We are the manufacturer. No distributor, no dealer markup — you pay the actual factory price.' },
-              { icon: BadgeCheck, title: 'Established Since 1998', desc: 'Over 27 years of manufacturing experience. Our coolers are built to handle India\'s harshest summers reliably.' },
+              { icon: BadgeCheck, title: 'Established Since 1977', desc: 'Over 47 years of manufacturing experience. Our coolers are built to handle India\'s harshest summers reliably.' },
               { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship coolers safely to every corner of India — well-packed, tracked, and delivered on time.' },
               { icon: Wrench, title: 'Spare Parts Available', desc: 'Pumps, motors, honeycomb pads — all spare parts stocked and supplied so your cooler lasts for years.' },
               { icon: Wind, title: 'Full Range', desc: 'Desert coolers, tower coolers, personal, window and industrial — we make the complete range under one roof.' },
@@ -143,14 +143,14 @@ export default function AboutPage() {
           </div>
           <div className="products-list-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
             {[
-              'Desert Air Coolers (40L–100L)',
-              'Tower Air Coolers (35L–65L)',
-              'Personal Coolers (15L–25L)',
-              'Window Coolers (50L–80L)',
-              'Industrial Coolers (150L–250L)',
-              'Jumbo Desert Coolers (100L+)',
-              'OEM / Bulk Manufacturing',
-              'Spare Parts & Accessories',
+              'IcyChill Tower 12" (50L)',
+              'Fiesta Tower Double Blower (90L)',
+              'Brezza Tower 16" Stealth Blue (90L)',
+              'Brezza Tower 16" Aurora White (90L)',
+              'Neo Double Blower (30L)',
+              'Neo Plus Double Blower (50L)',
+              'Swish 50 — Aurora White & Stealth Blue',
+              'Swish 30 — Aurora White & Stealth Blue',
             ].map((item, i) => (
               <div key={i} style={{ background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 10, padding: '18px 20px', display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 1px 6px rgba(10,91,214,0.05)' }}>
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: BLUE, flexShrink: 0 }} />

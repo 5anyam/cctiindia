@@ -13,30 +13,16 @@ type Product = {
 };
 
 const CATALOG: Product[] = [
-  {
-    id: 85,
-    name: 'Advanced Liver Detox',
-    slug: 'advanced-liver-detox',
-    url: 'https://www.amraj.in/product/advanced-liver-detox',
-    image: 'https://cms.amraj.in/wp-content/uploads/2025/07/IMG_6762-scaled.jpg',
-    price: '₹1,499'
-  },
-  {
-    id: 86,
-    name: 'Advanced Prostate Care',
-    slug: 'advanced-prostate-care',
-    url: 'https://www.amraj.in/product/advanced-prostate-care',
-    image: 'https://cms.amraj.in/wp-content/uploads/2025/06/IMG_6765-1-scaled.jpg',
-    price: '₹1,799'
-  },
-  {
-    id: 87,
-    name: 'Weight Management Pro',
-    slug: 'weight-management-pro',
-    url: 'https://www.amraj.in/product/weight-management-pro',
-    image: 'https://cms.amraj.in/wp-content/uploads/2025/06/IMG_6768-1-scaled.jpg',
-    price: '₹1,599'
-  }
+  { id: 1, name: 'IcyChill Tower 12"', slug: 'ccti-icychill-tower-12', url: '/product/ccti-icychill-tower-12', image: '/products/icychill-tower-12.png', price: '₹7,499' },
+  { id: 2, name: 'Fiesta Tower Double Blower', slug: 'ccti-fiesta-tower-double-blower', url: '/product/ccti-fiesta-tower-double-blower', image: '/products/fiesta-tower-double-blower.png', price: '₹9,999' },
+  { id: 3, name: 'Brezza Tower 16" Stealth Blue', slug: 'ccti-brezza-stealth-blue-tower-16', url: '/product/ccti-brezza-stealth-blue-tower-16', image: '/products/brezza-stealth-blue-tower-16.png', price: '₹10,999' },
+  { id: 4, name: 'Brezza Tower 16" Aurora White', slug: 'ccti-brezza-aurora-white-tower-16', url: '/product/ccti-brezza-aurora-white-tower-16', image: '/products/brezza-aurora-white-tower-16.png', price: '₹10,999' },
+  { id: 5, name: 'Neo Plus Double Blower', slug: 'ccti-neo-plus-double-blower', url: '/product/ccti-neo-plus-double-blower', image: '/products/neo-plus-double-blower.png', price: '₹5,999' },
+  { id: 6, name: 'Neo Double Blower', slug: 'ccti-neo-double-blower', url: '/product/ccti-neo-double-blower', image: '/products/neo-double-blower.png', price: '₹3,499' },
+  { id: 7, name: 'Swish 50 Aurora White', slug: 'ccti-swish-50-aurora-white', url: '/product/ccti-swish-50-aurora-white', image: '/products/swish-50-aurora-white.png', price: '₹5,499' },
+  { id: 8, name: 'Swish 30 Aurora White', slug: 'ccti-swish-30-aurora-white', url: '/product/ccti-swish-30-aurora-white', image: '/products/swish-30-aurora-white.png', price: '₹3,999' },
+  { id: 9, name: 'Swish 50 Stealth Blue', slug: 'ccti-swish-50-stealth-blue', url: '/product/ccti-swish-50-stealth-blue', image: '/products/swish-50-stealth-blue.png', price: '₹5,499' },
+  { id: 10, name: 'Swish 30 Stealth Blue', slug: 'ccti-swish-30-stealth-blue', url: '/product/ccti-swish-30-stealth-blue', image: '/products/swish-30-stealth-blue.png', price: '₹3,999' },
 ];
 
 function getQuery(): string {

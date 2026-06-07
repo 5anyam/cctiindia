@@ -109,7 +109,7 @@ function FailedContent() {
             </p>
             <div className="space-y-3">
               <a 
-                href="mailto:care@amraj.in?subject=Payment%20Failed%20-%20Order%20%23${orderId || 'N/A'}"
+                href="mailto:care@cctiindia.com?subject=Payment%20Failed%20-%20Order%20%23${orderId || 'N/A'}"
                 className="flex items-center gap-3 bg-white p-4 rounded-lg hover:shadow-md transition-all"
               >
                 <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
@@ -117,7 +117,7 @@ function FailedContent() {
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">Email Support</p>
-                  <p className="text-sm text-emerald-600">care@amraj.in</p>
+                  <p className="text-sm text-emerald-600">care@cctiindia.com</p>
                 </div>
               </a>
               

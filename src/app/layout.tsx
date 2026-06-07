@@ -7,8 +7,8 @@ import Whatsapp from '../../components/Whatsapp';
 import Loading from './loading';
 
 export const metadata = {
-  title: 'CCTI India — Air Cooler Manufacturer Since 1998 | Bawana, Delhi',
-  description: 'CCTI India is a leading air cooler manufacturer based in Bawana, Delhi, since 1998. We make desert coolers, tower coolers, personal coolers, window coolers and industrial coolers. Buy directly from the manufacturer.',
+  title: 'CCTI India — Air Cooler Manufacturer Since 1977 | Bawana, Delhi',
+  description: 'CCTI India (Agroson Electrical Industries) is a leading air cooler manufacturer in Bawana, Delhi since 1977. IcyChill, Fiesta, Brezza, Neo & Swish tower and personal coolers — buy directly from the manufacturer at factory prices.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

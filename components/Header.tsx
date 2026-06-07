@@ -1,6 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BiChevronDown } from 'react-icons/bi';
@@ -54,15 +55,9 @@ export default function Header() {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 70 }}>
 
-            {/* Logo — CCTI India text */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', gap: 10 }}>
-              <div style={{ background: BLUE, borderRadius: 8, width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, color: '#fff', letterSpacing: '-0.02em' }}>CC</span>
-              </div>
-              <div>
-                <div style={{ fontSize: 20, fontWeight: 900, color: BLUE, letterSpacing: '-0.02em', lineHeight: 1 }}>CCTI India</div>
-                <div style={{ fontSize: 9, fontWeight: 600, color: 'rgba(10,91,214,0.55)', letterSpacing: '0.18em', textTransform: 'uppercase', lineHeight: 1, marginTop: 2 }}>Cooler Manufacturer · Est. 1998</div>
-              </div>
+            {/* Logo */}
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+              <Image src="/ccti-logo.png" alt="CCTI India" width={148} height={44} priority style={{ objectFit: 'contain', height: 44, width: 'auto' }} />
             </Link>
 
             {/* Desktop Nav */}
@@ -140,8 +135,7 @@ export default function Header() {
       <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: '82%', maxWidth: 340, background: '#fff', zIndex: 700, borderLeft: `2px solid #dde8ff`, transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.32s cubic-bezier(.16,1,.3,1)', display: 'flex', flexDirection: 'column', boxShadow: '-4px 0 24px rgba(10,91,214,0.1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: `2px solid #dde8ff`, background: '#f0f5ff' }}>
           <div>
-            <div style={{ fontSize: 18, fontWeight: 900, color: BLUE, letterSpacing: '-0.02em', lineHeight: 1 }}>CCTI India</div>
-            <div style={{ fontSize: 9, fontWeight: 600, color: 'rgba(10,91,214,0.5)', letterSpacing: '0.16em', textTransform: 'uppercase', marginTop: 2 }}>Cooler Manufacturer</div>
+            <Image src="/ccti-logo.png" alt="CCTI India" width={120} height={36} style={{ objectFit: 'contain', height: 36, width: 'auto' }} />
           </div>
           <button onClick={() => setMobileMenuOpen(false)} style={{ background: BLUE, border: 'none', color: '#fff', width: 34, height: 34, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <FiX size={17} />

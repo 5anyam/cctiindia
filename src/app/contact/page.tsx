@@ -55,7 +55,7 @@ export default function ContactPage() {
         <section className="contact-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, marginBottom: 64 }}>
           {[
             { icon: <Phone size={22} />, title: 'CALL / WHATSAPP', sub: 'Mon – Sat · 9 AM – 7 PM', value: '+91 98999 55506', href: `tel:+${WA_NUMBER}`, dark: true },
-            { icon: <MapPin size={22} />, title: 'FACTORY ADDRESS', sub: 'Bawana Industrial Area', value: 'Bawana Industrial Area,\nDelhi – 110039', href: null, dark: false },
+            { icon: <MapPin size={22} />, title: 'FACTORY ADDRESS', sub: 'DSIIDC Industrial Area, Bawana', value: 'D-327, Sector-5, DSIIDC Industrial Area\nBawana, New Delhi – 110039', href: null, dark: false },
             { icon: <Clock size={22} />, title: 'BUSINESS HOURS', sub: 'We respond on WhatsApp anytime', value: 'Mon – Sat: 9 AM – 7 PM\nSunday: Closed', href: null, dark: false },
           ].map((card, i) => (
             <div key={i} style={{ background: card.dark ? DARK : '#fff', border: `1.5px solid ${card.dark ? 'transparent' : '#dde8ff'}`, borderRadius: 16, padding: '36px 28px', textAlign: 'center', boxShadow: card.dark ? `0 6px 24px rgba(10,91,214,0.2)` : '0 2px 10px rgba(10,91,214,0.06)' }}>
@@ -82,8 +82,8 @@ export default function ContactPage() {
             <div style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 24 }}>
               {[
                 { icon: <MessageCircle size={16} />, label: 'WhatsApp (Fastest)', content: '+91 98999 55506', link: `https://wa.me/${WA_NUMBER}`, isLink: true },
-                { icon: <Phone size={16} />, label: 'Phone', content: '+91 98999 55506', link: `tel:+${WA_NUMBER}`, isLink: true },
-                { icon: <MapPin size={16} />, label: 'Factory Address', content: 'Bawana Industrial Area,\nDelhi – 110039', link: null, isLink: false },
+                { icon: <Phone size={16} />, label: 'Phone', content: '+91 98999 55506 · +91 98100 37985\n+91 99990 11801', link: `tel:+${WA_NUMBER}`, isLink: false },
+                { icon: <MapPin size={16} />, label: 'Factory Address', content: 'D-327, Sector-5, DSIIDC Industrial Area\nBawana, New Delhi – 110039', link: null, isLink: false },
                 { icon: <Clock size={16} />, label: 'Business Hours', content: 'Mon – Sat: 9:00 AM – 7:00 PM\nSunday: Closed', link: null, isLink: false },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -116,11 +116,11 @@ export default function ContactPage() {
           <div style={{ background: DARK, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px 28px', boxShadow: `0 4px 16px rgba(10,91,214,0.15)` }}>
             <div style={{ textAlign: 'center' }}>
               <MapPin size={40} style={{ color: BLUE, marginBottom: 16 }} />
-              <h4 style={{ fontSize: 22, fontWeight: 900, color: '#fff', marginBottom: 8, letterSpacing: '-0.01em' }}>Bawana, Delhi</h4>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>Bawana Industrial Area<br />Delhi – 110039</p>
+              <h4 style={{ fontSize: 22, fontWeight: 900, color: '#fff', marginBottom: 8, letterSpacing: '-0.01em' }}>Bawana, New Delhi</h4>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>D-327, Sector-5, DSIIDC Industrial Area<br />Bawana, New Delhi – 110039</p>
               <div style={{ width: 40, height: 2, background: BLUE, borderRadius: 1, margin: '18px auto' }} />
-              <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 18 }}>Manufacturing Since 1998</p>
-              <a href="https://maps.google.com?q=Bawana+Industrial+Area+Delhi+110039" target="_blank" rel="noopener noreferrer"
+              <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 18 }}>Manufacturing Since 1977</p>
+              <a href="https://maps.google.com?q=D-327+Sector-5+DSIIDC+Industrial+Area+Bawana+New+Delhi+110039" target="_blank" rel="noopener noreferrer"
                 style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, color: '#7EB3FF', letterSpacing: '0.12em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: `1px solid rgba(10,91,214,0.4)`, paddingBottom: 2 }}
               >
                 Get Directions →

@@ -4,13 +4,15 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PRODUCTS, StaticProduct } from '../../lib/products-data';
-import { Star, ShieldCheck, Truck, Check, ChevronRight, Phone, Factory, Wrench, BadgeCheck, Wind, Thermometer, MessageCircle } from 'lucide-react';
+import { Star, ShieldCheck, Truck, Check, ChevronRight, Factory, Wrench, BadgeCheck, Wind, Thermometer, MessageCircle } from 'lucide-react';
+import HeroCarousel from '../../components/HeroCarousel';
 
 const BLUE = '#0A5BD6';
 const BLUE_DARK = '#0944A8';
 const DARK = '#0B1E3D';
 const BG = '#F0F5FF';
 const WA_NUMBER = '919899955506';
+
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -85,101 +87,10 @@ function ProductCard({ product }: { product: StaticProduct }) {
   );
 }
 
-function HeroSection() {
-  return (
-    <section style={{ background: DARK, position: 'relative', overflow: 'hidden', borderBottom: `4px solid ${BLUE}` }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(10,91,214,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,91,214,0.06) 1px, transparent 1px)`, backgroundSize: '48px 48px', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: -80, right: -80, width: 500, height: 500, background: `radial-gradient(circle, rgba(10,91,214,0.2) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: -60, left: -60, width: 360, height: 360, background: `radial-gradient(circle, rgba(10,91,214,0.1) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-
-      <div className="hero-grid" style={{ maxWidth: 1280, margin: '0 auto', padding: '70px 40px 80px', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 56, alignItems: 'center' }}>
-        <div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: `rgba(10,91,214,0.15)`, border: `1.5px solid rgba(10,91,214,0.4)`, color: '#7EB3FF', fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', padding: '6px 14px', borderRadius: 4, marginBottom: 28 }}>
-            ◆ Direct from Factory · Bawana, Delhi · Est. 1998
-          </div>
-
-          <h1 style={{ fontSize: 'clamp(48px, 7.5vw, 102px)', fontWeight: 900, lineHeight: 0.92, letterSpacing: '-0.025em', marginBottom: 24 }}>
-            <span style={{ display: 'block', color: '#fff' }}>STAY</span>
-            <span style={{ display: 'block', color: 'transparent', WebkitTextStroke: `2.5px ${BLUE}` }}>COOL.</span>
-            <span style={{ display: 'block', color: BLUE }}>BUY</span>
-            <span style={{ display: 'block', color: '#fff', opacity: 0.9 }}>DIRECT.</span>
-          </h1>
-
-          <p style={{ fontSize: 15, fontWeight: 300, color: 'rgba(255,255,255,0.6)', lineHeight: 1.85, maxWidth: 440, marginBottom: 36 }}>
-            CCTI India manufactures <strong style={{ color: '#7EB3FF', fontWeight: 600 }}>premium air coolers</strong> in Bawana, Delhi since 1998. Desert coolers, tower coolers, personal coolers, window coolers & industrial coolers — all sold D2C at factory prices.
-          </p>
-
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 40 }}>
-            <Link href="/shop" style={{ background: BLUE, color: '#fff', padding: '14px 30px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, boxShadow: `0 4px 18px rgba(10,91,214,0.45)`, transition: 'transform 0.2s, box-shadow 0.2s' }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = `0 8px 24px rgba(10,91,214,0.55)`; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'none'; el.style.boxShadow = `0 4px 18px rgba(10,91,214,0.45)`; }}
-            >
-              EXPLORE COOLERS <ChevronRight size={15} />
-            </Link>
-            <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer"
-              style={{ color: '#fff', padding: '14px 30px', border: `1.5px solid rgba(255,255,255,0.25)`, borderRadius: 8, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'border-color 0.2s' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `rgba(10,91,214,0.7)`)}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = `rgba(255,255,255,0.25)`)}
-            >
-              <Phone size={14} /> WHATSAPP US
-            </a>
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-            {[
-              { icon: Factory, label: 'Factory Direct Prices' },
-              { icon: Truck, label: 'Pan-India Delivery' },
-              { icon: Wrench, label: 'After-Sale Service' },
-            ].map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 7, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', padding: '7px 14px', borderRadius: 6 }}>
-                <item.icon style={{ width: 14, height: 14, color: '#7EB3FF' }} />
-                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: 500, letterSpacing: '0.05em' }}>{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-img-col" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: 380 }}>
-            <div style={{ position: 'absolute', inset: -16, border: `2px dashed rgba(10,91,214,0.3)`, borderRadius: 20, pointerEvents: 'none' }} />
-            <div style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid rgba(10,91,214,0.25)`, borderRadius: 16, padding: '40px 36px', backdropFilter: 'blur(8px)', textAlign: 'center' }}>
-              <div style={{ background: 'rgba(10,91,214,0.12)', border: `1.5px solid rgba(10,91,214,0.3)`, borderRadius: 12, padding: '28px 24px', marginBottom: 24 }}>
-                <div style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 900, color: BLUE, letterSpacing: '-0.03em', lineHeight: 1 }}>CCTI</div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 6 }}>India</div>
-                <div style={{ width: 40, height: 3, background: BLUE, borderRadius: 2, margin: '12px auto 0' }} />
-                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: 10 }}>Cooler Manufacturer</div>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                {[
-                  { num: '27+', label: 'Years' },
-                  { num: '50K+', label: 'Coolers Sold' },
-                  { num: '6', label: 'Product Lines' },
-                  { num: '100%', label: 'Made in India' },
-                ].map(s => (
-                  <div key={s.label} style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '14px 10px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    <div style={{ fontSize: 24, fontWeight: 900, color: BLUE, lineHeight: 1 }}>{s.num}</div>
-                    <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: 4 }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; padding: 44px 20px 52px !important; gap: 36px !important; }
-          .hero-img-col { display: none !important; }
-        }
-      `}</style>
-    </section>
-  );
-}
 
 function MarqueeBelt() {
-  const row1 = ['STAY COOL', 'BUY DIRECT', 'MADE IN INDIA', 'FACTORY PRICES', 'BAWANA DELHI'];
-  const row2 = ['DESERT COOLERS', 'TOWER COOLERS', 'PERSONAL COOLERS', 'WINDOW COOLERS', 'INDUSTRIAL COOLERS'];
+  const row1 = ['STAY COOL', 'LIVE EASY', 'MADE IN INDIA', 'FACTORY PRICES', 'BAWANA DELHI'];
+  const row2 = ['ICYCHILL', 'FIESTA', 'BREZZA', 'NEO', 'SWISH', 'TOWER COOLERS', 'PERSONAL COOLERS'];
   return (
     <div style={{ borderTop: `3px solid ${DARK}`, borderBottom: `3px solid ${DARK}` }}>
       <div style={{ overflow: 'hidden', borderBottom: `2px solid ${DARK}`, background: BLUE, padding: '10px 0' }}>
@@ -218,7 +129,7 @@ function TrustBar() {
     { icon: ShieldCheck, label: 'ISI Certified Products' },
     { icon: Truck, label: 'Pan-India Delivery' },
     { icon: Wrench, label: 'After-Sale Service' },
-    { icon: BadgeCheck, label: 'Est. 1998 · Bawana, Delhi' },
+    { icon: BadgeCheck, label: 'Est. 1977 · Bawana, Delhi' },
   ];
   return (
     <section style={{ background: '#fff', borderBottom: `2px solid #dde8ff` }}>
@@ -310,7 +221,7 @@ function ProductsSection() {
 function StatsBar() {
   const ref = useReveal(0.15);
   const stats = [
-    { num: '27+', label: 'Years Manufacturing' },
+    { num: '47+', label: 'Years Manufacturing' },
     { num: '50,000+', label: 'Coolers Sold' },
     { num: '6', label: 'Cooler Categories' },
     { num: '100%', label: 'Made in India' },
@@ -334,7 +245,7 @@ function StatsBar() {
 
 const whyItems = [
   { icon: Factory, title: 'Direct from Factory', desc: 'We are the manufacturer — no middlemen, no markup. You get wholesale pricing direct from our Bawana, Delhi facility.', num: '01' },
-  { icon: BadgeCheck, title: 'Established Since 1998', desc: 'Over 27 years of manufacturing experience. We know what Indian summers demand and build our coolers to last.', num: '02' },
+  { icon: BadgeCheck, title: 'Established Since 1977', desc: 'Over 47 years of manufacturing experience. We know what Indian summers demand and build our coolers to last.', num: '02' },
   { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship across India. Order from us directly and get your cooler delivered safely to your doorstep.', num: '03' },
   { icon: Wrench, title: 'Spare Parts & Service', desc: 'Pump, motor, pads — all spare parts available. Our service team supports you long after purchase.', num: '04' },
   { icon: Wind, title: 'Full Product Range', desc: 'From compact personal coolers to heavy-duty industrial units — we manufacture the complete spectrum.', num: '05' },
@@ -453,7 +364,7 @@ function CTASection() {
 export default function Homepage() {
   return (
     <div style={{ minHeight: '100vh', background: BG, overflow: 'hidden' }}>
-      <HeroSection />
+      <HeroCarousel />
       <MarqueeBelt />
       <TrustBar />
       <CategoriesSection />

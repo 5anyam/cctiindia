@@ -160,7 +160,7 @@ function SuccessContent() {
           </Link>
           
           <a
-            href="mailto:care@amraj.in?subject=Order%20Inquiry%20-%20%23${orderId}"
+            href="mailto:care@cctiindia.com?subject=Order%20Inquiry%20-%20%23${orderId}"
             className="block w-full bg-white border-2 border-gray-300 hover:border-emerald-500 text-gray-700 hover:text-emerald-600 font-semibold py-4 rounded-xl transition-all text-center"
           >
             📧 Contact Support
@@ -175,11 +175,11 @@ function SuccessContent() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
             <a 
-              href="mailto:care@amraj.in" 
+              href="mailto:care@cctiindia.com" 
               className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold"
             >
               <span>📧</span>
-              care@amraj.in
+              care@cctiindia.com
             </a>
             <span className="hidden sm:block text-gray-400">|</span>
             <a 
