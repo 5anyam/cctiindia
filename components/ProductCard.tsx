@@ -35,7 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
     <div className="group relative w-full h-full flex flex-col">
       <Link 
         href={productUrl} 
-        className="block relative overflow-hidden rounded-2xl lg:rounded-[2rem] bg-gray-50 aspect-[0.85] border border-gray-100 hover:shadow-lg transition-shadow"
+        className="block relative overflow-hidden rounded-2xl lg:rounded-[2rem] bg-white aspect-[0.85] border border-gray-100 hover:shadow-lg transition-shadow"
       >
         
         {/* Optimized Image */}

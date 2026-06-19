@@ -32,7 +32,7 @@ function ImageGallery({ images }: { images: string[] }) {
   const [main, setMain] = useState(0);
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <div style={{ position: 'relative', aspectRatio: '4/3', background: '#e8f0ff', overflow: 'hidden', border: `2px solid #dde8ff`, borderRadius: 12, boxShadow: '0 4px 20px rgba(10,91,214,0.1)' }}>
+      <div style={{ position: 'relative', aspectRatio: '4/3', background: '#ffffff', overflow: 'hidden', border: `2px solid #dde8ff`, borderRadius: 12, boxShadow: '0 4px 20px rgba(10,91,214,0.1)' }}>
         <Image
           src={images[main]}
           alt="Product"
@@ -49,7 +49,7 @@ function ImageGallery({ images }: { images: string[] }) {
             <button
               key={i}
               onClick={() => setMain(i)}
-              style={{ position: 'relative', flexShrink: 0, width: 72, height: 72, border: `2px solid ${i === main ? BLUE : '#dde8ff'}`, borderRadius: 8, overflow: 'hidden', opacity: i === main ? 1 : 0.6, cursor: 'pointer', background: '#e8f0ff', padding: 0, transition: 'opacity 0.2s, border-color 0.2s' }}
+              style={{ position: 'relative', flexShrink: 0, width: 72, height: 72, border: `2px solid ${i === main ? BLUE : '#dde8ff'}`, borderRadius: 8, overflow: 'hidden', opacity: i === main ? 1 : 0.6, cursor: 'pointer', background: '#ffffff', padding: 0, transition: 'opacity 0.2s, border-color 0.2s' }}
             >
               <Image src={src} alt="" fill style={{ objectFit: 'contain', padding: 6 }} sizes="72px"
                 onError={(e) => { (e.target as HTMLImageElement).src = '/coming-soon.png'; }}

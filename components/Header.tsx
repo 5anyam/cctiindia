@@ -56,8 +56,12 @@ export default function Header() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 70 }}>
 
             {/* Logo */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
               <Image src="/ccti-logo.png" alt="CCTI India" width={148} height={44} priority style={{ objectFit: 'contain', height: 44, width: 'auto' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }} className="logo-text-block">
+                <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', color: BLUE, textTransform: 'uppercase' }}>CO-COOLING TECHNOLOGY INDIA</span>
+                <span style={{ fontSize: 9, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(10,30,61,0.45)', textTransform: 'uppercase' }}>A Brand of Agroson Electrical Industries</span>
+              </div>
             </Link>
 
             {/* Desktop Nav */}
@@ -134,8 +138,9 @@ export default function Header() {
       />
       <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: '82%', maxWidth: 340, background: '#fff', zIndex: 700, borderLeft: `2px solid #dde8ff`, transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.32s cubic-bezier(.16,1,.3,1)', display: 'flex', flexDirection: 'column', boxShadow: '-4px 0 24px rgba(10,91,214,0.1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: `2px solid #dde8ff`, background: '#f0f5ff' }}>
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Image src="/ccti-logo.png" alt="CCTI India" width={120} height={36} style={{ objectFit: 'contain', height: 36, width: 'auto' }} />
+            <span style={{ fontSize: 8, fontWeight: 700, letterSpacing: '0.1em', color: BLUE, textTransform: 'uppercase' }}>CO-COOLING TECHNOLOGY INDIA</span>
           </div>
           <button onClick={() => setMobileMenuOpen(false)} style={{ background: BLUE, border: 'none', color: '#fff', width: 34, height: 34, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <FiX size={17} />
@@ -190,6 +195,7 @@ export default function Header() {
           .desktop-nav { display: none !important; }
           .wa-btn { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+          .logo-text-block { display: none !important; }
         }
       `}</style>
     </>

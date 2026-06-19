@@ -23,7 +23,7 @@ export default function AnnouncementBar() {
       <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <div style={{ flex: 1 }} />
         <p style={{ fontSize: 13, fontWeight: 600, textAlign: 'center', letterSpacing: '0.02em' }}>
-          🏭 Factory Direct Prices &nbsp;|&nbsp; 🚚 Pan-India Delivery &nbsp;|&nbsp; 📱 WhatsApp: +91 98999 55506
+          🏭 Direct Prices &nbsp;|&nbsp; 🚚 Pan-India Delivery &nbsp;|&nbsp; 📱 WhatsApp: +91 98100 37985
         </p>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
           <button onClick={handleClose} style={{ width: 22, height: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 4, cursor: 'pointer', color: '#fff', flexShrink: 0 }} aria-label="Close">

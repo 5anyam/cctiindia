@@ -45,7 +45,7 @@ function ProductCard({ product }: { product: StaticProduct }) {
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px rgba(10,91,214,0.16)'; }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'none'; (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(10,91,214,0.07)'; }}
     >
-      <div style={{ position: 'relative', aspectRatio: '4/3', background: '#e8f0ff', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', aspectRatio: '4/3', background: '#ffffff', overflow: 'hidden' }}>
         <Image src={product.images[0]} alt={product.name} fill style={{ objectFit: 'contain', padding: '12px' }} sizes="(max-width: 768px) 100vw, 33vw"
           onError={(e) => { (e.target as HTMLImageElement).src = '/coming-soon.png'; }}
         />
@@ -89,8 +89,8 @@ function ProductCard({ product }: { product: StaticProduct }) {
 
 
 function MarqueeBelt() {
-  const row1 = ['STAY COOL', 'LIVE EASY', 'MADE IN INDIA', 'FACTORY PRICES', 'BAWANA DELHI'];
-  const row2 = ['ICYCHILL', 'FIESTA', 'BREZZA', 'NEO', 'SWISH', 'TOWER COOLERS', 'PERSONAL COOLERS'];
+  const row1 = ['STAY COOL', 'LIVE EASY', 'MADE IN INDIA', 'BAWANA DELHI'];
+  const row2 = ['ICYCHILL', 'FIESTA', 'BREZZA', 'NEO', 'SWISH', 'TOWER AIR COOLERS', 'PERSONAL AIR COOLERS'];
   return (
     <div style={{ borderTop: `3px solid ${DARK}`, borderBottom: `3px solid ${DARK}` }}>
       <div style={{ overflow: 'hidden', borderBottom: `2px solid ${DARK}`, background: BLUE, padding: '10px 0' }}>
@@ -129,7 +129,7 @@ function TrustBar() {
     { icon: ShieldCheck, label: 'ISI Certified Products' },
     { icon: Truck, label: 'Pan-India Delivery' },
     { icon: Wrench, label: 'After-Sale Service' },
-    { icon: BadgeCheck, label: 'Est. 1977 · Bawana, Delhi' },
+    { icon: BadgeCheck, label: 'Est. 1990 · Bawana, Delhi' },
   ];
   return (
     <section style={{ background: '#fff', borderBottom: `2px solid #dde8ff` }}>
@@ -149,11 +149,11 @@ function TrustBar() {
 
 function CategoriesSection() {
   const cats = [
-    { name: 'Desert Coolers', sub: '40L – 100L · Large Rooms', icon: Wind, href: '/shop?cat=Desert+Cooler' },
-    { name: 'Tower Coolers', sub: '35L – 65L · Modern Homes', icon: Thermometer, href: '/shop?cat=Tower+Cooler' },
-    { name: 'Personal Coolers', sub: '15L – 25L · Small Spaces', icon: Wind, href: '/shop?cat=Personal+Cooler' },
-    { name: 'Window Coolers', sub: '50L – 80L · Window Fit', icon: Wind, href: '/shop?cat=Window+Cooler' },
-    { name: 'Industrial Coolers', sub: '150L – 250L · Factories', icon: Factory, href: '/shop?cat=Industrial+Cooler' },
+    { name: 'Desert Air Coolers', sub: '40L – 100L · Large Rooms', icon: Wind, href: '/shop?cat=Desert+Cooler' },
+    { name: 'Tower Air Coolers', sub: '35L – 65L · Modern Homes', icon: Thermometer, href: '/shop?cat=Tower+Cooler' },
+    { name: 'Personal Air Coolers', sub: '15L – 25L · Small Spaces', icon: Wind, href: '/shop?cat=Personal+Cooler' },
+    { name: 'Window Air Coolers', sub: '50L – 80L · Window Fit', icon: Wind, href: '/shop?cat=Window+Cooler' },
+    { name: 'Industrial Air Coolers', sub: '150L – 250L · Factories', icon: Factory, href: '/shop?cat=Industrial+Cooler' },
   ];
   return (
     <section style={{ padding: '64px 0 56px', background: '#fff', borderBottom: `2px solid #dde8ff` }}>
@@ -161,7 +161,7 @@ function CategoriesSection() {
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <span style={{ fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', color: BLUE, fontWeight: 600, display: 'block', marginBottom: 10 }}>◆ Product Range</span>
           <h2 style={{ fontSize: 'clamp(32px,4.5vw,60px)', fontWeight: 900, letterSpacing: '-0.025em', color: DARK, lineHeight: 1 }}>
-            COOLERS FOR<br /><span style={{ color: BLUE }}>EVERY NEED.</span>
+            AIR COOLERS FOR<br /><span style={{ color: BLUE }}>EVERY NEED.</span>
           </h2>
         </div>
         <div className="cats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
@@ -194,11 +194,11 @@ function ProductsSection() {
     <section style={{ padding: '80px 0', background: BG }} id="products">
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
         <div ref={ref} className="reveal" style={{ marginBottom: 48 }}>
-          <span style={{ fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', color: BLUE, fontWeight: 600, display: 'block', marginBottom: 10 }}>◆ Our Coolers</span>
+          <span style={{ fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', color: BLUE, fontWeight: 600, display: 'block', marginBottom: 10 }}>◆ Our Air Coolers</span>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20 }}>
             <h2 style={{ fontSize: 'clamp(40px,5.5vw,72px)', fontWeight: 900, letterSpacing: '-0.025em', color: DARK, lineHeight: 1 }}>
-              QUALITY COOLERS<br />
-              <span style={{ color: BLUE }}>FACTORY DIRECT.</span>
+              QUALITY AIR COOLERS<br />
+              <span style={{ color: BLUE }}>DIRECT PRICING.</span>
             </h2>
             <Link href="/shop" style={{ background: DARK, color: '#fff', padding: '12px 26px', borderRadius: 8, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.2s' }}
               onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = BLUE)}
@@ -221,7 +221,7 @@ function ProductsSection() {
 function StatsBar() {
   const ref = useReveal(0.15);
   const stats = [
-    { num: '47+', label: 'Years Manufacturing' },
+    { num: '35+', label: 'Years Manufacturing' },
     { num: '50,000+', label: 'Coolers Sold' },
     { num: '6', label: 'Cooler Categories' },
     { num: '100%', label: 'Made in India' },
@@ -244,11 +244,11 @@ function StatsBar() {
 }
 
 const whyItems = [
-  { icon: Factory, title: 'Direct from Factory', desc: 'We are the manufacturer — no middlemen, no markup. You get wholesale pricing direct from our Bawana, Delhi facility.', num: '01' },
-  { icon: BadgeCheck, title: 'Established Since 1977', desc: 'Over 47 years of manufacturing experience. We know what Indian summers demand and build our coolers to last.', num: '02' },
-  { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship across India. Order from us directly and get your cooler delivered safely to your doorstep.', num: '03' },
+  { icon: Factory, title: 'Direct from Manufacturer', desc: 'We are the manufacturer — no middlemen, no markup. You get wholesale pricing direct from our Bawana, Delhi facility.', num: '01' },
+  { icon: BadgeCheck, title: 'Established Since 1990', desc: 'Over 35 years of manufacturing experience. We know what Indian summers demand and build our air coolers to last.', num: '02' },
+  { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship across India. Order from us directly and get your air cooler delivered safely to your doorstep.', num: '03' },
   { icon: Wrench, title: 'Spare Parts & Service', desc: 'Pump, motor, pads — all spare parts available. Our service team supports you long after purchase.', num: '04' },
-  { icon: Wind, title: 'Full Product Range', desc: 'From compact personal coolers to heavy-duty industrial units — we manufacture the complete spectrum.', num: '05' },
+  { icon: Wind, title: 'Full Product Range', desc: 'From compact personal air coolers to heavy-duty industrial units — we manufacture the complete spectrum.', num: '05' },
   { icon: ShieldCheck, title: 'Made in India Quality', desc: 'ISI-certified components, rigorous quality checks at every stage. Built to survive Indian summers, year after year.', num: '06' },
 ];
 

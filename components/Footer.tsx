@@ -14,7 +14,7 @@ export default function Footer() {
         <div style={{ display: 'inline-flex', whiteSpace: 'nowrap', animation: 'mq-fwd 24s linear infinite' }}>
           {[...Array(2)].map((_, r) => (
             <span key={r} style={{ display: 'inline-flex' }}>
-              {['CCTI INDIA', 'STAY COOL LIVE EASY', 'BAWANA DELHI', 'EST. 1977', 'FACTORY DIRECT', 'PAN-INDIA DELIVERY', 'MADE IN INDIA'].map((t) => (
+              {['CCTI INDIA', 'STAY COOL LIVE EASY', 'BAWANA DELHI', 'EST. 1990', 'CO-COOLING TECHNOLOGY INDIA', 'PAN-INDIA DELIVERY', 'MADE IN INDIA'].map((t) => (
                 <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 16, padding: '0 24px', fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(10,30,61,0.35)' }}>
                   {t}
                   <span style={{ color: BLUE, fontSize: 6 }}>◆</span>
@@ -34,11 +34,14 @@ export default function Footer() {
             <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
               <Image src="/ccti-logo.png" alt="CCTI India" width={160} height={48} style={{ objectFit: 'contain', height: 48, width: 'auto' }} />
             </Link>
-            <p style={{ fontSize: 11, fontWeight: 600, color: 'rgba(10,30,61,0.4)', letterSpacing: '0.04em', marginBottom: 12 }}>
-              Agroson Electrical Industries
+            <p style={{ fontSize: 12, fontWeight: 700, color: BLUE, letterSpacing: '0.04em', marginBottom: 2 }}>
+              CO-COOLING TECHNOLOGY INDIA
+            </p>
+            <p style={{ fontSize: 11, fontWeight: 500, color: 'rgba(10,30,61,0.45)', letterSpacing: '0.03em', marginBottom: 12 }}>
+              A brand of Agroson Electrical Industries
             </p>
             <p style={{ fontSize: 13, fontWeight: 400, color: 'rgba(10,30,61,0.55)', lineHeight: 1.85, marginBottom: 24, maxWidth: 260 }}>
-              &ldquo;Stay Cool, Live Easy.&rdquo; — Manufacturing quality air coolers in Bawana, Delhi since 1977. Factory-direct pricing, pan-India delivery.
+              &ldquo;Stay Cool, Live Easy.&rdquo; — Manufacturing quality air coolers in Bawana, Delhi since 1990. Direct pricing, pan-India delivery.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               {[
@@ -110,9 +113,8 @@ export default function Footer() {
             <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: BLUE, marginBottom: 20, fontWeight: 700 }}>CONTACT</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
-                { label: 'Phone / WhatsApp', val: '+91 98999 55506\n+91 98100 37985\n+91 99990 11801' },
+                { label: 'Phone / WhatsApp', val: '+91 98100 37985' },
                 { label: 'Factory Address', val: 'D-327, Sector-5, DSIIDC\nIndustrial Area, Bawana\nNew Delhi – 110039' },
-                { label: 'Website', val: 'cctiindia.com' },
                 { label: 'Business Hours', val: 'Mon – Sat: 9 AM – 7 PM' },
               ].map((item) => (
                 <li key={item.label}>
@@ -128,7 +130,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop: `1px solid #dde8ff`, background: '#F0F5FF', padding: '16px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
         <p style={{ fontSize: 11, letterSpacing: '0.04em', color: 'rgba(10,30,61,0.4)' }}>
-          © {new Date().getFullYear()} CCTI India — Agroson Electrical Industries. All rights reserved.
+          © {new Date().getFullYear()} CCTI India — Co-Cooling Technology India (A brand of Agroson Electrical Industries). All rights reserved.
         </p>
         <p style={{ fontSize: 11, color: 'rgba(10,30,61,0.35)', letterSpacing: '0.04em' }}>
           Developed by{' '}
@@ -144,7 +146,7 @@ export default function Footer() {
           </Link>
         </p>
         <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: `rgba(10,91,214,0.5)`, fontWeight: 600 }}>
-          COOLER MANUFACTURER · SINCE 1977 · BAWANA, DELHI ◆
+          AIR COOLER MANUFACTURER · SINCE 1990 · BAWANA, DELHI ◆
         </p>
       </div>
 

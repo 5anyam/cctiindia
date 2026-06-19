@@ -7,8 +7,8 @@ import Whatsapp from '../../components/Whatsapp';
 import Loading from './loading';
 
 export const metadata = {
-  title: 'CCTI India — Air Cooler Manufacturer Since 1977 | Bawana, Delhi',
-  description: 'CCTI India (Agroson Electrical Industries) is a leading air cooler manufacturer in Bawana, Delhi since 1977. IcyChill, Fiesta, Brezza, Neo & Swish tower and personal coolers — buy directly from the manufacturer at factory prices.',
+  title: 'CCTI India — Air Cooler Manufacturer Since 1990 | Bawana, Delhi',
+  description: 'CCTI India (Co-Cooling Technology India) — A brand of Agroson Electrical Industries. Leading air cooler manufacturer in Bawana, Delhi since 1990. IcyChill, Fiesta, Brezza, Neo & Swish tower and personal air coolers — buy directly from the manufacturer.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

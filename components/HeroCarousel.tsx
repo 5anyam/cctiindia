@@ -52,14 +52,15 @@ export default function HeroCarousel() {
         {BANNERS.map((b, i) => (
           <div
             key={i}
-            style={{ flex: '0 0 100%', width: '100%', aspectRatio: '16/6', position: 'relative', minHeight: 220 }}
+            style={{ flex: '0 0 100%', width: '100%', position: 'relative', height: 'clamp(200px, 37.5vw, 680px)' }}
           >
             <Image
               src={b.src}
               alt={b.alt}
               fill
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
               priority={i === 0}
+              sizes="100vw"
             />
           </div>
         ))}
