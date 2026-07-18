@@ -198,7 +198,7 @@ function ProductsSection() {
 function StatsBar() {
   const ref = useReveal(0.15);
   const stats = [
-    { num: '47+', label: 'Years Manufacturing' },
+    { num: '36+', label: 'Years Manufacturing' },
     { num: '50,000+', label: 'Coolers Made / Year' },
     { num: '6', label: 'Cooler Categories' },
     { num: '100%', label: 'Made in India' },
@@ -222,7 +222,7 @@ function StatsBar() {
 
 const whyItems = [
   { icon: Factory, title: 'Direct from Manufacturer', desc: 'We are the manufacturer — no middlemen, no markup. You get wholesale pricing direct from our Bawana, Delhi facility.', num: '01' },
-  { icon: BadgeCheck, title: 'Decades of Experience', desc: 'Over 47 years of manufacturing experience. We know what Indian summers demand and build our air coolers to last.', num: '02' },
+  { icon: BadgeCheck, title: 'Decades of Experience', desc: 'Over 36 years of manufacturing experience. We know what Indian summers demand and build our air coolers to last.', num: '02' },
   { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship across India. Order from us directly and get your air cooler delivered safely to your doorstep.', num: '03' },
   { icon: Wrench, title: 'Spare Parts & Service', desc: 'Pump, motor, pads — all spare parts available. Our service team supports you long after purchase.', num: '04' },
   { icon: Wind, title: 'Full Product Range', desc: 'From compact personal air coolers to heavy-duty industrial units — we manufacture the complete spectrum.', num: '05' },

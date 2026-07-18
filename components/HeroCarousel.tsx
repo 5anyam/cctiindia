@@ -30,20 +30,10 @@ const SLIDES: Slide[] = [
     alt: 'CCTI India — the complete range of air coolers',
     href: '/shop',
     eyebrow: 'THE COMPLETE RANGE',
-    title: 'One Cooler for\nEvery Home',
+    title: 'One Air Cooler for\nEvery Home',
     sub: 'Towers, blowers & desert coolers — factory direct.',
     cta: 'Explore Range',
     mediaBg: 'linear-gradient(180deg, #ffffff 0%, #e8f0fa 100%)',
-  },
-  {
-    src: '/banners/src-mountain.png',
-    alt: 'CCTI India — cooling as crisp as the mountains',
-    href: '/shop',
-    eyebrow: 'BREATHE FRESH · STAY COOL',
-    title: 'Cooling as Crisp\nas the Mountains',
-    sub: 'High-power air delivery with whisper-quiet comfort.',
-    cta: 'Shop Coolers',
-    mediaBg: 'linear-gradient(180deg, #20304d 0%, #0d1626 100%)',
   },
 ];
 
@@ -117,7 +107,7 @@ export default function HeroCarousel() {
       </div>
 
       {/* Prev / Next arrows */}
-      {(['prev', 'next'] as const).map((dir) => (
+      {SLIDES.length > 1 && (['prev', 'next'] as const).map((dir) => (
         <button
           key={dir}
           onClick={() => go(current + (dir === 'next' ? 1 : -1))}
@@ -154,6 +144,7 @@ export default function HeroCarousel() {
       ))}
 
       {/* Dot indicators */}
+      {SLIDES.length > 1 && (
       <div
         style={{
           position: 'absolute',
@@ -183,6 +174,7 @@ export default function HeroCarousel() {
           />
         ))}
       </div>
+      )}
 
       <style>{`
         .hero-slide {

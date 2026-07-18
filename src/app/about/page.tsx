@@ -27,7 +27,7 @@ export default function AboutPage() {
             ABOUT <span style={{ color: BLUE }}>US</span>
           </h1>
           <p style={{ fontSize: 15, fontWeight: 300, color: 'rgba(255,255,255,0.55)', maxWidth: 560, margin: '0 auto', lineHeight: 1.85 }}>
-            Established in 1977 in Bawana, Delhi — Co-Cooling Technology India (CCTI), a brand of Agroson Electrical Industries, has spent over 47 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
+            Established in 1990 in Bawana, Delhi — Co-Cooling Technology India (CCTI), a brand of Agroson Electrical Industries, has spent over 36 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function AboutPage() {
               <img src="/ccti-logo.png" alt="CCTI India — Co-Cooling Technology India" style={{ width: 'min(300px, 78%)', height: 'auto', display: 'block', margin: '0 auto' }} />
               <div style={{ width: 60, height: 3, background: BLUE, borderRadius: 2, margin: '22px auto 14px' }} />
               <div style={{ fontSize: 12, color: DARK, fontWeight: 600, letterSpacing: '0.05em' }}>Co-Cooling Technology India</div>
-              <div style={{ fontSize: 11, color: 'rgba(11,30,61,0.75)', letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 4 }}>Since 1977 · Bawana, Delhi</div>
+              <div style={{ fontSize: 11, color: 'rgba(11,30,61,0.75)', letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 4 }}>Since 1990 · Bawana, Delhi</div>
             </div>
           </div>
           <div>
@@ -51,7 +51,7 @@ export default function AboutPage() {
               YOUR TRUSTED<br /><span style={{ color: BLUE }}>COOLER</span><br />MANUFACTURER
             </h2>
             <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.82)', lineHeight: 1.85, marginBottom: 20 }}>
-              Co-Cooling Technology India (CCTI) is a brand of Agroson Electrical Industries, a cooler manufacturing company based at D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi. Founded in 1977, we have spent over 47 years designing and manufacturing air coolers built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
+              Co-Cooling Technology India (CCTI) is a brand of Agroson Electrical Industries, a cooler manufacturing company based at D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi. Founded in 1990, we have spent over 36 years designing and manufacturing air coolers built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
             </p>
             <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.82)', lineHeight: 1.85, marginBottom: 28 }}>
               We manufacture the <strong style={{ color: DARK }}>IcyChill, Fiesta, Brezza, Neo and Swish</strong> ranges — tower coolers, personal coolers, and double blower models. With our D2C initiative, we now sell directly to homes and businesses across India — cutting out middlemen so you get the best factory price.
@@ -76,7 +76,7 @@ export default function AboutPage() {
         {/* Stats */}
         <section style={{ background: BLUE, borderRadius: 16, padding: '52px 48px', marginBottom: 88, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24, textAlign: 'center' }}>
           {[
-            { num: '47+', label: 'Years Manufacturing' },
+            { num: '36+', label: 'Years Manufacturing' },
             { num: '50,000+', label: 'Coolers Sold' },
             { num: '6', label: 'Product Lines' },
             { num: '100%', label: 'Made in India' },
@@ -120,7 +120,7 @@ export default function AboutPage() {
           <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
             {[
               { icon: Factory, title: 'Direct from Factory', desc: 'We are the manufacturer. No distributor, no dealer markup — you pay the actual factory price.' },
-              { icon: BadgeCheck, title: 'Established Since 1977', desc: 'Over 47 years of manufacturing experience. Our coolers are built to handle India\'s harshest summers reliably.' },
+              { icon: BadgeCheck, title: 'Established Since 1990', desc: 'Over 36 years of manufacturing experience. Our coolers are built to handle India\'s harshest summers reliably.' },
               { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship coolers safely to every corner of India — well-packed, tracked, and delivered on time.' },
               { icon: Wrench, title: 'Spare Parts Available', desc: 'Pumps, motors, honeycomb pads — all spare parts stocked and supplied so your cooler lasts for years.' },
               { icon: Wind, title: 'Full Range', desc: 'Desert coolers, tower coolers, personal, window and industrial — we make the complete range under one roof.' },
