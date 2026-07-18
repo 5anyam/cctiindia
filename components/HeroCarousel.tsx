@@ -139,6 +139,7 @@ export default function HeroCarousel() {
             ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')
           }
           aria-label={dir}
+          className="hero-arrow"
           style={{
             position: 'absolute',
             top: '50%',
@@ -263,19 +264,35 @@ export default function HeroCarousel() {
         }
         .hero-slide:hover .hero-cta { transform: translateY(-2px); }
 
-        /* Mobile: taller banner + wider text panel so copy stays readable */
+        /* Mobile: stack image on top, centered text panel below */
         @media (max-width: 640px) {
-          .hero-slide { aspect-ratio: 5 / 4; }
-          .hero-slide .hero-media { width: 100%; height: 56%; top: auto; bottom: 0; }
-          .hero-slide .hero-text {
-            width: 100%;
-            height: 46%;
-            justify-content: flex-start;
-            padding: clamp(14px, 5vw, 28px) clamp(16px, 6vw, 32px) 0;
+          .hero-slide {
+            aspect-ratio: auto;
+            display: flex;
+            flex-direction: column;
           }
-          .hero-title { font-size: clamp(20px, 6.5vw, 32px); }
-          .hero-sub { font-size: clamp(11px, 3.4vw, 15px); max-width: 34ch; }
-          .hero-cta { font-size: clamp(11px, 3.4vw, 15px); }
+          .hero-slide .hero-media {
+            position: relative;
+            inset: auto;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+          }
+          .hero-slide .hero-text {
+            position: relative;
+            inset: auto;
+            width: 100%;
+            height: auto;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            padding: clamp(16px, 5vw, 26px) clamp(16px, 6vw, 32px) clamp(30px, 8vw, 40px);
+          }
+          .hero-eyebrow { font-size: clamp(10px, 3vw, 13px); }
+          .hero-title { font-size: clamp(22px, 6.4vw, 34px); }
+          .hero-sub { font-size: clamp(12px, 3.6vw, 16px); max-width: 40ch; }
+          .hero-cta { font-size: clamp(12px, 3.6vw, 16px); }
+          .hero-arrow { display: none; }
         }
       `}</style>
     </section>
