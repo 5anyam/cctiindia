@@ -225,18 +225,6 @@ export default function HeroCarousel() {
           gap: clamp(6px, 1vw, 16px);
           padding: 0 clamp(18px, 4vw, 64px);
         }
-        /* Soft blend so the image edge fades into the text panel */
-        .hero-slide .hero-text::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: -60px;
-          width: 60px;
-          height: 100%;
-          background: linear-gradient(90deg, #0A5BD6 0%, rgba(10,91,214,0) 100%);
-          opacity: 0.55;
-          pointer-events: none;
-        }
         .hero-eyebrow {
           color: #8FBEFF;
           font-size: clamp(9px, 1.05vw, 14px);
@@ -285,7 +273,6 @@ export default function HeroCarousel() {
             justify-content: flex-start;
             padding: clamp(14px, 5vw, 28px) clamp(16px, 6vw, 32px) 0;
           }
-          .hero-slide .hero-text::after { display: none; }
           .hero-title { font-size: clamp(20px, 6.5vw, 32px); }
           .hero-sub { font-size: clamp(11px, 3.4vw, 15px); max-width: 34ch; }
           .hero-cta { font-size: clamp(11px, 3.4vw, 15px); }
