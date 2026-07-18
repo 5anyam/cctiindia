@@ -1,38 +1,41 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
-const GREEN = '#3DAA35';
+const BLUE = '#0A5BD6';
+const DARK = '#0B1E3D';
+const BODY = '#1c2740';
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: 32 }}>
-      <h2 style={{ fontSize: 18, fontWeight: 800, color: '#1A1A1A', borderLeft: `4px solid ${GREEN}`, paddingLeft: 14, marginBottom: 14 }}>{title}</h2>
-      <div style={{ fontSize: 14, color: '#444', lineHeight: 1.85 }}>{children}</div>
+      <h2 style={{ fontSize: 18, fontWeight: 800, color: DARK, borderLeft: `4px solid ${BLUE}`, paddingLeft: 14, marginBottom: 14 }}>{title}</h2>
+      <div style={{ fontSize: 14, color: BODY, lineHeight: 1.85 }}>{children}</div>
     </div>
   );
 }
 
 export default function DisclaimerPage() {
   return (
-    <div style={{ background: '#F5FAF4', minHeight: '100vh', padding: '48px 16px' }}>
-      <div style={{ maxWidth: 820, margin: '0 auto', background: '#fff', borderRadius: 16, padding: '48px 52px', boxShadow: '0 4px 24px rgba(61,170,53,0.08)', border: '1.5px solid #e8f0e8' }}>
+    <div style={{ background: '#F0F5FF', minHeight: '100vh', padding: '48px 16px' }}>
+      <div style={{ maxWidth: 820, margin: '0 auto', background: '#fff', borderRadius: 16, padding: '48px 52px', boxShadow: '0 4px 24px rgba(10,91,214,0.08)', border: '1.5px solid #dde8ff' }}>
 
-        <h1 style={{ fontSize: 36, fontWeight: 900, color: GREEN, marginBottom: 8, letterSpacing: '-0.02em' }}>Disclaimer</h1>
-        <p style={{ fontSize: 13, color: '#888', marginBottom: 40 }}>sachdevamedline.com · Medical Equipment Dealer</p>
+        <h1 style={{ fontSize: 36, fontWeight: 900, color: BLUE, marginBottom: 8, letterSpacing: '-0.02em' }}>Disclaimer</h1>
+        <p style={{ fontSize: 13, color: BODY, marginBottom: 40 }}>CCTI India · Air Cooler Manufacturer, Bawana, Delhi</p>
 
-        <div style={{ background: `rgba(232,23,93,0.04)`, border: `1.5px solid rgba(232,23,93,0.15)`, borderRadius: 10, padding: '16px 20px', marginBottom: 36 }}>
-          <p style={{ fontSize: 14, color: '#c01248', fontWeight: 600 }}>Important: All medical equipment sold by Sachdeva Medline is intended for use under the guidance of a qualified healthcare professional. Do not use medical equipment without a valid prescription or physician recommendation.</p>
+        <div style={{ background: `rgba(10,91,214,0.05)`, border: `1.5px solid rgba(10,91,214,0.2)`, borderRadius: 10, padding: '16px 20px', marginBottom: 36 }}>
+          <p style={{ fontSize: 14, color: DARK, fontWeight: 600 }}>Please read the product specifications and installation instructions before using any air cooler. For safe operation, ensure correct electrical connections and proper water levels as described in the product manual.</p>
         </div>
 
-        <Section title="1. Medical Advice Disclaimer">
-          <p>The information provided on www.sachdevamedline.com is for general informational purposes only and does not constitute medical advice. Product descriptions, specifications, and use-case information are provided by manufacturers and should not replace consultation with a licensed physician or healthcare provider.</p>
-          <p style={{ marginTop: 12 }}>Always consult your doctor before purchasing or using oxygen therapy equipment, patient aids, or any other medical device listed on our platform.</p>
+        <Section title="1. General Disclaimer">
+          <p>The information provided on the CCTI India website is for general informational purposes only. Product descriptions, specifications, capacities and use-case information are provided to help you choose the right air cooler and should be used as a guide.</p>
+          <p style={{ marginTop: 12 }}>Cooling performance depends on room size, ventilation, humidity and ambient conditions. Evaporative air coolers work best in dry climates and with adequate cross-ventilation.</p>
         </Section>
 
-        <Section title="2. Product Use Disclaimer">
-          <p>Sachdeva Medline is an authorised dealer and reseller of medical equipment. We are not the manufacturer. Product performance, safety certifications, and clinical claims are the responsibility of the respective manufacturers (e.g., Longfian Science Co. Ltd.).</p>
-          <p style={{ marginTop: 12 }}>Sachdeva Medline is not liable for any harm or adverse effects resulting from improper use, self-medication, or use without medical supervision.</p>
+        <Section title="2. Product & Manufacturing">
+          <p>Co-Cooling Technology India (CCTI) is a brand of Agroson Electrical Industries and is the manufacturer of the air coolers listed on this website. We use ISI-certified components (motors, pumps and cooling pads) and test every unit before dispatch.</p>
+          <p style={{ marginTop: 12 }}>CCTI India is not liable for any damage resulting from improper installation, incorrect voltage, use of non-genuine spare parts, or operation contrary to the product manual.</p>
         </Section>
 
         <Section title="3. Accuracy of Information">
@@ -40,18 +43,19 @@ export default function DisclaimerPage() {
         </Section>
 
         <Section title="4. Third-Party Links">
-          <p>Our website may contain links to third-party websites for reference purposes. Sachdeva Medline does not endorse or take responsibility for the content or practices of any linked external sites.</p>
+          <p>Our website may contain links to third-party websites for reference purposes. CCTI India does not endorse or take responsibility for the content or practices of any linked external sites.</p>
         </Section>
 
         <Section title="5. Limitation of Liability">
-          <p>To the maximum extent permitted by law, Sachdeva Medline shall not be held liable for any direct, indirect, incidental, or consequential damages arising from the use of products purchased through our platform beyond the purchase value of the product.</p>
+          <p>To the maximum extent permitted by law, CCTI India (Agroson Electrical Industries) shall not be held liable for any direct, indirect, incidental, or consequential damages arising from the use of products purchased from us beyond the purchase value of the product.</p>
         </Section>
 
         <Section title="6. Contact">
           <p>If you have questions about this disclaimer, contact us:</p>
           <ul style={{ paddingLeft: 20, marginTop: 10, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <li><strong>Email:</strong> info@sachdevamedline.com</li>
-            <li><strong>Phone:</strong> +91 98915 21090</li>
+            <li><strong>WhatsApp / Phone:</strong> +91 98999 55506 · +91 98100 37985</li>
+            <li><strong>Address:</strong> D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi – 110039</li>
+            <li>Or reach us via our <Link href="/contact" style={{ color: BLUE, fontWeight: 700 }}>Contact page</Link>.</li>
           </ul>
         </Section>
 

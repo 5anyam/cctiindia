@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { PRODUCTS, StaticProduct } from '../../lib/products-data';
 import { Star, ShieldCheck, Truck, Check, ChevronRight, Factory, Wrench, BadgeCheck, Wind, Thermometer, MessageCircle } from 'lucide-react';
 import HeroCarousel from '../../components/HeroCarousel';
+import CallbackForm from '../../components/CallbackForm';
 
 const BLUE = '#0A5BD6';
 const BLUE_DARK = '#0944A8';
@@ -63,16 +64,16 @@ function ProductCard({ product }: { product: StaticProduct }) {
       <div style={{ padding: '20px 22px 22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <p style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: BLUE, marginBottom: 6, fontWeight: 600 }}>{product.category}</p>
         <h3 style={{ fontSize: 20, fontWeight: 700, color: DARK, marginBottom: 6, lineHeight: 1.2, letterSpacing: '-0.01em' }}>{product.name}</h3>
-        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.55)', marginBottom: 12, lineHeight: 1.65, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{product.tagline}</p>
+        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.78)', marginBottom: 12, lineHeight: 1.65, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{product.tagline}</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <StarRating rating={product.rating} />
-          <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.4)' }}>({product.reviewCount} reviews)</span>
+          <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.72)' }}>({product.reviewCount} reviews)</span>
         </div>
         <div style={{ marginTop: 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 14 }}>
             <span style={{ fontSize: 26, fontWeight: 800, color: DARK, letterSpacing: '-0.02em' }}>₹{product.price.toLocaleString('en-IN')}</span>
             {product.regularPrice > product.price && (
-              <span style={{ fontSize: 14, color: 'rgba(11,30,61,0.35)', textDecoration: 'line-through' }}>₹{product.regularPrice.toLocaleString('en-IN')}</span>
+              <span style={{ fontSize: 14, color: 'rgba(11,30,61,0.72)', textDecoration: 'line-through' }}>₹{product.regularPrice.toLocaleString('en-IN')}</span>
             )}
           </div>
           <div style={{ background: BLUE, color: '#fff', textAlign: 'center', padding: '12px 16px', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
@@ -151,7 +152,7 @@ function CategoriesSection() {
                 <cat.icon style={{ width: 22, height: 22, color: BLUE }} />
               </div>
               <h3 style={{ fontSize: 14, fontWeight: 700, color: DARK, marginBottom: 6 }}>{cat.name}</h3>
-              <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.5)', lineHeight: 1.5 }}>{cat.sub}</p>
+              <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.75)', lineHeight: 1.5 }}>{cat.sub}</p>
             </Link>
           ))}
         </div>
@@ -197,8 +198,8 @@ function ProductsSection() {
 function StatsBar() {
   const ref = useReveal(0.15);
   const stats = [
-    { num: '35+', label: 'Years Manufacturing' },
-    { num: '50,000+', label: 'Coolers Sold' },
+    { num: '47+', label: 'Years Manufacturing' },
+    { num: '50,000+', label: 'Coolers Made / Year' },
     { num: '6', label: 'Cooler Categories' },
     { num: '100%', label: 'Made in India' },
   ];
@@ -221,7 +222,7 @@ function StatsBar() {
 
 const whyItems = [
   { icon: Factory, title: 'Direct from Manufacturer', desc: 'We are the manufacturer — no middlemen, no markup. You get wholesale pricing direct from our Bawana, Delhi facility.', num: '01' },
-  { icon: BadgeCheck, title: 'Established Since 1990', desc: 'Over 35 years of manufacturing experience. We know what Indian summers demand and build our air coolers to last.', num: '02' },
+  { icon: BadgeCheck, title: 'Decades of Experience', desc: 'Over 47 years of manufacturing experience. We know what Indian summers demand and build our air coolers to last.', num: '02' },
   { icon: Truck, title: 'Pan-India Delivery', desc: 'We ship across India. Order from us directly and get your air cooler delivered safely to your doorstep.', num: '03' },
   { icon: Wrench, title: 'Spare Parts & Service', desc: 'Pump, motor, pads — all spare parts available. Our service team supports you long after purchase.', num: '04' },
   { icon: Wind, title: 'Full Product Range', desc: 'From compact personal air coolers to heavy-duty industrial units — we manufacture the complete spectrum.', num: '05' },
@@ -257,7 +258,7 @@ function WhySection() {
               <item.icon style={{ width: 20, height: 20, color: BLUE }} />
             </div>
             <h3 style={{ fontSize: 18, fontWeight: 700, letterSpacing: '-0.01em', color: DARK, marginBottom: 10 }}>{item.title}</h3>
-            <p style={{ fontSize: 13, fontWeight: 300, color: 'rgba(11,30,61,0.55)', lineHeight: 1.85 }}>{item.desc}</p>
+            <p style={{ fontSize: 13, fontWeight: 300, color: 'rgba(11,30,61,0.78)', lineHeight: 1.85 }}>{item.desc}</p>
           </div>
         ))}
       </div>
@@ -281,12 +282,12 @@ function HowToOrderSection() {
             { step: '02', title: 'WhatsApp Us', desc: 'Tell us the model you want. We confirm availability and give you the best D2C price.' },
             { step: '03', title: 'Doorstep Delivery', desc: 'Pay and relax — we pack and ship your cooler anywhere in India, safely and fast.' },
           ].map((item, i) => (
-            <div key={i} style={{ padding: '36px 26px', textAlign: 'center', borderRight: i < 2 ? `2px solid #dde8ff` : 'none', background: i % 2 === 0 ? '#fff' : BG }}>
+            <div key={i} style={{ padding: '36px 26px', textAlign: 'center', borderRight: i < 2 ? `2px solid #dde8ff` : 'none', background: '#fff' }}>
               <div style={{ width: 52, height: 52, background: BLUE, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px', boxShadow: `0 4px 12px rgba(10,91,214,0.3)` }}>
                 <span style={{ fontSize: 20, fontWeight: 900, color: '#fff' }}>{item.step}</span>
               </div>
               <h4 style={{ fontSize: 16, fontWeight: 700, color: DARK, marginBottom: 10 }}>{item.title}</h4>
-              <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.55)', lineHeight: 1.75 }}>{item.desc}</p>
+              <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.78)', lineHeight: 1.75 }}>{item.desc}</p>
             </div>
           ))}
         </div>
@@ -347,6 +348,20 @@ export default function Homepage() {
       <StatsBar />
       <WhySection />
       <HowToOrderSection />
+
+      {/* Get a Callback — lead capture */}
+      <section style={{ padding: '76px 24px', background: '#fff', borderBottom: `2px solid #dde8ff` }}>
+        <div style={{ maxWidth: 640, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 30 }}>
+            <span style={{ fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', color: BLUE, fontWeight: 600, display: 'block', marginBottom: 12 }}>◆ Book a Cooler</span>
+            <h2 style={{ fontSize: 'clamp(34px,5vw,60px)', fontWeight: 900, letterSpacing: '-0.025em', color: DARK, lineHeight: 1 }}>
+              REQUEST A<br /><span style={{ color: BLUE }}>CALLBACK.</span>
+            </h2>
+          </div>
+          <CallbackForm />
+        </div>
+      </section>
+
       <CTASection />
 
       <style>{`

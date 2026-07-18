@@ -115,7 +115,7 @@ export default function Footer() {
               {[
                 { label: 'Phone / WhatsApp', val: '+91 98100 37985' },
                 { label: 'Factory Address', val: 'D-327, Sector-5, DSIIDC\nIndustrial Area, Bawana\nNew Delhi – 110039' },
-                { label: 'Business Hours', val: 'Mon – Sat: 9 AM – 7 PM' },
+                { label: 'Business Hours', val: 'Mon – Fri: 9 AM – 7 PM' },
               ].map((item) => (
                 <li key={item.label}>
                   <span style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: BLUE, display: 'block', marginBottom: 3, fontWeight: 600 }}>{item.label}</span>

@@ -31,7 +31,7 @@ const coolerFAQs: FAQ[] = [
   },
   {
     question: 'How do I order? Is there a physical store?',
-    answer: 'Simply WhatsApp us at +91 98999 55506 or call us. You can also visit our factory in Bawana Industrial Area, Delhi (Mon–Sat, 9 AM–7 PM). We accept online orders and ship pan-India.'
+    answer: 'Simply WhatsApp us at +91 98999 55506 or call us. You can also visit our factory in Bawana Industrial Area, Delhi (Mon–Fri, 9 AM–7 PM). We accept online orders and ship pan-India.'
   },
   {
     question: 'Are spare parts available?',
@@ -58,7 +58,7 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productName }) => {
     <div style={{ background: '#fff', borderRadius: 16, border: `1.5px solid #dde8ff`, overflow: 'hidden', boxShadow: '0 2px 12px rgba(10,91,214,0.06)' }}>
       <div style={{ padding: '20px 28px', borderBottom: `1px solid #dde8ff`, background: '#f0f5ff' }}>
         <h3 style={{ fontSize: 16, fontWeight: 800, color: DARK }}>Common Questions About {productName}</h3>
-        <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.45)', marginTop: 4 }}>Can&apos;t find an answer? WhatsApp us at +91 98999 55506</p>
+        <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.74)', marginTop: 4 }}>Can&apos;t find an answer? WhatsApp us at +91 98999 55506</p>
       </div>
       <div>
         {coolerFAQs.map((faq, index) => {
@@ -89,7 +89,7 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({ productName }) => {
         })}
       </div>
       <div style={{ padding: '20px 24px', background: '#f0f5ff', borderTop: `1px solid #dde8ff`, textAlign: 'center' }}>
-        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.6)', marginBottom: 12 }}>Still have questions?</p>
+        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.8)', marginBottom: 12 }}>Still have questions?</p>
         <a href="https://wa.me/919899955506" target="_blank" rel="noopener noreferrer"
           style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#25D366', color: '#fff', padding: '10px 22px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none' }}
         >

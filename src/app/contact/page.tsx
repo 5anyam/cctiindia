@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
+import CallbackForm from '../../../components/CallbackForm';
 
 const BLUE = '#0A5BD6';
 const DARK = '#0B1E3D';
@@ -54,19 +55,19 @@ export default function ContactPage() {
         {/* Contact Cards */}
         <section className="contact-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, marginBottom: 64 }}>
           {[
-            { icon: <Phone size={22} />, title: 'CALL / WHATSAPP', sub: 'Mon – Sat · 9 AM – 7 PM', value: '+91 98999 55506', href: `tel:+${WA_NUMBER}`, dark: true },
+            { icon: <Phone size={22} />, title: 'CALL / WHATSAPP', sub: 'Mon – Fri · 9 AM – 7 PM', value: '+91 98999 55506', href: `tel:+${WA_NUMBER}`, dark: true },
             { icon: <MapPin size={22} />, title: 'FACTORY ADDRESS', sub: 'DSIIDC Industrial Area, Bawana', value: 'D-327, Sector-5, DSIIDC Industrial Area\nBawana, New Delhi – 110039', href: null, dark: false },
-            { icon: <Clock size={22} />, title: 'BUSINESS HOURS', sub: 'We respond on WhatsApp anytime', value: 'Mon – Sat: 9 AM – 7 PM\nSunday: Closed', href: null, dark: false },
+            { icon: <Clock size={22} />, title: 'BUSINESS HOURS', sub: 'We respond on WhatsApp anytime', value: 'Mon – Fri: 9 AM – 7 PM\nSat & Sun: Closed', href: null, dark: false },
           ].map((card, i) => (
             <div key={i} style={{ background: card.dark ? DARK : '#fff', border: `1.5px solid ${card.dark ? 'transparent' : '#dde8ff'}`, borderRadius: 16, padding: '36px 28px', textAlign: 'center', boxShadow: card.dark ? `0 6px 24px rgba(10,91,214,0.2)` : '0 2px 10px rgba(10,91,214,0.06)' }}>
               <div style={{ width: 56, height: 56, background: `rgba(10,91,214,${card.dark ? '0.15' : '0.1'})`, border: `1.5px solid rgba(10,91,214,0.25)`, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', color: BLUE }}>
                 {card.icon}
               </div>
               <h3 style={{ fontSize: 15, fontWeight: 800, letterSpacing: '0.1em', color: card.dark ? '#7EB3FF' : DARK, marginBottom: 6 }}>{card.title}</h3>
-              <p style={{ fontSize: 12, color: card.dark ? 'rgba(255,255,255,0.4)' : 'rgba(11,30,61,0.4)', marginBottom: 14 }}>{card.sub}</p>
+              <p style={{ fontSize: 12, color: card.dark ? 'rgba(255,255,255,0.4)' : 'rgba(11,30,61,0.72)', marginBottom: 14 }}>{card.sub}</p>
               {card.href
                 ? <a href={card.href} style={{ display: 'block', fontSize: 16, fontWeight: 700, color: BLUE, textDecoration: 'none' }}>{card.value}</a>
-                : <address style={{ fontSize: 13, color: card.dark ? 'rgba(255,255,255,0.55)' : 'rgba(11,30,61,0.6)', fontStyle: 'normal', lineHeight: 1.7, whiteSpace: 'pre-line' }}>{card.value}</address>
+                : <address style={{ fontSize: 13, color: card.dark ? 'rgba(255,255,255,0.55)' : 'rgba(11,30,61,0.8)', fontStyle: 'normal', lineHeight: 1.7, whiteSpace: 'pre-line' }}>{card.value}</address>
               }
             </div>
           ))}
@@ -77,21 +78,21 @@ export default function ContactPage() {
           <div style={{ background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 12px rgba(10,91,214,0.06)' }}>
             <div style={{ padding: '18px 28px', borderBottom: `1px solid #dde8ff`, background: BG }}>
               <h2 style={{ fontSize: 18, fontWeight: 800, color: DARK }}>Contact Information</h2>
-              <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.45)', marginTop: 4 }}>Reach us for product enquiries, bulk orders, pricing, and after-sales support.</p>
+              <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.74)', marginTop: 4 }}>Reach us for product enquiries, bulk orders, pricing, and after-sales support.</p>
             </div>
             <div style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 24 }}>
               {[
                 { icon: <MessageCircle size={16} />, label: 'WhatsApp (Fastest)', content: '+91 98999 55506', link: `https://wa.me/${WA_NUMBER}`, isLink: true },
                 { icon: <Phone size={16} />, label: 'Phone', content: '+91 98999 55506 · +91 98100 37985\n+91 99990 11801', link: `tel:+${WA_NUMBER}`, isLink: false },
                 { icon: <MapPin size={16} />, label: 'Factory Address', content: 'D-327, Sector-5, DSIIDC Industrial Area\nBawana, New Delhi – 110039', link: null, isLink: false },
-                { icon: <Clock size={16} />, label: 'Business Hours', content: 'Mon – Sat: 9:00 AM – 7:00 PM\nSunday: Closed', link: null, isLink: false },
+                { icon: <Clock size={16} />, label: 'Business Hours', content: 'Mon – Fri: 9:00 AM – 7:00 PM\nSat & Sun: Closed', link: null, isLink: false },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                   <div style={{ width: 34, height: 34, background: `rgba(10,91,214,0.1)`, border: `1.5px solid rgba(10,91,214,0.2)`, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: BLUE }}>
                     {item.icon}
                   </div>
                   <div>
-                    <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(11,30,61,0.35)', marginBottom: 5 }}>{item.label}</p>
+                    <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(11,30,61,0.72)', marginBottom: 5 }}>{item.label}</p>
                     {item.isLink && item.link
                       ? <a href={item.link} target={item.link.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" style={{ fontSize: 14, fontWeight: 700, color: BLUE, textDecoration: 'none' }}>{item.content}</a>
                       : <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.7)', lineHeight: 1.75, whiteSpace: 'pre-line' }}>{item.content}</p>
@@ -101,7 +102,7 @@ export default function ContactPage() {
               ))}
 
               <div style={{ background: BG, borderRadius: 12, padding: '20px 22px', border: `1px solid #dde8ff`, marginTop: 8 }}>
-                <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.55)', lineHeight: 1.75, marginBottom: 14 }}>
+                <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.78)', lineHeight: 1.75, marginBottom: 14 }}>
                   <strong style={{ color: DARK }}>Bulk & B2B Orders:</strong> We supply to dealers, distributors, housing societies, factories and contractors. Custom OEM manufacturing also available.
                 </p>
                 <a href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20am%20interested%20in%20a%20bulk%20order%20for%20CCTI%20India%20coolers.`} target="_blank" rel="noopener noreferrer"
@@ -113,20 +114,35 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div style={{ background: DARK, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px 28px', boxShadow: `0 4px 16px rgba(10,91,214,0.15)` }}>
-            <div style={{ textAlign: 'center' }}>
-              <MapPin size={40} style={{ color: BLUE, marginBottom: 16 }} />
-              <h4 style={{ fontSize: 22, fontWeight: 900, color: '#fff', marginBottom: 8, letterSpacing: '-0.01em' }}>Bawana, New Delhi</h4>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>D-327, Sector-5, DSIIDC Industrial Area<br />Bawana, New Delhi – 110039</p>
-              <div style={{ width: 40, height: 2, background: BLUE, borderRadius: 1, margin: '18px auto' }} />
-              <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 18 }}>Manufacturing Since 1977</p>
-              <a href="https://maps.google.com?q=D-327+Sector-5+DSIIDC+Industrial+Area+Bawana+New+Delhi+110039" target="_blank" rel="noopener noreferrer"
-                style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, color: '#7EB3FF', letterSpacing: '0.12em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: `1px solid rgba(10,91,214,0.4)`, paddingBottom: 2 }}
+          <div style={{ background: DARK, borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: `0 4px 16px rgba(10,91,214,0.15)` }}>
+            <iframe
+              title="CCTI India — Factory Location on Google Maps"
+              src="https://maps.google.com/maps?q=28.7967437,77.0818634&z=15&hl=en&output=embed"
+              style={{ border: 0, width: '100%', flex: 1, minHeight: 300, display: 'block' }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <div style={{ padding: '20px 24px' }}>
+              <h4 style={{ fontSize: 18, fontWeight: 900, color: '#fff', marginBottom: 6, letterSpacing: '-0.01em' }}>Co-Cooling Technology India</h4>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, marginBottom: 14 }}>D-327, Sector-5, DSIIDC Industrial Area<br />Bawana, New Delhi – 110039</p>
+              <a href="https://www.google.com/maps/dir//Co+Cooling+Technology+India+(CCTI),+D327,+DSIIDC+Industrial+Area,+Sector+5,+Holambi+Khurd,+Delhi,+110039/@28.7144068,77.0909803,3356m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x390da9242f9e61cd:0x1fa23ac84dadd74e!2m2!1d77.0818634!2d28.7967437!5m1!1e1?entry=ttu"
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: BLUE, color: '#fff', padding: '10px 20px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none' }}
               >
-                Get Directions →
+                <MapPin size={14} /> Get Directions →
               </a>
             </div>
           </div>
+        </section>
+
+        {/* Get a Callback */}
+        <section style={{ marginBottom: 64, maxWidth: 640, margin: '0 auto 64px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
+            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: BLUE, display: 'block', marginBottom: 12 }}>◆ Prefer We Call You?</span>
+            <h2 style={{ fontSize: 'clamp(32px,4.5vw,52px)', fontWeight: 900, letterSpacing: '-0.02em', color: DARK, lineHeight: 1 }}>REQUEST A<br /><span style={{ color: BLUE }}>CALLBACK</span></h2>
+          </div>
+          <CallbackForm />
         </section>
 
         {/* FAQ */}
@@ -139,14 +155,14 @@ export default function ContactPage() {
             {[
               { q: 'How do I order a cooler?', a: 'Simply WhatsApp us at +91 98999 55506 with the model you want, your city, and quantity. We\'ll confirm price and delivery details.' },
               { q: 'Do you deliver pan-India?', a: 'Yes — we deliver to all major cities and towns across India. Well-packed and shipped via reliable logistics partners.' },
-              { q: 'Can I visit the factory?', a: 'Yes, our Bawana factory is open Mon–Sat from 9 AM to 7 PM. You can also place orders on the spot.' },
+              { q: 'Can I visit the factory?', a: 'Yes, our Bawana factory is open Mon–Fri from 9 AM to 7 PM. You can also place orders on the spot.' },
               { q: 'Do you take bulk / B2B orders?', a: 'Absolutely. We supply to dealers, contractors and institutions at wholesale rates. Contact us on WhatsApp for bulk pricing.' },
               { q: 'Are spare parts available?', a: 'Yes — pumps, motors, honeycomb pads and other spare parts are always in stock and can be shipped separately.' },
               { q: 'What payment methods do you accept?', a: 'We accept UPI, bank transfer, and cash on delivery for select orders. WhatsApp us to discuss payment terms.' },
             ].map((faq, i) => (
               <div key={i} style={{ background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 12, padding: '24px 28px', boxShadow: '0 2px 8px rgba(10,91,214,0.05)' }}>
                 <h3 style={{ fontSize: 16, fontWeight: 800, color: DARK, marginBottom: 10, lineHeight: 1.3 }}>{faq.q}</h3>
-                <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.6)', lineHeight: 1.75 }}>{faq.a}</p>
+                <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.8)', lineHeight: 1.75 }}>{faq.a}</p>
               </div>
             ))}
           </div>
@@ -161,7 +177,7 @@ export default function ContactPage() {
               WHATSAPP<br /><span style={{ color: '#25D366' }}>ANYTIME.</span><br />WE&apos;RE READY.
             </h2>
             <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)', maxWidth: 460, margin: '0 auto 36px', lineHeight: 1.85 }}>
-              Our team is available Monday to Saturday, 9 AM to 7 PM to help you pick the right cooler and arrange fast delivery.
+              Our team is available Monday to Friday, 9 AM to 7 PM to help you pick the right cooler and arrange fast delivery.
             </p>
             <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer"

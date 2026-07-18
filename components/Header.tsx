@@ -134,7 +134,7 @@ export default function Header() {
 
       {/* ── MOBILE DRAWER ── */}
       <div onClick={() => setMobileMenuOpen(false)}
-        style={{ position: 'fixed', inset: 0, background: 'rgba(11,30,61,0.5)', zIndex: 600, opacity: mobileMenuOpen ? 1 : 0, visibility: mobileMenuOpen ? 'visible' : 'hidden', transition: 'opacity 0.3s' }}
+        style={{ position: 'fixed', inset: 0, background: 'rgba(11,30,61,0.75)', zIndex: 600, opacity: mobileMenuOpen ? 1 : 0, visibility: mobileMenuOpen ? 'visible' : 'hidden', transition: 'opacity 0.3s' }}
       />
       <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: '82%', maxWidth: 340, background: '#fff', zIndex: 700, borderLeft: `2px solid #dde8ff`, transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.32s cubic-bezier(.16,1,.3,1)', display: 'flex', flexDirection: 'column', boxShadow: '-4px 0 24px rgba(10,91,214,0.1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: `2px solid #dde8ff`, background: '#f0f5ff' }}>
@@ -162,7 +162,7 @@ export default function Header() {
                     <div style={{ paddingLeft: 20, paddingBottom: 8 }}>
                       {item.submenu.map((sub) => (
                         <Link key={sub.name} href={sub.to} onClick={() => setMobileMenuOpen(false)}
-                          style={{ display: 'block', padding: '9px 16px', fontSize: 13, fontWeight: 500, color: '#555', textDecoration: 'none', borderLeft: `2px solid #dde8ff`, marginBottom: 4 }}
+                          style={{ display: 'block', padding: '9px 16px', fontSize: 13, fontWeight: 500, color: '#1c2740', textDecoration: 'none', borderLeft: `2px solid #dde8ff`, marginBottom: 4 }}
                         >
                           {sub.name}
                         </Link>

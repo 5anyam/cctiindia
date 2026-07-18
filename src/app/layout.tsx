@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import AnnouncementBar from '../../components/anouncement';
 import { Suspense } from 'react';
 import Whatsapp from '../../components/Whatsapp';
+import ScrollReveal from '../../components/ScrollReveal';
 import Loading from './loading';
 
 export const metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
         </div>
+        <ScrollReveal />
         <Whatsapp />
       </body>
     </html>

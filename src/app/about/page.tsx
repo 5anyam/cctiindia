@@ -17,12 +17,17 @@ export default function AboutPage() {
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(10,91,214,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,91,214,0.07) 1px, transparent 1px)`, backgroundSize: '48px 48px', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: -80, right: -80, width: 400, height: 400, background: `radial-gradient(circle, rgba(10,91,214,0.18) 0%, transparent 70%)`, pointerEvents: 'none' }} />
         <div style={{ maxWidth: 860, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#7EB3FF', display: 'block', marginBottom: 18 }}>◆ Our Story</span>
-          <h1 style={{ fontSize: 'clamp(56px,9vw,110px)', fontWeight: 900, color: '#fff', lineHeight: 0.9, marginBottom: 24, letterSpacing: '-0.02em' }}>
-            ABOUT<br /><span style={{ color: BLUE }}>CCTI</span><br /><span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.6em', letterSpacing: '0.02em' }}>INDIA</span>
+          <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#7EB3FF', display: 'block', marginBottom: 22 }}>◆ Our Story</span>
+          <img
+            src="/ccti-logo.png"
+            alt="CCTI India — Co-Cooling Technology India"
+            style={{ height: 'clamp(56px,9vw,96px)', width: 'auto', display: 'block', margin: '0 auto 22px', borderRadius: 10, boxShadow: '0 10px 30px rgba(0,0,0,0.35)' }}
+          />
+          <h1 style={{ fontSize: 'clamp(40px,7vw,80px)', fontWeight: 900, color: '#fff', lineHeight: 0.92, marginBottom: 24, letterSpacing: '-0.02em' }}>
+            ABOUT <span style={{ color: BLUE }}>US</span>
           </h1>
-          <p style={{ fontSize: 15, fontWeight: 300, color: 'rgba(255,255,255,0.55)', maxWidth: 540, margin: '0 auto', lineHeight: 1.85 }}>
-            Established in 1977 in Bawana, Delhi — Agroson Electrical Industries (CCTI brand) has spent over 47 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
+          <p style={{ fontSize: 15, fontWeight: 300, color: 'rgba(255,255,255,0.55)', maxWidth: 560, margin: '0 auto', lineHeight: 1.85 }}>
+            Established in 1977 in Bawana, Delhi — Co-Cooling Technology India (CCTI), a brand of Agroson Electrical Industries, has spent over 47 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
           </p>
         </div>
       </section>
@@ -31,13 +36,13 @@ export default function AboutPage() {
 
         {/* Company Intro */}
         <section className="about-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center', marginBottom: 88 }}>
-          <div style={{ background: DARK, border: `1.5px solid rgba(10,91,214,0.3)`, borderRadius: 16, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '4/3', padding: 40, position: 'relative' }}>
-            <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(10,91,214,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,91,214,0.06) 1px, transparent 1px)`, backgroundSize: '32px 32px', pointerEvents: 'none' }} />
+          <div style={{ background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 16, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '4/3', padding: 40, position: 'relative', boxShadow: '0 4px 20px rgba(10,91,214,0.08)' }}>
+            <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(10,91,214,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(10,91,214,0.05) 1px, transparent 1px)`, backgroundSize: '32px 32px', pointerEvents: 'none' }} />
             <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
-              <div style={{ fontSize: 'clamp(48px,7vw,88px)', fontWeight: 900, color: BLUE, letterSpacing: '-0.03em', lineHeight: 1 }}>CCTI</div>
-              <div style={{ fontSize: 16, fontWeight: 600, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.22em', textTransform: 'uppercase', marginTop: 8 }}>India</div>
-              <div style={{ width: 60, height: 3, background: BLUE, borderRadius: 2, margin: '16px auto' }} />
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Since 1977 · Bawana, Delhi</div>
+              <img src="/ccti-logo.png" alt="CCTI India — Co-Cooling Technology India" style={{ width: 'min(300px, 78%)', height: 'auto', display: 'block', margin: '0 auto' }} />
+              <div style={{ width: 60, height: 3, background: BLUE, borderRadius: 2, margin: '22px auto 14px' }} />
+              <div style={{ fontSize: 12, color: DARK, fontWeight: 600, letterSpacing: '0.05em' }}>Co-Cooling Technology India</div>
+              <div style={{ fontSize: 11, color: 'rgba(11,30,61,0.75)', letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 4 }}>Since 1977 · Bawana, Delhi</div>
             </div>
           </div>
           <div>
@@ -45,10 +50,10 @@ export default function AboutPage() {
             <h2 style={{ fontSize: 'clamp(36px,4.5vw,56px)', fontWeight: 900, letterSpacing: '-0.02em', color: DARK, lineHeight: 1, marginBottom: 22 }}>
               YOUR TRUSTED<br /><span style={{ color: BLUE }}>COOLER</span><br />MANUFACTURER
             </h2>
-            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.65)', lineHeight: 1.85, marginBottom: 20 }}>
-              CCTI India is the brand of Agroson Electrical Industries, a cooler manufacturing company based at D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi. Founded in 1977, we have spent over four decades designing and manufacturing air coolers built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
+            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.82)', lineHeight: 1.85, marginBottom: 20 }}>
+              Co-Cooling Technology India (CCTI) is a brand of Agroson Electrical Industries, a cooler manufacturing company based at D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi. Founded in 1977, we have spent over 47 years designing and manufacturing air coolers built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
             </p>
-            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.65)', lineHeight: 1.85, marginBottom: 28 }}>
+            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.82)', lineHeight: 1.85, marginBottom: 28 }}>
               We manufacture the <strong style={{ color: DARK }}>IcyChill, Fiesta, Brezza, Neo and Swish</strong> ranges — tower coolers, personal coolers, and double blower models. With our D2C initiative, we now sell directly to homes and businesses across India — cutting out middlemen so you get the best factory price.
             </p>
             <div style={{ display: 'flex', gap: 16 }}>
@@ -100,7 +105,7 @@ export default function AboutPage() {
             ].map((item, i) => (
               <div key={i} style={{ padding: '32px 28px', borderRight: i % 2 === 0 ? `1px solid #dde8ff` : 'none', borderBottom: i < 2 ? `1px solid #dde8ff` : 'none' }}>
                 <h3 style={{ fontSize: 17, fontWeight: 800, color: DARK, marginBottom: 10 }}>{item.title}</h3>
-                <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.6)', lineHeight: 1.85 }}>{item.desc}</p>
+                <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.8)', lineHeight: 1.85 }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -129,7 +134,7 @@ export default function AboutPage() {
                   <item.icon style={{ width: 22, height: 22, color: BLUE }} />
                 </div>
                 <h3 style={{ fontSize: 17, fontWeight: 800, color: DARK, marginBottom: 10 }}>{item.title}</h3>
-                <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.55)', lineHeight: 1.85 }}>{item.desc}</p>
+                <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.78)', lineHeight: 1.85 }}>{item.desc}</p>
               </div>
             ))}
           </div>

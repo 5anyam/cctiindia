@@ -13,7 +13,11 @@ const WA_NUMBER = '919899955506';
 
 interface Props {
   products: StaticProduct[];
+  initialCategory?: string;
 }
+
+// Marketing category order for the chips (matches homepage category cards).
+const CATEGORY_ORDER = ['Tower Cooler', 'Personal Cooler', 'Desert Cooler', 'Window Cooler', 'Industrial Cooler'];
 
 function ProductCard({ product }: { product: StaticProduct }) {
   const discount = Math.round(((product.regularPrice - product.price) / product.regularPrice) * 100);
@@ -37,17 +41,17 @@ function ProductCard({ product }: { product: StaticProduct }) {
         <div style={{ padding: '18px 20px 16px' }}>
           <p style={{ fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: BLUE, marginBottom: 6, fontWeight: 600 }}>{product.category}</p>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: DARK, marginBottom: 6, lineHeight: 1.2 }}>{product.name}</h3>
-          <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.5)', marginBottom: 10, lineHeight: 1.65, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{product.tagline}</p>
+          <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.75)', marginBottom: 10, lineHeight: 1.65, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{product.tagline}</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
             <div style={{ display: 'flex', gap: 2 }}>
               {[1,2,3,4,5].map(i => <Star key={i} style={{ width: 13, height: 13, fill: i <= Math.round(product.rating) ? '#FFB800' : '#dde8ff', color: i <= Math.round(product.rating) ? '#FFB800' : '#dde8ff' }} />)}
             </div>
-            <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.4)' }}>({product.reviewCount})</span>
+            <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.72)' }}>({product.reviewCount})</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
             <span style={{ fontSize: 22, fontWeight: 800, color: DARK }}>₹{product.price.toLocaleString('en-IN')}</span>
             {product.regularPrice > product.price && (
-              <span style={{ fontSize: 13, color: 'rgba(11,30,61,0.35)', textDecoration: 'line-through' }}>₹{product.regularPrice.toLocaleString('en-IN')}</span>
+              <span style={{ fontSize: 13, color: 'rgba(11,30,61,0.72)', textDecoration: 'line-through' }}>₹{product.regularPrice.toLocaleString('en-IN')}</span>
             )}
           </div>
         </div>
@@ -73,11 +77,17 @@ function ProductCard({ product }: { product: StaticProduct }) {
   );
 }
 
-export default function ShopPageClient({ products }: Props) {
+export default function ShopPageClient({ products, initialCategory = '' }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
-  const categories = useMemo(() => [...new Set(products.map((p) => p.category))], [products]);
+  const categories = useMemo(() => {
+    const present = new Set(products.map((p) => p.category));
+    // Ordered marketing list first, then any extras from data
+    const ordered = CATEGORY_ORDER.filter((c) => present.has(c));
+    const extras = [...present].filter((c) => !CATEGORY_ORDER.includes(c));
+    return [...ordered, ...extras];
+  }, [products]);
   const filtered = useMemo(() => {
     return products.filter((p) => {
       if (searchTerm && !p.name.toLowerCase().includes(searchTerm.toLowerCase()) && !p.category.toLowerCase().includes(searchTerm.toLowerCase())) return false;
@@ -111,45 +121,68 @@ export default function ShopPageClient({ products }: Props) {
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '48px 32px' }}>
 
-        {/* Search + Filter */}
-        <div style={{ display: 'flex', gap: 12, marginBottom: 36, flexWrap: 'wrap' }}>
-          <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
-            <svg style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', width: 14, height: 14, color: 'rgba(11,30,61,0.4)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search coolers..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ width: '100%', padding: '12px 16px 12px 40px', border: `1.5px solid #dde8ff`, background: '#fff', color: DARK, fontSize: 13, outline: 'none', boxSizing: 'border-box', borderRadius: 8, fontFamily: 'inherit' }}
-              onFocus={e => (e.currentTarget.style.borderColor = BLUE)}
-              onBlur={e => (e.currentTarget.style.borderColor = '#dde8ff')}
-            />
-          </div>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            style={{ padding: '12px 20px', border: `1.5px solid #dde8ff`, background: '#fff', color: DARK, fontSize: 13, outline: 'none', cursor: 'pointer', fontFamily: 'inherit', borderRadius: 8 }}
-          >
-            <option value="">All Categories</option>
-            {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
-          </select>
-        </div>
-
-        <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(11,30,61,0.4)', marginBottom: 24 }}>
-          {filtered.length} product{filtered.length !== 1 ? 's' : ''} found
+        {/* Category heading */}
+        <h2 style={{ fontSize: 'clamp(22px,3.2vw,32px)', fontWeight: 900, letterSpacing: '-0.02em', color: DARK, marginBottom: 4 }}>
+          {selectedCategory ? `${selectedCategory}s` : 'All Coolers'}
+        </h2>
+        <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(11,30,61,0.8)', marginBottom: 22 }}>
+          {filtered.length} product{filtered.length !== 1 ? 's' : ''}
         </p>
 
+        {/* Category chips */}
+        <div className="cat-chips" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 22 }}>
+          {[{ label: 'All Coolers', val: '' }, ...categories.map((c) => ({ label: `${c}s`, val: c }))].map((chip) => {
+            const active = selectedCategory === chip.val;
+            return (
+              <button
+                key={chip.val || 'all'}
+                onClick={() => setSelectedCategory(chip.val)}
+                style={{ padding: '9px 18px', borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: '0.05em', cursor: 'pointer', fontFamily: 'inherit', border: `1.5px solid ${active ? BLUE : '#dde8ff'}`, background: active ? BLUE : '#fff', color: active ? '#fff' : DARK, transition: 'background 0.18s, color 0.18s, border-color 0.18s' }}
+              >
+                {chip.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Search */}
+        <div style={{ position: 'relative', maxWidth: 440, marginBottom: 32 }}>
+          <svg style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', width: 14, height: 14, color: 'rgba(11,30,61,0.78)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search coolers..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ width: '100%', padding: '12px 16px 12px 40px', border: `1.5px solid #dde8ff`, background: '#fff', color: DARK, fontSize: 13, outline: 'none', boxSizing: 'border-box', borderRadius: 8, fontFamily: 'inherit' }}
+            onFocus={e => (e.currentTarget.style.borderColor = BLUE)}
+            onBlur={e => (e.currentTarget.style.borderColor = '#dde8ff')}
+          />
+        </div>
+
         {filtered.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '80px 32px' }}>
-            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.5)', marginBottom: 24 }}>No products match your search.</p>
-            <button
-              onClick={() => { setSearchTerm(''); setSelectedCategory(''); }}
-              style={{ background: BLUE, color: '#fff', padding: '12px 28px', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'inherit' }}
-            >
-              CLEAR FILTERS
-            </button>
+          <div style={{ textAlign: 'center', padding: '72px 32px', background: '#fff', border: '1.5px solid #dde8ff', borderRadius: 16 }}>
+            <p style={{ fontSize: 16, fontWeight: 700, color: DARK, marginBottom: 8 }}>
+              {selectedCategory ? `${selectedCategory}s coming soon` : 'No coolers match your search'}
+            </p>
+            <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.7)', marginBottom: 24, maxWidth: 420, margin: '0 auto 24px', lineHeight: 1.7 }}>
+              {selectedCategory
+                ? `We're expanding our ${selectedCategory.toLowerCase()} range. WhatsApp us for current availability and factory pricing.`
+                : 'Try a different search or browse all coolers.'}
+            </p>
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi, do you have ${selectedCategory || 'air coolers'} available?`)}`} target="_blank" rel="noopener noreferrer"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#25D366', color: '#fff', padding: '12px 24px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none' }}>
+                <MessageCircle size={14} /> Enquire on WhatsApp
+              </a>
+              <button
+                onClick={() => { setSearchTerm(''); setSelectedCategory(''); }}
+                style={{ background: BLUE, color: '#fff', padding: '12px 24px', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'inherit' }}
+              >
+                View All Coolers
+              </button>
+            </div>
           </div>
         ) : (
           <div className="shop-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>

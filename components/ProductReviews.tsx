@@ -36,7 +36,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productName }) => {
               <Star key={i} style={{ width: 16, height: 16, fill: '#FFB800', color: '#FFB800' }} />
             ))}
           </div>
-          <div style={{ fontSize: 12, color: 'rgba(11,30,61,0.4)', marginTop: 6 }}>{sampleReviews.length} verified reviews</div>
+          <div style={{ fontSize: 12, color: 'rgba(11,30,61,0.72)', marginTop: 6 }}>{sampleReviews.length} verified reviews</div>
         </div>
         <div style={{ flex: 1, minWidth: 200 }}>
           {[5,4,3,2,1].map(star => {
@@ -44,12 +44,12 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productName }) => {
             const pct = (count / sampleReviews.length) * 100;
             return (
               <div key={star} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-                <span style={{ fontSize: 12, color: 'rgba(11,30,61,0.6)', width: 12 }}>{star}</span>
+                <span style={{ fontSize: 12, color: 'rgba(11,30,61,0.8)', width: 12 }}>{star}</span>
                 <Star style={{ width: 12, height: 12, fill: '#FFB800', color: '#FFB800' }} />
                 <div style={{ flex: 1, height: 8, background: '#dde8ff', borderRadius: 4, overflow: 'hidden' }}>
                   <div style={{ height: '100%', width: `${pct}%`, background: BLUE, borderRadius: 4, transition: 'width 0.5s' }} />
                 </div>
-                <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.4)', width: 16 }}>{count}</span>
+                <span style={{ fontSize: 11, color: 'rgba(11,30,61,0.72)', width: 16 }}>{count}</span>
               </div>
             );
           })}
@@ -67,7 +67,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productName }) => {
                 </div>
                 <div>
                   <p style={{ fontSize: 14, fontWeight: 700, color: DARK }}>{review.name}</p>
-                  <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.4)' }}>{review.city}</p>
+                  <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.72)' }}>{review.city}</p>
                 </div>
               </div>
               {review.verified && (
@@ -99,7 +99,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productName }) => {
 
       {/* Write review prompt */}
       <div style={{ marginTop: 24, background: '#f0f5ff', borderRadius: 12, padding: '20px 24px', border: `1.5px solid #dde8ff`, textAlign: 'center' }}>
-        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.6)', marginBottom: 10 }}>
+        <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.8)', marginBottom: 10 }}>
           Bought a {productName}? Share your experience!
         </p>
         <a href="https://wa.me/919899955506?text=Hi%2C%20I%20would%20like%20to%20share%20my%20review%20for%20my%20CCTI%20India%20cooler."

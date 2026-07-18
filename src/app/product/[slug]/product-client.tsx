@@ -73,7 +73,7 @@ function Tabs({ product }: { product: StaticProduct }) {
           <button
             key={i}
             onClick={() => setActive(i)}
-            style={{ padding: '12px 20px', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap', cursor: 'pointer', background: i === active ? BLUE : 'transparent', color: i === active ? '#fff' : 'rgba(11,30,61,0.45)', border: 'none', borderRadius: i === active ? '6px 6px 0 0' : 0, transition: 'background 0.2s, color 0.2s', fontFamily: 'inherit' }}
+            style={{ padding: '12px 20px', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap', cursor: 'pointer', background: i === active ? BLUE : 'transparent', color: i === active ? '#fff' : 'rgba(11,30,61,0.74)', border: 'none', borderRadius: i === active ? '6px 6px 0 0' : 0, transition: 'background 0.2s, color 0.2s', fontFamily: 'inherit' }}
           >
             {t}
           </button>
@@ -101,7 +101,7 @@ function Tabs({ product }: { product: StaticProduct }) {
                 </div>
                 <div>
                   <p style={{ fontWeight: 700, fontSize: 13, color: DARK, marginBottom: 3 }}>{spec.name}</p>
-                  <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.5)' }}>{spec.benefit}</p>
+                  <p style={{ fontSize: 12, color: 'rgba(11,30,61,0.75)' }}>{spec.benefit}</p>
                 </div>
               </div>
             ))}
@@ -130,7 +130,7 @@ function Tabs({ product }: { product: StaticProduct }) {
               <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '12px 16px', background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 8 }}>
                 <item.icon style={{ width: 16, height: 16, color: BLUE, flexShrink: 0 }} />
                 <div>
-                  <p style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.16em', color: 'rgba(11,30,61,0.4)', fontWeight: 600, marginBottom: 2 }}>{item.label}</p>
+                  <p style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.16em', color: 'rgba(11,30,61,0.72)', fontWeight: 600, marginBottom: 2 }}>{item.label}</p>
                   <p style={{ fontSize: 12, color: DARK, fontWeight: 600 }}>{item.value}</p>
                 </div>
               </div>
@@ -179,10 +179,10 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
       {/* Breadcrumb */}
       <div style={{ borderBottom: `1px solid #dde8ff`, background: '#fff' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '10px 32px' }}>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(11,30,61,0.4)' }}>
-            <Link href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.15s' }} onMouseEnter={e => (e.currentTarget.style.color = BLUE)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(11,30,61,0.4)')}>Home</Link>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(11,30,61,0.72)' }}>
+            <Link href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.15s' }} onMouseEnter={e => (e.currentTarget.style.color = BLUE)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(11,30,61,0.72)')}>Home</Link>
             <ChevronRight style={{ width: 12, height: 12 }} />
-            <Link href="/shop" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.15s' }} onMouseEnter={e => (e.currentTarget.style.color = BLUE)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(11,30,61,0.4)')}>Coolers</Link>
+            <Link href="/shop" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.15s' }} onMouseEnter={e => (e.currentTarget.style.color = BLUE)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(11,30,61,0.72)')}>Coolers</Link>
             <ChevronRight style={{ width: 12, height: 12 }} />
             <span style={{ color: DARK }}>{product.shortName}</span>
           </nav>
@@ -228,13 +228,13 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
               style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
             >
               <StarRating rating={product.rating} />
-              <span style={{ fontSize: 12, color: 'rgba(11,30,61,0.5)', borderBottom: '1px solid rgba(11,30,61,0.2)' }}>
+              <span style={{ fontSize: 12, color: 'rgba(11,30,61,0.75)', borderBottom: '1px solid rgba(11,30,61,0.2)' }}>
                 {product.rating.toFixed(1)} ({product.reviewCount} Reviews)
               </span>
             </button>
 
             {/* Tagline */}
-            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.6)', lineHeight: 1.75, marginBottom: 20 }}>{product.tagline}</p>
+            <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.8)', lineHeight: 1.75, marginBottom: 20 }}>{product.tagline}</p>
 
             {/* Key benefits */}
             <div style={{ marginBottom: 24, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -254,7 +254,7 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
               {product.regularPrice > product.price && (
-                <span style={{ fontSize: 16, color: 'rgba(11,30,61,0.35)', textDecoration: 'line-through' }}>₹{product.regularPrice.toLocaleString('en-IN')}</span>
+                <span style={{ fontSize: 16, color: 'rgba(11,30,61,0.72)', textDecoration: 'line-through' }}>₹{product.regularPrice.toLocaleString('en-IN')}</span>
               )}
               <span style={{ fontSize: 13, color: BLUE, fontWeight: 600 }}>Factory Price</span>
             </div>
@@ -300,7 +300,7 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
                   <item.icon style={{ width: 14, height: 14, color: BLUE, flexShrink: 0, marginTop: 2 }} />
                   <div>
                     <p style={{ fontSize: 12, fontWeight: 700, color: DARK, marginBottom: 1 }}>{item.title}</p>
-                    <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.45)' }}>{item.sub}</p>
+                    <p style={{ fontSize: 11, color: 'rgba(11,30,61,0.74)' }}>{item.sub}</p>
                   </div>
                 </div>
               ))}
