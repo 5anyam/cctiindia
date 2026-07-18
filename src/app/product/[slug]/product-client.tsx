@@ -390,6 +390,9 @@ export default function ProductClient({ product }: { product: StaticProduct }) {
       </div>
 
       <style>{`
+        /* Let grid/flex tracks shrink below their content's intrinsic width
+           so long tab labels & CTA rows can't stretch the page (h-overflow). */
+        .product-grid, .product-grid > * { min-width: 0; }
         @media (max-width: 768px) {
           .mobile-cta-outer { display: block !important; }
           .product-container { padding: 16px 14px 100px !important; }
