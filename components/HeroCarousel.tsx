@@ -26,16 +26,6 @@ const PANEL_BG = 'linear-gradient(135deg, #0B1E3D 0%, #0A5BD6 135%)';
 
 const SLIDES: Slide[] = [
   {
-    src: '/banners/src-mountain.png',
-    alt: 'CCTI India — cooling as crisp as the mountains',
-    href: '/shop',
-    eyebrow: 'BREATHE FRESH · STAY COOL',
-    title: 'Cooling as Crisp\nas the Mountains',
-    sub: 'High-power air delivery with whisper-quiet comfort.',
-    cta: 'Shop Coolers',
-    mediaBg: 'linear-gradient(180deg, #20304d 0%, #0d1626 100%)',
-  },
-  {
     src: '/banners/src-lineup.png',
     alt: 'CCTI India — the complete range of air coolers',
     href: '/shop',
@@ -46,15 +36,14 @@ const SLIDES: Slide[] = [
     mediaBg: 'linear-gradient(180deg, #ffffff 0%, #e8f0fa 100%)',
   },
   {
-    src: '/products/brezza-stealth-blue-tower-16.png',
-    alt: 'CCTI India — Brezza Tower 16 Stealth Blue',
+    src: '/banners/src-mountain.png',
+    alt: 'CCTI India — cooling as crisp as the mountains',
     href: '/shop',
-    eyebrow: 'NEW ARRIVAL',
-    title: 'Brezza Tower 16\nStealth Blue',
-    sub: 'Bold looks, powerful cooling — built for Indian summers.',
-    cta: 'Order Now',
-    mediaBg: 'linear-gradient(135deg, #0B1E3D 0%, #17407e 120%)',
-    imgPad: '5%',
+    eyebrow: 'BREATHE FRESH · STAY COOL',
+    title: 'Cooling as Crisp\nas the Mountains',
+    sub: 'High-power air delivery with whisper-quiet comfort.',
+    cta: 'Shop Coolers',
+    mediaBg: 'linear-gradient(180deg, #20304d 0%, #0d1626 100%)',
   },
 ];
 
