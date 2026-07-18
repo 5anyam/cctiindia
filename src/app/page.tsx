@@ -123,30 +123,6 @@ function MarqueeBelt() {
   );
 }
 
-function TrustBar() {
-  const items = [
-    { icon: Factory, label: 'Manufacturer Direct' },
-    { icon: ShieldCheck, label: 'ISI Certified Products' },
-    { icon: Truck, label: 'Pan-India Delivery' },
-    { icon: Wrench, label: 'After-Sale Service' },
-    { icon: BadgeCheck, label: 'Est. 1990 · Bawana, Delhi' },
-  ];
-  return (
-    <section style={{ background: '#fff', borderBottom: `2px solid #dde8ff` }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '14px 32px' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px 36px', alignItems: 'center' }}>
-          {items.map((item, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: DARK }}>
-              <item.icon style={{ width: 15, height: 15, color: BLUE }} />
-              {item.label}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CategoriesSection() {
   const cats = [
     { name: 'Desert Air Coolers', sub: '40L – 100L · Large Rooms', icon: Wind, href: '/shop?cat=Desert+Cooler' },
@@ -366,7 +342,6 @@ export default function Homepage() {
     <div style={{ minHeight: '100vh', background: BG, overflow: 'hidden' }}>
       <HeroCarousel />
       <MarqueeBelt />
-      <TrustBar />
       <CategoriesSection />
       <ProductsSection />
       <StatsBar />
