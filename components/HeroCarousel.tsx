@@ -5,15 +5,12 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────
-// HERO BANNERS
-// `type: 'photo'`   → full-bleed background photo + text overlay.
-//                     Drop the file in /public/banners/.
-// `type: 'product'` → branded gradient panel + transparent product PNG.
-// Keep photos landscape (≈16:9 or wider) so the scrim/text sits nicely.
-// `href` = where the banner + its CTA button links to.
+// HERO BANNERS  —  split layout: brand text panel (left) + image (right).
+// The image uses object-fit:contain so it is NEVER cropped; `mediaBg`
+// fills the letterbox area and should match the artwork's edges.
+// Drop new images in /public/banners/. `href` = link target.
 // ─────────────────────────────────────────────────────────────
 type Slide = {
-  type: 'photo' | 'product';
   src: string;
   alt: string;
   href: string;
@@ -21,24 +18,24 @@ type Slide = {
   title: string;      // "\n" = line break
   sub: string;
   cta: string;
-  objectPosition?: string;   // photo focus point
-  bg?: string;               // product-slide background
+  mediaBg: string;    // background behind the image (blends letterbox)
+  imgPad?: string;    // optional padding around the image
 };
+
+const PANEL_BG = 'linear-gradient(135deg, #0B1E3D 0%, #0A5BD6 135%)';
 
 const SLIDES: Slide[] = [
   {
-    type: 'photo',
-    src: '/banners/src-mountain.jpg',
+    src: '/banners/src-mountain.png',
     alt: 'CCTI India — cooling as crisp as the mountains',
     href: '/shop',
     eyebrow: 'BREATHE FRESH · STAY COOL',
     title: 'Cooling as Crisp\nas the Mountains',
     sub: 'High-power air delivery with whisper-quiet comfort.',
     cta: 'Shop Coolers',
-    objectPosition: 'center',
+    mediaBg: 'linear-gradient(180deg, #20304d 0%, #0d1626 100%)',
   },
   {
-    type: 'photo',
     src: '/banners/src-lineup.png',
     alt: 'CCTI India — the complete range of air coolers',
     href: '/shop',
@@ -46,10 +43,9 @@ const SLIDES: Slide[] = [
     title: 'One Cooler for\nEvery Home',
     sub: 'Towers, blowers & desert coolers — factory direct.',
     cta: 'Explore Range',
-    objectPosition: 'center',
+    mediaBg: 'linear-gradient(180deg, #ffffff 0%, #e8f0fa 100%)',
   },
   {
-    type: 'product',
     src: '/products/brezza-stealth-blue-tower-16.png',
     alt: 'CCTI India — Brezza Tower 16 Stealth Blue',
     href: '/shop',
@@ -57,88 +53,10 @@ const SLIDES: Slide[] = [
     title: 'Brezza Tower 16\nStealth Blue',
     sub: 'Bold looks, powerful cooling — built for Indian summers.',
     cta: 'Order Now',
-    bg: 'radial-gradient(120% 140% at 78% 30%, #17407e 0%, #0B1E3D 60%)',
+    mediaBg: 'linear-gradient(135deg, #0B1E3D 0%, #17407e 120%)',
+    imgPad: '5%',
   },
 ];
-
-// Container aspect ratio — banner never crops important content.
-const BANNER_RATIO = '2000 / 808';
-
-// Left-weighted dark scrim so overlay text stays readable on any photo.
-const SCRIM =
-  'linear-gradient(90deg, rgba(9,22,45,0.92) 0%, rgba(9,22,45,0.72) 32%, rgba(9,22,45,0.35) 55%, rgba(9,22,45,0) 78%)';
-
-function SlideContent({ s }: { s: Slide }) {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 3,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: 'clamp(6px, 1.1vw, 16px)',
-        padding: '0 clamp(20px, 6vw, 90px)',
-        maxWidth: 'min(640px, 62%)',
-      }}
-    >
-      <span
-        style={{
-          color: '#7FB2FF',
-          fontSize: 'clamp(9px, 1.15vw, 15px)',
-          fontWeight: 700,
-          letterSpacing: '0.18em',
-        }}
-      >
-        {s.eyebrow}
-      </span>
-      <h2
-        style={{
-          color: '#fff',
-          margin: 0,
-          fontSize: 'clamp(20px, 4.4vw, 58px)',
-          lineHeight: 1.05,
-          fontWeight: 800,
-          whiteSpace: 'pre-line',
-          textShadow: '0 2px 18px rgba(0,0,0,0.35)',
-        }}
-      >
-        {s.title}
-      </h2>
-      <p
-        style={{
-          color: 'rgba(255,255,255,0.9)',
-          margin: 0,
-          fontSize: 'clamp(11px, 1.5vw, 20px)',
-          lineHeight: 1.4,
-          maxWidth: '30ch',
-        }}
-      >
-        {s.sub}
-      </p>
-      <span
-        style={{
-          marginTop: 'clamp(4px, 0.8vw, 12px)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-          background: '#fff',
-          color: '#0B1E3D',
-          fontWeight: 800,
-          fontSize: 'clamp(11px, 1.35vw, 17px)',
-          padding: 'clamp(7px, 0.9vw, 14px) clamp(16px, 2vw, 32px)',
-          borderRadius: 999,
-          boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
-        }}
-      >
-        {s.cta}
-        <ChevronRight size={16} strokeWidth={2.5} />
-      </span>
-    </div>
-  );
-}
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
@@ -180,48 +98,31 @@ export default function HeroCarousel() {
             key={i}
             href={s.href}
             aria-label={s.alt}
-            style={{
-              flex: '0 0 100%',
-              width: '100%',
-              position: 'relative',
-              aspectRatio: BANNER_RATIO,
-              display: 'block',
-              background: s.type === 'product' ? s.bg : '#0B1E3D',
-              overflow: 'hidden',
-            }}
+            className="hero-slide"
+            style={{ flex: '0 0 100%', width: '100%', background: PANEL_BG }}
           >
-            {s.type === 'photo' ? (
-              <>
-                <Image
-                  src={s.src}
-                  alt={s.alt}
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: s.objectPosition ?? 'center' }}
-                  priority={i === 0}
-                  sizes="100vw"
-                />
-                <div style={{ position: 'absolute', inset: 0, zIndex: 2, background: SCRIM }} />
-              </>
-            ) : (
-              // Product PNG anchored to the right, text on the left.
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  zIndex: 1,
-                }}
-              >
-                <Image
-                  src={s.src}
-                  alt={s.alt}
-                  fill
-                  style={{ objectFit: 'contain', objectPosition: 'right center', padding: '4% 4% 4% 0' }}
-                  priority={i === 0}
-                  sizes="100vw"
-                />
-              </div>
-            )}
-            <SlideContent s={s} />
+            {/* Right: image */}
+            <div className="hero-media" style={{ background: s.mediaBg }}>
+              <Image
+                src={s.src}
+                alt={s.alt}
+                fill
+                style={{ objectFit: 'contain', objectPosition: 'center', padding: s.imgPad ?? 0 }}
+                priority={i === 0}
+                sizes="60vw"
+              />
+            </div>
+
+            {/* Left: text panel */}
+            <div className="hero-text">
+              <span className="hero-eyebrow">{s.eyebrow}</span>
+              <h2 className="hero-title">{s.title}</h2>
+              <p className="hero-sub">{s.sub}</p>
+              <span className="hero-cta">
+                {s.cta}
+                <ChevronRight size={16} strokeWidth={2.5} />
+              </span>
+            </div>
           </Link>
         ))}
       </div>
@@ -292,6 +193,104 @@ export default function HeroCarousel() {
           />
         ))}
       </div>
+
+      <style>{`
+        .hero-slide {
+          position: relative;
+          display: block;
+          aspect-ratio: 2000 / 760;
+          overflow: hidden;
+          text-decoration: none;
+        }
+        /* Right image panel */
+        .hero-slide .hero-media {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 58%;
+        }
+        /* Left text panel */
+        .hero-slide .hero-text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 46%;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: clamp(6px, 1vw, 16px);
+          padding: 0 clamp(18px, 4vw, 64px);
+        }
+        /* Soft blend so the image edge fades into the text panel */
+        .hero-slide .hero-text::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: -60px;
+          width: 60px;
+          height: 100%;
+          background: linear-gradient(90deg, #0A5BD6 0%, rgba(10,91,214,0) 100%);
+          opacity: 0.55;
+          pointer-events: none;
+        }
+        .hero-eyebrow {
+          color: #8FBEFF;
+          font-size: clamp(9px, 1.05vw, 14px);
+          font-weight: 700;
+          letter-spacing: 0.16em;
+        }
+        .hero-title {
+          color: #fff;
+          margin: 0;
+          font-size: clamp(19px, 3.6vw, 52px);
+          line-height: 1.06;
+          font-weight: 800;
+          white-space: pre-line;
+          text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+        }
+        .hero-sub {
+          color: rgba(255,255,255,0.9);
+          margin: 0;
+          font-size: clamp(10px, 1.35vw, 18px);
+          line-height: 1.4;
+          max-width: 26ch;
+        }
+        .hero-cta {
+          margin-top: clamp(4px, 0.8vw, 12px);
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #fff;
+          color: #0B1E3D;
+          font-weight: 800;
+          font-size: clamp(10px, 1.2vw, 16px);
+          padding: clamp(6px, 0.85vw, 13px) clamp(14px, 1.8vw, 30px);
+          border-radius: 999px;
+          box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+          transition: transform 0.2s;
+        }
+        .hero-slide:hover .hero-cta { transform: translateY(-2px); }
+
+        /* Mobile: taller banner + wider text panel so copy stays readable */
+        @media (max-width: 640px) {
+          .hero-slide { aspect-ratio: 5 / 4; }
+          .hero-slide .hero-media { width: 100%; height: 56%; top: auto; bottom: 0; }
+          .hero-slide .hero-text {
+            width: 100%;
+            height: 46%;
+            justify-content: flex-start;
+            padding: clamp(14px, 5vw, 28px) clamp(16px, 6vw, 32px) 0;
+          }
+          .hero-slide .hero-text::after { display: none; }
+          .hero-title { font-size: clamp(20px, 6.5vw, 32px); }
+          .hero-sub { font-size: clamp(11px, 3.4vw, 15px); max-width: 34ch; }
+          .hero-cta { font-size: clamp(11px, 3.4vw, 15px); }
+        }
+      `}</style>
     </section>
   );
 }
