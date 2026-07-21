@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import {
   Star, ShieldCheck, Truck, Check,
-  ChevronRight, Package, Wind, MessageCircle
+  ChevronRight, ChevronLeft, Package, Wind, MessageCircle,
+  Maximize2, ZoomIn, ZoomOut, X
 } from 'lucide-react';
 import { StaticProduct, PRODUCTS } from '../../../../lib/products-data';
 
@@ -28,21 +30,204 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
+const MAX_ZOOM = 4;
+
 function ImageGallery({ images }: { images: string[] }) {
   const [main, setMain] = useState(0);
+
+  // Hover magnifier on the inline image
+  const [hovering, setHovering] = useState(false);
+  const [origin, setOrigin] = useState('50% 50%');
+
+  // Fullscreen lightbox
+  const [open, setOpen] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const dragRef = useRef({ x: 0, y: 0, px: 0, py: 0 });
+  // The gallery sits inside a `position: sticky` wrapper, which creates its own
+  // stacking context — a fixed overlay rendered here would be painted under the
+  // info column. So the lightbox is portalled to <body>.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const resetZoom = useCallback(() => { setScale(1); setPan({ x: 0, y: 0 }); }, []);
+  const close = useCallback(() => { setOpen(false); resetZoom(); }, [resetZoom]);
+  const go = useCallback((d: number) => {
+    setMain((m) => (m + d + images.length) % images.length);
+    resetZoom();
+  }, [images.length, resetZoom]);
+  const zoomBy = useCallback((d: number) => {
+    setScale((s) => {
+      const next = Math.min(MAX_ZOOM, Math.max(1, +(s + d).toFixed(2)));
+      if (next === 1) setPan({ x: 0, y: 0 });
+      return next;
+    });
+  }, []);
+
+  // Lock page scroll + keyboard shortcuts while the lightbox is open
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') go(1);
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === '+' || e.key === '=') zoomBy(0.5);
+      else if (e.key === '-' || e.key === '_') zoomBy(-0.5);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, close, go, zoomBy]);
+
+  const onDragStart = (e: React.MouseEvent) => {
+    if (scale === 1) return;
+    setDragging(true);
+    dragRef.current = { x: e.clientX, y: e.clientY, px: pan.x, py: pan.y };
+  };
+  const onDragMove = (e: React.MouseEvent) => {
+    if (!dragging) return;
+    setPan({
+      x: dragRef.current.px + (e.clientX - dragRef.current.x),
+      y: dragRef.current.py + (e.clientY - dragRef.current.y),
+    });
+  };
+
+  const iconBtn: React.CSSProperties = {
+    width: 40, height: 40, borderRadius: 10, border: '1.5px solid rgba(255,255,255,0.25)',
+    background: 'rgba(255,255,255,0.1)', color: '#fff', cursor: 'pointer',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)',
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <div style={{ position: 'relative', aspectRatio: '4/3', background: '#ffffff', overflow: 'hidden', border: `2px solid #dde8ff`, borderRadius: 12, boxShadow: '0 4px 20px rgba(10,91,214,0.1)' }}>
+      <div
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+        onMouseMove={(e) => {
+          const r = e.currentTarget.getBoundingClientRect();
+          setOrigin(`${((e.clientX - r.left) / r.width) * 100}% ${((e.clientY - r.top) / r.height) * 100}%`);
+        }}
+        onClick={() => setOpen(true)}
+        title="Click to view fullscreen"
+        style={{ position: 'relative', aspectRatio: '4/3', background: '#ffffff', overflow: 'hidden', border: `2px solid #dde8ff`, borderRadius: 12, boxShadow: '0 4px 20px rgba(10,91,214,0.1)', cursor: 'zoom-in' }}
+      >
         <Image
           src={images[main]}
           alt="Product"
           fill
-          style={{ objectFit: 'contain', padding: 16, transition: 'opacity 0.3s' }}
+          style={{
+            objectFit: 'contain', padding: 16,
+            transform: hovering ? 'scale(1.9)' : 'scale(1)',
+            transformOrigin: origin,
+            transition: 'transform 0.28s ease',
+          }}
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority
           onError={(e) => { (e.target as HTMLImageElement).src = '/coming-soon.png'; }}
         />
+        {/* Fullscreen affordance */}
+        <button
+          onClick={(e) => { e.stopPropagation(); setOpen(true); }}
+          aria-label="View fullscreen"
+          style={{
+            position: 'absolute', right: 12, bottom: 12, zIndex: 3,
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            background: 'rgba(11,30,61,0.82)', color: '#fff', border: 'none',
+            padding: '8px 12px', borderRadius: 8, fontSize: 11, fontWeight: 700,
+            letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer',
+            backdropFilter: 'blur(4px)',
+          }}
+        >
+          <Maximize2 size={13} /> Fullscreen
+        </button>
       </div>
+
+      {/* ── Fullscreen lightbox (portalled to <body>) ── */}
+      {open && mounted && createPortal(
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Product image viewer"
+          onClick={(e) => { if (e.target === e.currentTarget) close(); }}
+          style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(6,13,26,0.95)', display: 'flex', flexDirection: 'column' }}
+        >
+          {/* toolbar */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', gap: 12 }}>
+            <span style={{ color: 'rgba(255,255,255,0.75)', fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              {main + 1} / {images.length}
+            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <button onClick={() => zoomBy(-0.5)} disabled={scale <= 1} aria-label="Zoom out" style={{ ...iconBtn, opacity: scale <= 1 ? 0.4 : 1 }}><ZoomOut size={18} /></button>
+              <span style={{ color: '#fff', fontSize: 12, fontWeight: 700, minWidth: 46, textAlign: 'center' }}>{Math.round(scale * 100)}%</span>
+              <button onClick={() => zoomBy(0.5)} disabled={scale >= MAX_ZOOM} aria-label="Zoom in" style={{ ...iconBtn, opacity: scale >= MAX_ZOOM ? 0.4 : 1 }}><ZoomIn size={18} /></button>
+              <button onClick={close} aria-label="Close" style={{ ...iconBtn, marginLeft: 6 }}><X size={18} /></button>
+            </div>
+          </div>
+
+          {/* image stage */}
+          <div
+            onWheel={(e) => zoomBy(e.deltaY < 0 ? 0.3 : -0.3)}
+            onMouseDown={onDragStart}
+            onMouseMove={onDragMove}
+            onMouseUp={() => setDragging(false)}
+            onMouseLeave={() => setDragging(false)}
+            onDoubleClick={() => (scale > 1 ? resetZoom() : setScale(2))}
+            style={{
+              flex: 1, position: 'relative', overflow: 'hidden',
+              cursor: scale > 1 ? (dragging ? 'grabbing' : 'grab') : 'zoom-in',
+            }}
+          >
+            <div style={{
+              position: 'absolute', inset: 0,
+              transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
+              transition: dragging ? 'none' : 'transform 0.22s ease',
+            }}>
+              <Image
+                src={images[main]}
+                alt="Product — fullscreen"
+                fill
+                style={{ objectFit: 'contain', padding: 24, pointerEvents: 'none', userSelect: 'none' }}
+                sizes="100vw"
+                onError={(e) => { (e.target as HTMLImageElement).src = '/coming-soon.png'; }}
+              />
+            </div>
+
+            {images.length > 1 && (
+              <>
+                <button onClick={() => go(-1)} aria-label="Previous image" style={{ ...iconBtn, position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)' }}><ChevronLeft size={20} /></button>
+                <button onClick={() => go(1)} aria-label="Next image" style={{ ...iconBtn, position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)' }}><ChevronRight size={20} /></button>
+              </>
+            )}
+          </div>
+
+          {/* thumbnails */}
+          {images.length > 1 && (
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', padding: '14px 18px 20px', flexWrap: 'wrap' }}>
+              {images.map((src, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setMain(i); resetZoom(); }}
+                  aria-label={`Image ${i + 1}`}
+                  style={{ position: 'relative', width: 60, height: 60, borderRadius: 8, overflow: 'hidden', cursor: 'pointer', padding: 0, background: '#fff', border: `2px solid ${i === main ? '#fff' : 'rgba(255,255,255,0.25)'}`, opacity: i === main ? 1 : 0.55 }}
+                >
+                  <Image src={src} alt="" fill style={{ objectFit: 'contain', padding: 5 }} sizes="60px" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.45)', fontSize: 11, paddingBottom: 14 }}>
+            Scroll or +/− to zoom · drag to pan · double-click to reset · Esc to close
+          </p>
+        </div>,
+        document.body
+      )}
+
       {images.length > 1 && (
         <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
           {images.map((src, i) => (

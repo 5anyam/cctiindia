@@ -66,11 +66,11 @@ export default function Footer() {
             <h4 style={{ fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: BLUE, marginBottom: 20, fontWeight: 700 }}>PRODUCTS</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                { name: 'IcyChill Tower Coolers', to: '/shop' },
-                { name: 'Fiesta Tower Coolers', to: '/shop' },
-                { name: 'Brezza Tower Coolers', to: '/shop' },
-                { name: 'Neo Personal Coolers', to: '/shop' },
-                { name: 'Swish Personal Coolers', to: '/shop' },
+                { name: 'Desert Coolers', to: '/shop' },
+                { name: 'Tower Coolers', to: '/shop' },
+                { name: 'Personal Coolers', to: '/shop' },
+                { name: 'Industrial Coolers', to: '/shop' },
+                { name: 'Double Blower Coolers', to: '/shop' },
                 { name: 'All Products', to: '/shop' },
               ].map(({ name, to }) => (
                 <li key={name}>
