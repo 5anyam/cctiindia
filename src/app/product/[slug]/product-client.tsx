@@ -154,7 +154,7 @@ function ImageGallery({ images }: { images: string[] }) {
           aria-modal="true"
           aria-label="Product image viewer"
           onClick={(e) => { if (e.target === e.currentTarget) close(); }}
-          style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(6,13,26,0.95)', display: 'flex', flexDirection: 'column' }}
+          style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(6,13,26,0.97)', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}
         >
           {/* toolbar */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', gap: 12 }}>
