@@ -112,7 +112,7 @@ export default function Header() {
 
             {/* Right: WhatsApp CTA + Mobile toggle */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <a href="https://wa.me/919899955506" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/919810037985" target="_blank" rel="noopener noreferrer"
                 className="wa-btn"
                 style={{ background: '#25D366', color: '#fff', padding: '9px 18px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, boxShadow: '0 3px 10px rgba(37,211,102,0.3)', transition: 'background 0.2s' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#1da851')}
@@ -182,7 +182,7 @@ export default function Header() {
         </div>
 
         <div style={{ padding: 20, borderTop: `2px solid #dde8ff`, background: '#f0f5ff' }}>
-          <a href="https://wa.me/919899955506" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}
+          <a href="https://wa.me/919810037985" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}
             style={{ display: 'block', padding: '14px 16px', textAlign: 'center', fontSize: 15, fontWeight: 700, color: '#fff', textDecoration: 'none', background: '#25D366', borderRadius: 8 }}
           >
             WhatsApp Us →

@@ -26,14 +26,15 @@ const PANEL_BG = 'linear-gradient(135deg, #0B1E3D 0%, #0A5BD6 135%)';
 
 const SLIDES: Slide[] = [
   {
-    src: '/banners/src-lineup.png',
+    src: '/banners/src-lineup-coolers.png',
     alt: 'CCTI India — the complete range of air coolers',
     href: '/shop',
     eyebrow: 'THE COMPLETE RANGE',
-    title: 'One Air Cooler for\nEvery Home',
-    sub: 'Towers, blowers & desert coolers — factory direct.',
+    title: 'Air Cooler for\nEvery Home',
+    sub: 'Towers, blowers & desert coolers.',
     cta: 'Explore Range',
-    mediaBg: 'linear-gradient(180deg, #ffffff 0%, #e8f0fa 100%)',
+    mediaBg: '#ffffff',   // matches the artwork's white backdrop — no visible seam
+    imgPad: '7%',         // inset so the coolers sit a little smaller in the panel
   },
 ];
 

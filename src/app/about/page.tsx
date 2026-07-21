@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { BadgeCheck, Truck, Wrench, Factory, ShieldCheck, Phone, Wind, MessageCircle } from 'lucide-react';
+import { BadgeCheck, Truck, Wrench, Factory, Phone, Wind, MessageCircle } from 'lucide-react';
 
 const BLUE = '#0A5BD6';
 const DARK = '#0B1E3D';
@@ -13,20 +13,20 @@ export default function AboutPage() {
     <main style={{ minHeight: '100vh', background: BG }}>
 
       {/* Hero */}
-      <section style={{ background: DARK, padding: '72px 32px', borderBottom: `4px solid ${BLUE}`, position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(10,91,214,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,91,214,0.07) 1px, transparent 1px)`, backgroundSize: '48px 48px', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: -80, right: -80, width: 400, height: 400, background: `radial-gradient(circle, rgba(10,91,214,0.18) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+      <section style={{ background: '#fff', padding: '72px 32px', borderBottom: `4px solid ${BLUE}`, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(10,91,214,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,91,214,0.06) 1px, transparent 1px)`, backgroundSize: '48px 48px', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: -80, right: -80, width: 400, height: 400, background: `radial-gradient(circle, rgba(10,91,214,0.12) 0%, transparent 70%)`, pointerEvents: 'none' }} />
         <div style={{ maxWidth: 860, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#7EB3FF', display: 'block', marginBottom: 22 }}>◆ Our Story</span>
+          <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.24em', textTransform: 'uppercase', color: BLUE, display: 'block', marginBottom: 22 }}>◆ Our Story</span>
           <img
             src="/ccti-logo.png"
             alt="CCTI India — Co-Cooling Technology India"
-            style={{ height: 'clamp(56px,9vw,96px)', width: 'auto', display: 'block', margin: '0 auto 22px', borderRadius: 10, boxShadow: '0 10px 30px rgba(0,0,0,0.35)' }}
+            style={{ height: 'clamp(56px,9vw,96px)', width: 'auto', display: 'block', margin: '0 auto 22px', filter: 'drop-shadow(0 8px 18px rgba(10,91,214,0.22))' }}
           />
-          <h1 style={{ fontSize: 'clamp(40px,7vw,80px)', fontWeight: 900, color: '#fff', lineHeight: 0.92, marginBottom: 24, letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: 'clamp(40px,7vw,80px)', fontWeight: 900, color: DARK, lineHeight: 0.92, marginBottom: 24, letterSpacing: '-0.02em' }}>
             ABOUT <span style={{ color: BLUE }}>US</span>
           </h1>
-          <p style={{ fontSize: 15, fontWeight: 300, color: 'rgba(255,255,255,0.55)', maxWidth: 560, margin: '0 auto', lineHeight: 1.85 }}>
+          <p style={{ fontSize: 15, fontWeight: 400, color: '#1c2740', maxWidth: 560, margin: '0 auto', lineHeight: 1.85 }}>
             Established in 1990 in Bawana, Delhi — Co-Cooling Technology India (CCTI), a brand of Agroson Electrical Industries, has spent over 36 years manufacturing quality air coolers that keep Indian homes, offices and factories cool.
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function AboutPage() {
               Co-Cooling Technology India (CCTI) is a brand of Agroson Electrical Industries, a cooler manufacturing company based at D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi. Founded in 1990, we have spent over 36 years designing and manufacturing air coolers built for Indian conditions — tough summers, dusty environments, and round-the-clock operation.
             </p>
             <p style={{ fontSize: 14, color: 'rgba(11,30,61,0.82)', lineHeight: 1.85, marginBottom: 28 }}>
-              We manufacture the <strong style={{ color: DARK }}>IcyChill, Fiesta, Brezza, Neo and Swish</strong> ranges — tower coolers, personal coolers, and double blower models. With our D2C initiative, we now sell directly to homes and businesses across India — cutting out middlemen so you get the best factory price.
+              We manufacture the <strong style={{ color: DARK }}>Desert, Tower, Personal, Double Blower and Industrial </strong> ranges — tower coolers, personal coolers, and double blower models. With our D2C initiative, we now sell directly to homes and businesses across India — cutting out middlemen so you get the best factory price.
             </p>
             <div style={{ display: 'flex', gap: 16 }}>
               <Link href="/shop" style={{ background: BLUE, color: '#fff', padding: '12px 24px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', transition: 'background 0.2s', boxShadow: `0 4px 14px rgba(10,91,214,0.3)` }}
@@ -77,7 +77,7 @@ export default function AboutPage() {
         <section style={{ background: BLUE, borderRadius: 16, padding: '52px 48px', marginBottom: 88, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24, textAlign: 'center' }}>
           {[
             { num: '36+', label: 'Years Manufacturing' },
-            { num: '50,000+', label: 'Coolers Sold' },
+            { num: '50,000+', label: 'Coolers Sold Per Year' },
             { num: '6', label: 'Product Lines' },
             { num: '100%', label: 'Made in India' },
           ].map((s, i) => (
@@ -93,7 +93,7 @@ export default function AboutPage() {
           <div style={{ background: BG, borderBottom: `2px solid #dde8ff`, padding: '28px 36px' }}>
             <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: BLUE, display: 'block', marginBottom: 8 }}>◆ Our Facility</span>
             <h2 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 900, letterSpacing: '-0.02em', color: DARK, lineHeight: 1 }}>
-              BAWANA FACTORY<br /><span style={{ color: BLUE }}>DELHI</span>
+              BAWANA<br /><span style={{ color: BLUE }}>DELHI</span>
             </h2>
           </div>
           <div className="factory-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
@@ -140,30 +140,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Product Range */}
-        <section style={{ marginBottom: 88 }}>
-          <div style={{ textAlign: 'center', marginBottom: 52 }}>
-            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: BLUE, display: 'block', marginBottom: 12 }}>◆ What We Make</span>
-            <h2 style={{ fontSize: 'clamp(36px,5vw,64px)', fontWeight: 900, letterSpacing: '-0.02em', color: DARK, lineHeight: 1 }}>OUR PRODUCT<br /><span style={{ color: BLUE }}>RANGE</span></h2>
-          </div>
-          <div className="products-list-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
-            {[
-              'IcyChill Tower 12" (50L)',
-              'Fiesta Tower Double Blower (90L)',
-              'Brezza Tower 16" Stealth Blue (90L)',
-              'Brezza Tower 16" Aurora White (90L)',
-              'Neo Double Blower (30L)',
-              'Neo Plus Double Blower (50L)',
-              'Swish 50 — Aurora White & Stealth Blue',
-              'Swish 30 — Aurora White & Stealth Blue',
-            ].map((item, i) => (
-              <div key={i} style={{ background: '#fff', border: `1.5px solid #dde8ff`, borderRadius: 10, padding: '18px 20px', display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 1px 6px rgba(10,91,214,0.05)' }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: BLUE, flexShrink: 0 }} />
-                <span style={{ fontSize: 13, fontWeight: 600, color: DARK }}>{item}</span>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* CTA */}
         <section style={{ background: DARK, borderRadius: 20, padding: '72px 56px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>

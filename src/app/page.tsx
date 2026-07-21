@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PRODUCTS, StaticProduct } from '../../lib/products-data';
@@ -25,6 +25,46 @@ function useReveal(threshold = 0.1) {
     return () => obs.disconnect();
   }, [threshold]);
   return ref;
+}
+
+/** Animated number that counts up when it scrolls into view.
+ *  Keeps any non-numeric suffix ("+", "%") and Indian digit grouping. */
+function CountUp({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [display, setDisplay] = useState(value);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const m = value.match(/^([\d,]+)(.*)$/);
+    if (!m || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDisplay(value);
+      return;
+    }
+    const target = parseInt(m[1].replace(/,/g, ''), 10);
+    const suffix = m[2];
+    setDisplay(`0${suffix}`);
+
+    let raf = 0;
+    const obs = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      obs.disconnect();
+      const duration = 1500;
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - t0) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        setDisplay(Math.round(target * eased).toLocaleString('en-IN') + suffix);
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+
+    obs.observe(el);
+    return () => { obs.disconnect(); cancelAnimationFrame(raf); };
+  }, [value]);
+
+  return <span ref={ref}>{display}</span>;
 }
 
 function StarRating({ rating }: { rating: number }) {
@@ -92,15 +132,18 @@ function ProductCard({ product }: { product: StaticProduct }) {
 function MarqueeBelt() {
   const row1 = ['STAY COOL', 'LIVE EASY', 'MADE IN INDIA', 'BAWANA DELHI'];
   const row2 = ['ICYCHILL', 'FIESTA', 'BREZZA', 'NEO', 'SWISH', 'TOWER AIR COOLERS', 'PERSONAL AIR COOLERS'];
+  // The strip scrolls by -50% (one copy). For a gapless infinite loop each
+  // copy must be wider than the viewport, so repeat the short row-1 items.
+  const row1Set = Array.from({ length: 5 }, () => row1).flat();
   return (
     <div style={{ borderTop: `3px solid ${DARK}`, borderBottom: `3px solid ${DARK}` }}>
       <div style={{ overflow: 'hidden', borderBottom: `2px solid ${DARK}`, background: BLUE, padding: '10px 0' }}>
-        <div style={{ display: 'inline-flex', whiteSpace: 'nowrap', animation: 'mq-fwd 20s linear infinite' }}>
+        <div style={{ display: 'inline-flex', whiteSpace: 'nowrap', animation: 'mq-fwd 120s linear infinite' }}>
           {[...Array(2)].map((_, r) => (
             <span key={r} style={{ display: 'inline-flex' }}>
-              {row1.map((t) => (
-                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: '0 22px', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#fff' }}>
-                  {t} <span style={{ fontSize: 12 }}>◆</span>
+              {row1Set.map((t, i) => (
+                <span key={`${r}-${i}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 22, padding: '0 11px', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#fff', lineHeight: 1 }}>
+                  {t} <span style={{ fontSize: 12, lineHeight: 1, display: 'inline-flex', alignItems: 'center' }}>◆</span>
                 </span>
               ))}
             </span>
@@ -112,8 +155,8 @@ function MarqueeBelt() {
           {[...Array(2)].map((_, r) => (
             <span key={r} style={{ display: 'inline-flex' }}>
               {row2.map((t) => (
-                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: '0 22px', fontSize: 13, fontWeight: 700, letterSpacing: '0.18em', color: '#7EB3FF' }}>
-                  {t} <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.25)' }}>▶</span>
+                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 22, padding: '0 11px', fontSize: 13, fontWeight: 700, letterSpacing: '0.18em', color: '#7EB3FF', lineHeight: 1 }}>
+                  {t} <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.55)', lineHeight: 1, display: 'inline-flex', alignItems: 'center' }}>▶</span>
                 </span>
               ))}
             </span>
@@ -141,7 +184,7 @@ function CategoriesSection() {
             AIR COOLERS FOR<br /><span style={{ color: BLUE }}>EVERY NEED.</span>
           </h2>
         </div>
-        <div className="cats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
+        <div className="cats-grid stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
           {cats.map((cat, i) => (
             <Link key={i} href={cat.href}
               style={{ textDecoration: 'none', background: BG, border: `1.5px solid #dde8ff`, borderRadius: 12, padding: '28px 20px', textAlign: 'center', transition: 'transform 0.2s, box-shadow 0.2s, border-color 0.2s' }}
@@ -185,7 +228,7 @@ function ProductsSection() {
             </Link>
           </div>
         </div>
-        <div className="products-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+        <div className="products-grid stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
           {PRODUCTS.slice(0, 6).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -210,7 +253,7 @@ function StatsBar() {
           <React.Fragment key={s.label}>
             {i > 0 && <div style={{ width: 1, height: 52, background: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />}
             <div style={{ textAlign: 'center' }}>
-              <span style={{ fontSize: 'clamp(44px,5vw,72px)', fontWeight: 900, color: '#fff', display: 'block', lineHeight: 1, letterSpacing: '-0.02em' }}>{s.num}</span>
+              <span style={{ fontSize: 'clamp(44px,5vw,72px)', fontWeight: 900, color: '#fff', display: 'block', lineHeight: 1, letterSpacing: '-0.02em' }}><CountUp value={s.num} /></span>
               <p style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)', marginTop: 6, fontWeight: 500 }}>{s.label}</p>
             </div>
           </React.Fragment>
@@ -246,7 +289,7 @@ function WhySection() {
           CONTACT US →
         </Link>
       </div>
-      <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      <div className="why-grid stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {whyItems.map((item, i) => (
           <div key={i}
             style={{ padding: '40px 32px', borderRight: (i + 1) % 3 !== 0 ? `2px solid #dde8ff` : 'none', borderBottom: i < 3 ? `2px solid #dde8ff` : 'none', position: 'relative', overflow: 'hidden', cursor: 'default', transition: 'background 0.2s' }}
@@ -276,7 +319,7 @@ function HowToOrderSection() {
             ORDER IN<br /><span style={{ color: BLUE }}>3 EASY STEPS.</span>
           </h2>
         </div>
-        <div className="how-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: `2px solid #dde8ff`, borderRadius: 12, overflow: 'hidden' }}>
+        <div className="how-grid stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: `2px solid #dde8ff`, borderRadius: 12, overflow: 'hidden' }}>
           {[
             { step: '01', title: 'Browse Coolers', desc: 'Explore our full range of desert, tower, personal, window and industrial coolers.' },
             { step: '02', title: 'WhatsApp Us', desc: 'Tell us the model you want. We confirm availability and give you the best D2C price.' },

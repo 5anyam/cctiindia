@@ -217,3 +217,43 @@ body {
 .animate-blob1 { animation: blob1 10s ease-in-out infinite; }
 .animate-blob2 { animation: blob2 12s ease-in-out infinite; }
 .animate-blob3 { animation: blob3 14s ease-in-out infinite; }
+
+/* ━━ STAGGERED CARD ENTRANCE ━━
+   Children of .stagger animate in one-by-one once their parent section
+   is revealed by ScrollReveal. Safe by default: without .visible they
+   render normally (never hidden). */
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(34px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+/* fill-mode `backwards` (not `both`): the element is hidden only during the
+   delay, then returns to its own styles — so hover transforms keep working. */
+.stagger.visible > * {
+  animation: fadeUpIn 1.05s cubic-bezier(.16,1,.3,1) backwards;
+}
+
+/* ━━ TEXT REVEAL ━━ headings/paragraphs drift + un-blur into place */
+@keyframes textIn {
+  from { opacity: 0; transform: translateY(26px); filter: blur(8px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.text-in.visible {
+  animation: textIn 1.15s cubic-bezier(.16,1,.3,1) backwards;
+}
+
+/* ━━ HERO TEXT ENTRANCE ━━ */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(30px); filter: blur(7px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.hero-text > * { animation: heroIn 1.2s cubic-bezier(.16,1,.3,1) backwards; }
+.hero-text > *:nth-child(1) { animation-delay: .20s; }
+.hero-text > *:nth-child(2) { animation-delay: .45s; }
+.hero-text > *:nth-child(3) { animation-delay: .70s; }
+.hero-text > *:nth-child(4) { animation-delay: .95s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger.visible > *,
+  .text-in.visible,
+  .hero-text > * { animation: none !important; }
+}

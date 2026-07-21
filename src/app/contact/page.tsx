@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
 import CallbackForm from '../../../components/CallbackForm';
 
 const BLUE = '#0A5BD6';
 const DARK = '#0B1E3D';
 const BG = '#F0F5FF';
-const WA_NUMBER = '919899955506';
+const WA_NUMBER = '919810037985';
 
 export default function ContactPage() {
   return (
@@ -48,14 +48,14 @@ export default function ContactPage() {
             onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#25D366'; el.style.transform = 'none'; }}
           >
             <MessageCircle size={20} />
-            +91 98999 55506 →
+            +91 98100 37985 →
           </a>
         </section>
 
         {/* Contact Cards */}
         <section className="contact-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, marginBottom: 64 }}>
           {[
-            { icon: <Phone size={22} />, title: 'CALL / WHATSAPP', sub: 'Mon – Fri · 9 AM – 7 PM', value: '+91 98999 55506', href: `tel:+${WA_NUMBER}`, dark: true },
+            { icon: <Phone size={22} />, title: 'CALL / WHATSAPP', sub: 'Mon – Fri · 9 AM – 7 PM', value: '+91 98100 37985', href: `tel:+${WA_NUMBER}`},
             { icon: <MapPin size={22} />, title: 'FACTORY ADDRESS', sub: 'DSIIDC Industrial Area, Bawana', value: 'D-327, Sector-5, DSIIDC Industrial Area\nBawana, New Delhi – 110039', href: null, dark: false },
             { icon: <Clock size={22} />, title: 'BUSINESS HOURS', sub: 'We respond on WhatsApp anytime', value: 'Mon – Fri: 9 AM – 7 PM\nSat & Sun: Closed', href: null, dark: false },
           ].map((card, i) => (
@@ -82,8 +82,8 @@ export default function ContactPage() {
             </div>
             <div style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 24 }}>
               {[
-                { icon: <MessageCircle size={16} />, label: 'WhatsApp (Fastest)', content: '+91 98999 55506', link: `https://wa.me/${WA_NUMBER}`, isLink: true },
-                { icon: <Phone size={16} />, label: 'Phone', content: '+91 98999 55506 · +91 98100 37985\n+91 99990 11801', link: `tel:+${WA_NUMBER}`, isLink: false },
+                { icon: <MessageCircle size={16} />, label: 'WhatsApp (Fastest)', content: '+91 98100 37985', link: `https://wa.me/${WA_NUMBER}`, isLink: true },
+                { icon: <Phone size={16} />, label: 'Phone', content: '+91 98100 37985\n+91 99990 11801', link: `tel:+${WA_NUMBER}`, isLink: false },
                 { icon: <MapPin size={16} />, label: 'Factory Address', content: 'D-327, Sector-5, DSIIDC Industrial Area\nBawana, New Delhi – 110039', link: null, isLink: false },
                 { icon: <Clock size={16} />, label: 'Business Hours', content: 'Mon – Fri: 9:00 AM – 7:00 PM\nSat & Sun: Closed', link: null, isLink: false },
               ].map((item, i) => (
@@ -153,7 +153,7 @@ export default function ContactPage() {
           </div>
           <div className="faq-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {[
-              { q: 'How do I order a cooler?', a: 'Simply WhatsApp us at +91 98999 55506 with the model you want, your city, and quantity. We\'ll confirm price and delivery details.' },
+              { q: 'How do I order a cooler?', a: 'Simply WhatsApp us at +91 98100 37985 with the model you want, your city, and quantity. We\'ll confirm price and delivery details.' },
               { q: 'Do you deliver pan-India?', a: 'Yes — we deliver to all major cities and towns across India. Well-packed and shipped via reliable logistics partners.' },
               { q: 'Can I visit the factory?', a: 'Yes, our Bawana factory is open Mon–Fri from 9 AM to 7 PM. You can also place orders on the spot.' },
               { q: 'Do you take bulk / B2B orders?', a: 'Absolutely. We supply to dealers, contractors and institutions at wholesale rates. Contact us on WhatsApp for bulk pricing.' },
