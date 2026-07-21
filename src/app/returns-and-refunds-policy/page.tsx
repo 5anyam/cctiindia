@@ -54,7 +54,7 @@ export default function ReturnsRefundPolicyPage() {
 
         <Section title="3. How to Initiate a Return">
           <ol style={{ paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <li>Contact us within <strong>7 days</strong> of delivery on WhatsApp / phone at <strong>+91 98999 55506</strong></li>
+            <li>Contact us within <strong>7 days</strong> of delivery on WhatsApp / phone at <strong>+91 98100 37985</strong></li>
             <li>Share your order details, a description of the issue, and clear photographs of the product and packaging</li>
             <li>Our team will review and respond within 48 hours</li>
             <li>If approved, we will arrange a pickup or guide you on returning the item</li>
@@ -76,7 +76,7 @@ export default function ReturnsRefundPolicyPage() {
 
         <Section title="6. Contact for Returns">
           <ul style={{ paddingLeft: 20, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <li><strong>WhatsApp / Phone:</strong> +91 98999 55506 · +91 98100 37985</li>
+            <li><strong>WhatsApp / Phone:</strong> +91 98100 37985 · +91 99990 11801</li>
             <li><strong>Address:</strong> D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi – 110039</li>
             <li>Or reach us via our <Link href="/contact" style={{ color: BLUE, fontWeight: 700 }}>Contact page</Link>.</li>
           </ul>

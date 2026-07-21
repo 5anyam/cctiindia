@@ -12,7 +12,7 @@ const BLUE = '#0A5BD6';
 const BLUE_DARK = '#0944A8';
 const DARK = '#0B1E3D';
 const BG = '#F0F5FF';
-const WA_NUMBER = '919899955506';
+const WA_NUMBER = '919810037985';
 
 
 function useReveal(threshold = 0.1) {
@@ -248,13 +248,13 @@ function StatsBar() {
   ];
   return (
     <section style={{ background: BLUE, borderTop: `3px solid ${DARK}`, borderBottom: `3px solid ${DARK}`, padding: '48px 40px' }}>
-      <div ref={ref} className="reveal" style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-around', flexWrap: 'wrap', gap: 24 }}>
+      <div ref={ref} className="reveal stats-row" style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-around', flexWrap: 'wrap', gap: 24 }}>
         {stats.map((s, i) => (
           <React.Fragment key={s.label}>
-            {i > 0 && <div style={{ width: 1, height: 52, background: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />}
+            {i > 0 && <div className="stats-divider" style={{ width: 1, height: 52, background: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />}
             <div style={{ textAlign: 'center' }}>
-              <span style={{ fontSize: 'clamp(44px,5vw,72px)', fontWeight: 900, color: '#fff', display: 'block', lineHeight: 1, letterSpacing: '-0.02em' }}><CountUp value={s.num} /></span>
-              <p style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)', marginTop: 6, fontWeight: 500 }}>{s.label}</p>
+              <span className="stats-num" style={{ fontSize: 'clamp(32px,5vw,72px)', fontWeight: 900, color: '#fff', display: 'block', lineHeight: 1, letterSpacing: '-0.02em' }}><CountUp value={s.num} /></span>
+              <p className="stats-label" style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)', marginTop: 6, fontWeight: 500 }}>{s.label}</p>
             </div>
           </React.Fragment>
         ))}
@@ -423,6 +423,19 @@ export default function Homepage() {
           .products-grid { grid-template-columns: 1fr !important; }
           .why-grid { grid-template-columns: 1fr !important; }
           .why-grid > div { border-right: none !important; }
+        }
+        /* Stats bar → 2×2 grid on small screens (dividers don't survive wrapping) */
+        @media (max-width: 720px) {
+          .stats-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 14px !important;
+          }
+          .stats-divider { display: none !important; }
+          .stats-label { font-size: 10px !important; letter-spacing: 0.12em !important; }
+        }
+        @media (max-width: 380px) {
+          .stats-row { grid-template-columns: 1fr !important; gap: 24px !important; }
         }
       `}</style>
     </div>

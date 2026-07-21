@@ -53,7 +53,7 @@ export default function DisclaimerPage() {
         <Section title="6. Contact">
           <p>If you have questions about this disclaimer, contact us:</p>
           <ul style={{ paddingLeft: 20, marginTop: 10, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <li><strong>WhatsApp / Phone:</strong> +91 98999 55506 · +91 98100 37985</li>
+            <li><strong>WhatsApp / Phone:</strong> +91 98100 37985 · +91 99990 11801</li>
             <li><strong>Address:</strong> D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi – 110039</li>
             <li>Or reach us via our <Link href="/contact" style={{ color: BLUE, fontWeight: 700 }}>Contact page</Link>.</li>
           </ul>

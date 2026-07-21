@@ -102,7 +102,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productName }) => {
         <p style={{ fontSize: 13, color: 'rgba(11,30,61,0.8)', marginBottom: 10 }}>
           Bought a {productName}? Share your experience!
         </p>
-        <a href="https://wa.me/919899955506?text=Hi%2C%20I%20would%20like%20to%20share%20my%20review%20for%20my%20CCTI%20India%20cooler."
+        <a href="https://wa.me/919810037985?text=Hi%2C%20I%20would%20like%20to%20share%20my%20review%20for%20my%20CCTI%20India%20cooler."
           target="_blank" rel="noopener noreferrer"
           style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#25D366', color: '#fff', padding: '10px 20px', borderRadius: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none' }}
         >

@@ -185,7 +185,7 @@ export default function ContactPage() {
                 onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#1da851')}
                 onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#25D366')}
               >
-                <MessageCircle size={15} /> +91 98999 55506 →
+                <MessageCircle size={15} /> +91 98100 37985 →
               </a>
               <a href={`tel:+${WA_NUMBER}`}
                 style={{ display: 'inline-block', color: '#fff', padding: '14px 32px', border: `1.5px solid rgba(255,255,255,0.25)`, borderRadius: 10, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', transition: 'border-color 0.2s' }}

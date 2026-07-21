@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
         </Section>
 
         <Section title="8. Your Rights">
-          <p>You may request access to, correction of, or deletion of your personal data by contacting us on WhatsApp at <strong>+91 98999 55506</strong> or via our <Link href="/contact" style={{ color: BLUE, fontWeight: 700 }}>Contact page</Link>. We will respond within 30 days.</p>
+          <p>You may request access to, correction of, or deletion of your personal data by contacting us on WhatsApp at <strong>+91 98100 37985</strong> or via our <Link href="/contact" style={{ color: BLUE, fontWeight: 700 }}>Contact page</Link>. We will respond within 30 days.</p>
         </Section>
 
         <Section title="9. Changes to This Policy">
@@ -82,7 +82,7 @@ export default function PrivacyPolicyPage() {
         <Section title="10. Contact Us">
           <p>For privacy-related queries, contact us at:</p>
           <ul style={{ paddingLeft: 20, marginTop: 10, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <li><strong>WhatsApp / Phone:</strong> +91 98999 55506 · +91 98100 37985</li>
+            <li><strong>WhatsApp / Phone:</strong> +91 98100 37985 · +91 99990 11801</li>
             <li><strong>Address:</strong> D-327, Sector-5, DSIIDC Industrial Area, Bawana, New Delhi – 110039</li>
           </ul>
         </Section>

@@ -48,7 +48,7 @@ export default function Footer() {
                 { href: 'https://www.facebook.com/Aircoolercabinetnewdelhi', icon: <FaFacebookF size={13} /> },
                 { href: '#', icon: <FaInstagram size={13} /> },
                 { href: '#', icon: <FaYoutube size={13} /> },
-                { href: 'https://wa.me/919899955506', icon: <FaWhatsapp size={13} /> },
+                { href: 'https://wa.me/919810037985', icon: <FaWhatsapp size={13} /> },
               ].map(({ href, icon }, i) => (
                 <Link key={i} href={href} target="_blank" rel="noopener noreferrer"
                   style={{ width: 34, height: 34, border: `1.5px solid #dde8ff`, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(10,30,61,0.4)', textDecoration: 'none', transition: 'border-color 0.2s, color 0.2s, background 0.2s' }}

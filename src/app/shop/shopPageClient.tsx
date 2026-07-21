@@ -9,7 +9,7 @@ import { Star, ChevronRight, MessageCircle } from 'lucide-react';
 const BLUE = '#0A5BD6';
 const DARK = '#0B1E3D';
 const BG = '#F0F5FF';
-const WA_NUMBER = '919899955506';
+const WA_NUMBER = '919810037985';
 
 interface Props {
   products: StaticProduct[];

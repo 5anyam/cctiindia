@@ -74,7 +74,7 @@ export default function AboutPage() {
         </section>
 
         {/* Stats */}
-        <section style={{ background: BLUE, borderRadius: 16, padding: '52px 48px', marginBottom: 88, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24, textAlign: 'center' }}>
+        <section className="about-stats" style={{ background: BLUE, borderRadius: 16, padding: '52px 48px', marginBottom: 88, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 24, textAlign: 'center' }}>
           {[
             { num: '36+', label: 'Years Manufacturing' },
             { num: '50,000+', label: 'Coolers Sold Per Year' },
@@ -82,7 +82,7 @@ export default function AboutPage() {
             { num: '100%', label: 'Made in India' },
           ].map((s, i) => (
             <div key={i} style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.25)' : 'none', paddingRight: i < 3 ? 24 : 0 }}>
-              <div style={{ fontSize: 'clamp(40px,4vw,64px)', fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.02em' }}>{s.num}</div>
+              <div style={{ fontSize: 'clamp(30px,4vw,64px)', fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.02em' }}>{s.num}</div>
               <div style={{ fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)', marginTop: 8, fontWeight: 500 }}>{s.label}</div>
             </div>
           ))}
@@ -153,7 +153,7 @@ export default function AboutPage() {
               WhatsApp us with your requirements — room size, cooler type, quantity — and we&apos;ll recommend the best model at the best factory price.
             </p>
             <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="https://wa.me/919899955506" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/919810037985" target="_blank" rel="noopener noreferrer"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#25D366', color: '#fff', padding: '14px 32px', borderRadius: 10, fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', boxShadow: `0 4px 18px rgba(37,211,102,0.4)`, transition: 'background 0.2s' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#1da851')}
                 onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#25D366')}
@@ -184,6 +184,22 @@ export default function AboutPage() {
         @media (max-width: 560px) {
           .why-grid { grid-template-columns: 1fr !important; }
           .products-list-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        /* Stats → 2×2 on tablets/phones; the vertical dividers only make
+           sense in a single row, so drop them once it wraps. */
+        @media (max-width: 900px) {
+          .about-stats {
+            grid-template-columns: 1fr 1fr !important;
+            padding: 36px 24px !important;
+            gap: 30px 16px !important;
+          }
+          .about-stats > div {
+            border-right: none !important;
+            padding-right: 0 !important;
+          }
+        }
+        @media (max-width: 380px) {
+          .about-stats { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </main>

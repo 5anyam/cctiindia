@@ -73,7 +73,7 @@ export default function CallbackForm({ compact = false }: { compact?: boolean })
           <Check style={{ width: 26, height: 26, color: '#1da851' }} />
         </div>
         <h3 style={{ fontSize: 20, fontWeight: 800, color: DARK, marginBottom: 8 }}>Thank you! We&apos;ll call you back.</h3>
-        <p style={{ fontSize: 14, color: '#1c2740', lineHeight: 1.7 }}>Our team will reach out shortly with the best factory price. For a faster response, WhatsApp us at +91 98999 55506.</p>
+        <p style={{ fontSize: 14, color: '#1c2740', lineHeight: 1.7 }}>Our team will reach out shortly with the best factory price. For a faster response, WhatsApp us at +91 98100 37985.</p>
       </div>
     );
   }
